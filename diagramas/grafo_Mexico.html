@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Mexico</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Mexico</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Mexico: 57 aeropuertos, 322 rutas internas, 224 salen al exterior, 224 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Mexico: 57 de 57 aeropuertos&quot;]
+        V_ACA[&quot;ACA&lt;br/&gt;Acapulco&quot;]
+        V_MEX[&quot;MEX&lt;br/&gt;Mexico City&quot;]
+        V_TLC[&quot;TLC&lt;br/&gt;Toluca&quot;]
+        V_AGU[&quot;AGU&lt;br/&gt;Aguascalientes&quot;]
+        V_CEN[&quot;CEN&lt;br/&gt;Ciudad Obregon&quot;]
+        V_CJS[&quot;CJS&lt;br/&gt;Ciudad Juarez&quot;]
+        V_CME[&quot;CME&lt;br/&gt;Ciudad Del Carmen&quot;]
+        V_CPE[&quot;CPE&lt;br/&gt;Campeche&quot;]
+        V_CTM[&quot;CTM&lt;br/&gt;Chetumal&quot;]
+        V_CUL[&quot;CUL&lt;br/&gt;Culiacan&quot;]
+        V_CUN[&quot;CUN&lt;br/&gt;Cancun&quot;]
+        V_MTY[&quot;MTY&lt;br/&gt;Monterrey&quot;]
+        V_CUU[&quot;CUU&lt;br/&gt;Chihuahua&quot;]
+        V_CZM[&quot;CZM&lt;br/&gt;Cozumel&quot;]
+        V_GDL[&quot;GDL&lt;br/&gt;Guadalajara&quot;]
+        V_SJD[&quot;SJD&lt;br/&gt;San Jose Del Cabo&quot;]
+        V_TIJ[&quot;TIJ&lt;br/&gt;Tijuana&quot;]
+        V_HMO[&quot;HMO&lt;br/&gt;Hermosillo&quot;]
+        V_HUX[&quot;HUX&lt;br/&gt;Huatulco&quot;]
+        V_LAP[&quot;LAP&lt;br/&gt;La Paz&quot;]
+        V_MID[&quot;MID&lt;br/&gt;Merida&quot;]
+        V_MTT[&quot;MTT&lt;br/&gt;Minatitlan&quot;]
+        V_MZT[&quot;MZT&lt;br/&gt;Mazatlan&quot;]
+        V_OAX[&quot;OAX&lt;br/&gt;Oaxaca&quot;]
+        V_PQM[&quot;PQM&lt;br/&gt;Palenque&quot;]
+        V_PVR[&quot;PVR&lt;br/&gt;Puerto Vallarta&quot;]
+        V_REX[&quot;REX&lt;br/&gt;Reynosa&quot;]
+        V_TAM[&quot;TAM&lt;br/&gt;Tampico&quot;]
+        V_TGZ[&quot;TGZ&lt;br/&gt;Tuxtla Gutierrez&quot;]
+        V_TRC[&quot;TRC&lt;br/&gt;Torreon&quot;]
+        V_VER[&quot;VER&lt;br/&gt;Vera Cruz&quot;]
+        V_VSA[&quot;VSA&lt;br/&gt;Villahermosa&quot;]
+        V_ZCL[&quot;ZCL&lt;br/&gt;Zacatecas&quot;]
+        V_ZIH[&quot;ZIH&lt;br/&gt;Zihuatanejo&quot;]
+        V_ZLO[&quot;ZLO&lt;br/&gt;Manzanillo&quot;]
+        V_BJX[&quot;BJX&lt;br/&gt;Del Bajio&quot;]
+        V_MLM[&quot;MLM&lt;br/&gt;Morelia&quot;]
+        V_PBC[&quot;PBC&lt;br/&gt;Puebla&quot;]
+        V_QRO[&quot;QRO&lt;br/&gt;Queretaro&quot;]
+        V_SLP[&quot;SLP&lt;br/&gt;San Luis Potosi&quot;]
+        V_CLQ[&quot;CLQ&lt;br/&gt;Colima&quot;]
+        V_CVM[&quot;CVM&lt;br/&gt;Ciudad Victoria&quot;]
+        V_DGO[&quot;DGO&lt;br/&gt;Durango&quot;]
+        V_TAP[&quot;TAP&lt;br/&gt;Tapachula&quot;]
+        V_LMM[&quot;LMM&lt;br/&gt;Los Mochis&quot;]
+        V_MXL[&quot;MXL&lt;br/&gt;Mexicali&quot;]
+        V_JAL[&quot;JAL&lt;br/&gt;Jalapa&quot;]
+        V_LZC[&quot;LZC&lt;br/&gt;Lazard Cardenas&quot;]
+        V_MAM[&quot;MAM&lt;br/&gt;Matamoros&quot;]
+        V_NLD[&quot;NLD&lt;br/&gt;Nuevo Laredo&quot;]
+        V_PAZ[&quot;PAZ&lt;br/&gt;Poza Rico&quot;]
+        V_PDS[&quot;PDS&lt;br/&gt;Piedras Negras&quot;]
+        V_PXM[&quot;PXM&lt;br/&gt;Puerto Escondido&quot;]
+        V_SLW[&quot;SLW&lt;br/&gt;Saltillo&quot;]
+        V_TPQ[&quot;TPQ&lt;br/&gt;Tepic&quot;]
+        V_LTO[&quot;LTO&lt;br/&gt;Loreto&quot;]
+        V_UPN[&quot;UPN&lt;br/&gt;Uruapan&quot;]
+        V_ACA &lt;--&gt; V_MEX
+        V_ACA &lt;--&gt; V_TLC
+        V_ACA &lt;--&gt; V_MTY
+        V_ACA &lt;--&gt; V_TIJ
+        V_MEX &lt;--&gt; V_AGU
+        V_MEX &lt;--&gt; V_CEN
+        V_MEX &lt;--&gt; V_CJS
+        V_MEX &lt;--&gt; V_CME
+        V_MEX &lt;--&gt; V_CPE
+        V_MEX &lt;--&gt; V_CTM
+        V_MEX &lt;--&gt; V_CUL
+        V_MEX &lt;--&gt; V_CUN
+        V_MEX &lt;--&gt; V_CUU
+        V_MEX &lt;--&gt; V_CZM
+        V_MEX &lt;--&gt; V_GDL
+        V_MEX &lt;--&gt; V_HMO
+        V_MEX &lt;--&gt; V_HUX
+        V_MEX &lt;--&gt; V_LAP
+        V_MEX &lt;--&gt; V_MID
+        V_MEX &lt;--&gt; V_MTT
+        V_MEX &lt;--&gt; V_MTY
+        V_MEX &lt;--&gt; V_MZT
+        V_MEX &lt;--&gt; V_OAX
+        V_MEX &lt;--&gt; V_PQM
+        V_MEX &lt;--&gt; V_PVR
+        V_MEX &lt;--&gt; V_REX
+        V_MEX &lt;--&gt; V_SJD
+        V_MEX &lt;--&gt; V_TAM
+        V_MEX &lt;--&gt; V_TGZ
+        V_MEX &lt;--&gt; V_TIJ
+        V_MEX &lt;--&gt; V_TRC
+        V_MEX &lt;--&gt; V_VER
+        V_MEX &lt;--&gt; V_VSA
+        V_MEX &lt;--&gt; V_ZCL
+        V_MEX &lt;--&gt; V_ZIH
+        V_MEX &lt;--&gt; V_ZLO
+        V_MEX &lt;--&gt; V_BJX
+        V_MEX &lt;--&gt; V_CLQ
+        V_MEX &lt;--&gt; V_CVM
+        V_MEX &lt;--&gt; V_DGO
+        V_MEX &lt;--&gt; V_JAL
+        V_MEX &lt;--&gt; V_LMM
+        V_MEX &lt;--&gt; V_LZC
+        V_MEX &lt;--&gt; V_MAM
+        V_MEX &lt;--&gt; V_MLM
+        V_MEX &lt;--&gt; V_MXL
+        V_MEX &lt;--&gt; V_NLD
+        V_MEX &lt;--&gt; V_PAZ
+        V_MEX &lt;--&gt; V_PDS
+        V_MEX &lt;--&gt; V_PXM
+        V_MEX &lt;--&gt; V_SLP
+        V_MEX &lt;--&gt; V_SLW
+        V_MEX &lt;--&gt; V_TAP
+        V_MEX &lt;--&gt; V_TPQ
+        V_TLC &lt;--&gt; V_CUN
+        V_TLC &lt;--&gt; V_MTY
+        V_TLC &lt;--&gt; V_PVR
+        V_TLC &lt;--&gt; V_SJD
+        V_TLC &lt;--&gt; V_ZIH
+        V_TLC &lt;--&gt; V_GDL
+        V_AGU &lt;--&gt; V_MTY
+        V_AGU &lt;--&gt; V_CUN
+        V_AGU &lt;--&gt; V_TIJ
+        V_CEN &lt;--&gt; V_GDL
+        V_CEN &lt;--&gt; V_HMO
+        V_CEN &lt;--&gt; V_TIJ
+        V_CJS &lt;--&gt; V_CUU
+        V_CJS &lt;--&gt; V_HMO
+        V_CJS &lt;--&gt; V_MTY
+        V_CJS &lt;--&gt; V_TIJ
+        V_CJS &lt;--&gt; V_GDL
+        V_CUL &lt;--&gt; V_GDL
+        V_CUL &lt;--&gt; V_HMO
+        V_CUL &lt;--&gt; V_MTY
+        V_CUL &lt;--&gt; V_TIJ
+        V_CUL &lt;--&gt; V_LAP
+        V_CUL &lt;--&gt; V_SJD
+        V_CUN &lt;--&gt; V_MTY
+        V_CUN &lt;--&gt; V_CZM
+        V_CUN &lt;--&gt; V_MID
+        V_CUN &lt;--&gt; V_GDL
+        V_CUN &lt;--&gt; V_OAX
+        V_CUN &lt;--&gt; V_REX
+        V_CUN &lt;--&gt; V_TAM
+        V_CUN &lt;--&gt; V_TGZ
+        V_CUN &lt;--&gt; V_TRC
+        V_CUN &lt;--&gt; V_VER
+        V_CUN &lt;--&gt; V_VSA
+        V_CUN &lt;--&gt; V_BJX
+        V_CUN &lt;--&gt; V_CUU
+        V_CUN &lt;--&gt; V_HMO
+        V_CUN &lt;--&gt; V_PBC
+        V_CUN &lt;--&gt; V_QRO
+        V_CUN &lt;--&gt; V_SLP
+        V_CUN &lt;--&gt; V_TIJ
+        V_MTY &lt;--&gt; V_GDL
+        V_MTY &lt;--&gt; V_BJX
+        V_MTY &lt;--&gt; V_CUU
+        V_MTY &lt;--&gt; V_HMO
+        V_MTY &lt;--&gt; V_PBC
+        V_MTY &lt;--&gt; V_QRO
+        V_MTY &lt;--&gt; V_TAM
+        V_MTY &lt;--&gt; V_VER
+        V_MTY &lt;--&gt; V_LAP
+        V_MTY &lt;--&gt; V_MID
+        V_MTY &lt;--&gt; V_MZT
+        V_MTY &lt;--&gt; V_OAX
+        V_MTY &lt;--&gt; V_PVR
+        V_MTY &lt;--&gt; V_SJD
+        V_MTY &lt;--&gt; V_TGZ
+        V_MTY &lt;--&gt; V_VSA
+        V_MTY &lt;--&gt; V_TIJ
+        V_CUU &lt;--&gt; V_GDL
+        V_CUU &lt;--&gt; V_HMO
+        V_CUU &lt;--&gt; V_TRC
+        V_CUU &lt;--&gt; V_TIJ
+        V_GDL &lt;--&gt; V_SJD
+        V_GDL &lt;--&gt; V_TIJ
+        V_GDL &lt;--&gt; V_HMO
+        V_GDL &lt;--&gt; V_LAP
+        V_GDL &lt;--&gt; V_MZT
+        V_GDL &lt;--&gt; V_PVR
+        V_GDL &lt;--&gt; V_TRC
+        V_GDL &lt;--&gt; V_MID
+        V_GDL &lt;--&gt; V_REX
+        V_GDL &lt;--&gt; V_TGZ
+        V_GDL &lt;--&gt; V_VER
+        V_GDL &lt;--&gt; V_VSA
+        V_GDL &lt;--&gt; V_LMM
+        V_GDL &lt;--&gt; V_MXL
+        V_GDL &lt;--&gt; V_PBC
+        V_SJD &lt;--&gt; V_TIJ
+        V_TIJ &lt;--&gt; V_BJX
+        V_TIJ &lt;--&gt; V_DGO
+        V_TIJ &lt;--&gt; V_HMO
+        V_TIJ &lt;--&gt; V_CLQ
+        V_TIJ &lt;--&gt; V_LAP
+        V_TIJ &lt;--&gt; V_LMM
+        V_TIJ &lt;--&gt; V_MLM
+        V_TIJ &lt;--&gt; V_MZT
+        V_TIJ &lt;--&gt; V_OAX
+        V_TIJ &lt;--&gt; V_PBC
+        V_TIJ &lt;--&gt; V_PVR
+        V_TIJ &lt;--&gt; V_QRO
+        V_TIJ &lt;--&gt; V_SLP
+        V_TIJ &lt;--&gt; V_TGZ
+        V_TIJ &lt;--&gt; V_TPQ
+        V_TIJ &lt;--&gt; V_UPN
+        V_TIJ &lt;--&gt; V_VER
+        V_TIJ &lt;--&gt; V_ZCL
+        V_TIJ &lt;--&gt; V_ZLO
+        V_HMO &lt;--&gt; V_LMM
+        V_HMO &lt;--&gt; V_MXL
+        V_LAP &lt;--&gt; V_MZT
+        V_MID &lt;--&gt; V_VSA
+        V_MZT &lt;--&gt; V_LMM
+        V_REX &lt;--&gt; V_PAZ
+        V_REX &lt;--&gt; V_VER
+        V_TAM &lt;--&gt; V_VER
+        V_VER &lt;--&gt; V_VSA
+        V_VSA &lt;--&gt; V_PAZ
+    end
+    EXT0[&quot;United States&quot;]
+    PAIS --&gt;|&quot;164 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Guatemala&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Guatemala.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Costa Rica&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Costa_Rica.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;17 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;France&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;El Salvador&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_El_Salvador.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Honduras&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Honduras.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Belize&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_Belize.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT22
+    click EXT22 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;China&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT24
+    click EXT24 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

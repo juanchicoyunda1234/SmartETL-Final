@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Brazil</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Brazil</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Brazil: 124 aeropuertos, 710 rutas internas, 119 salen al exterior, 117 llegan del exterior. Se dibuja hasta el nivel 1 desde VCP</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Brazil: 51 de 124 aeropuertos (árbol BFS desde VCP hasta nivel 1)&quot;]
+        V_VCP[&quot;VCP&lt;br/&gt;Campinas&quot;]
+        V_AJU[&quot;AJU&lt;br/&gt;Aracaju&quot;]
+        V_AQA[&quot;AQA&lt;br/&gt;Araracuara&quot;]
+        V_ARU[&quot;ARU&lt;br/&gt;Aracatuba&quot;]
+        V_BPS[&quot;BPS&lt;br/&gt;Porto Seguro&quot;]
+        V_BSB[&quot;BSB&lt;br/&gt;Brasilia&quot;]
+        V_BYO[&quot;BYO&lt;br/&gt;Bointo&quot;]
+        V_CAC[&quot;CAC&lt;br/&gt;Cascavel&quot;]
+        V_CCM[&quot;CCM&lt;br/&gt;Criciuma&quot;]
+        V_CFB[&quot;CFB&lt;br/&gt;Cabo Frio&quot;]
+        V_CGB[&quot;CGB&lt;br/&gt;Cuiaba&quot;]
+        V_CGR[&quot;CGR&lt;br/&gt;Campo Grande&quot;]
+        V_CLV[&quot;CLV&lt;br/&gt;Caldas Novas&quot;]
+        V_CNF[&quot;CNF&lt;br/&gt;Belo Horizonte&quot;]
+        V_CWB[&quot;CWB&lt;br/&gt;Curitiba&quot;]
+        V_CXJ[&quot;CXJ&lt;br/&gt;Caxias Do Sul&quot;]
+        V_DOU[&quot;DOU&lt;br/&gt;Dourados&quot;]
+        V_FLN[&quot;FLN&lt;br/&gt;Florianopolis&quot;]
+        V_FOR[&quot;FOR&lt;br/&gt;Fortaleza&quot;]
+        V_GIG[&quot;GIG&lt;br/&gt;Rio De Janeiro&quot;]
+        V_GYN[&quot;GYN&lt;br/&gt;Goiania&quot;]
+        V_IGU[&quot;IGU&lt;br/&gt;Foz Do Iguacu&quot;]
+        V_IOS[&quot;IOS&lt;br/&gt;Ilheus&quot;]
+        V_IZA[&quot;IZA&lt;br/&gt;Juiz de Fora&quot;]
+        V_JDO[&quot;JDO&lt;br/&gt;Juazeiro Do Norte&quot;]
+        V_JOI[&quot;JOI&lt;br/&gt;Joinville&quot;]
+        V_JPA[&quot;JPA&lt;br/&gt;Joao Pessoa&quot;]
+        V_JTC[&quot;JTC&lt;br/&gt;Bauru&quot;]
+        V_LDB[&quot;LDB&lt;br/&gt;Londrina&quot;]
+        V_MAO[&quot;MAO&lt;br/&gt;Manaus&quot;]
+        V_MCZ[&quot;MCZ&lt;br/&gt;Maceio&quot;]
+        V_MEA[&quot;MEA&lt;br/&gt;Macaé&quot;]
+        V_MGF[&quot;MGF&lt;br/&gt;Maringa&quot;]
+        V_MII[&quot;MII&lt;br/&gt;Marília&quot;]
+        V_NAT[&quot;NAT&lt;br/&gt;Natal&quot;]
+        V_NVT[&quot;NVT&lt;br/&gt;Navegantes&quot;]
+        V_PFB[&quot;PFB&lt;br/&gt;Passo Fundo&quot;]
+        V_PLU[&quot;PLU&lt;br/&gt;Belo Horizonte&quot;]
+        V_POA[&quot;POA&lt;br/&gt;Porto Alegre&quot;]
+        V_PPB[&quot;PPB&lt;br/&gt;President Prudente&quot;]
+        V_RAO[&quot;RAO&lt;br/&gt;Ribeirao Preto&quot;]
+        V_REC[&quot;REC&lt;br/&gt;Recife&quot;]
+        V_RVD[&quot;RVD&lt;br/&gt;Rio Verde&quot;]
+        V_SDU[&quot;SDU&lt;br/&gt;Rio De Janeiro&quot;]
+        V_SJP[&quot;SJP&lt;br/&gt;Sao Jose Do Rio Preto&quot;]
+        V_SSA[&quot;SSA&lt;br/&gt;Salvador&quot;]
+        V_THE[&quot;THE&lt;br/&gt;Teresina&quot;]
+        V_UBA[&quot;UBA&lt;br/&gt;Uberaba&quot;]
+        V_UDI[&quot;UDI&lt;br/&gt;Uberlandia&quot;]
+        V_VIX[&quot;VIX&lt;br/&gt;Vitoria&quot;]
+        V_XAP[&quot;XAP&lt;br/&gt;Chapeco&quot;]
+        V_VCP --&gt; V_AJU
+        V_VCP --&gt; V_AQA
+        V_VCP --&gt; V_ARU
+        V_VCP --&gt; V_BPS
+        V_VCP --&gt; V_BSB
+        V_VCP --&gt; V_BYO
+        V_VCP --&gt; V_CAC
+        V_VCP --&gt; V_CCM
+        V_VCP --&gt; V_CFB
+        V_VCP --&gt; V_CGB
+        V_VCP --&gt; V_CGR
+        V_VCP --&gt; V_CLV
+        V_VCP --&gt; V_CNF
+        V_VCP --&gt; V_CWB
+        V_VCP --&gt; V_CXJ
+        V_VCP --&gt; V_DOU
+        V_VCP --&gt; V_FLN
+        V_VCP --&gt; V_FOR
+        V_VCP --&gt; V_GIG
+        V_VCP --&gt; V_GYN
+        V_VCP --&gt; V_IGU
+        V_VCP --&gt; V_IOS
+        V_VCP --&gt; V_IZA
+        V_VCP --&gt; V_JDO
+        V_VCP --&gt; V_JOI
+        V_VCP --&gt; V_JPA
+        V_VCP --&gt; V_JTC
+        V_VCP --&gt; V_LDB
+        V_VCP --&gt; V_MAO
+        V_VCP --&gt; V_MCZ
+        V_VCP --&gt; V_MEA
+        V_VCP --&gt; V_MGF
+        V_VCP --&gt; V_MII
+        V_VCP --&gt; V_NAT
+        V_VCP --&gt; V_NVT
+        V_VCP --&gt; V_PFB
+        V_VCP --&gt; V_PLU
+        V_VCP --&gt; V_POA
+        V_VCP --&gt; V_PPB
+        V_VCP --&gt; V_RAO
+        V_VCP --&gt; V_REC
+        V_VCP --&gt; V_RVD
+        V_VCP --&gt; V_SDU
+        V_VCP --&gt; V_SJP
+        V_VCP --&gt; V_SSA
+        V_VCP --&gt; V_THE
+        V_VCP --&gt; V_UBA
+        V_VCP --&gt; V_UDI
+        V_VCP --&gt; V_VIX
+        V_VCP --&gt; V_XAP
+    end
+    EXT0[&quot;United States&quot;]
+    PAIS --&gt;|&quot;26 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;France&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Uruguay&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Uruguay.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Angola&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Angola.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT19
+    click EXT19 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Togo&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Togo.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Paraguay&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Paraguay.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Barbados&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT22
+    click EXT22 &quot;grafo_Barbados.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Bolivia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Bolivia.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT27
+    click EXT27 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT28
+    click EXT28 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;French Guiana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT30
+    click EXT30 &quot;grafo_French_Guiana.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Suriname&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_Suriname.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Cape Verde&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT32
+    click EXT32 &quot;grafo_Cape_Verde.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

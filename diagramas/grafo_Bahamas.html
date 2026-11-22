@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Bahamas</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Bahamas</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Bahamas: 19 aeropuertos, 39 rutas internas, 49 salen al exterior, 50 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Bahamas: 19 de 19 aeropuertos&quot;]
+        V_BIM[&quot;BIM&lt;br/&gt;Alice Town&quot;]
+        V_ELH[&quot;ELH&lt;br/&gt;North Eleuthera&quot;]
+        V_FPO[&quot;FPO&lt;br/&gt;Freeport&quot;]
+        V_GGT[&quot;GGT&lt;br/&gt;Great Exuma&quot;]
+        V_GHB[&quot;GHB&lt;br/&gt;Governor's Harbor&quot;]
+        V_MHH[&quot;MHH&lt;br/&gt;Marsh Harbor&quot;]
+        V_TCB[&quot;TCB&lt;br/&gt;Treasure Cay&quot;]
+        V_NAS[&quot;NAS&lt;br/&gt;Nassau&quot;]
+        V_ZSA[&quot;ZSA&lt;br/&gt;Cockburn Town&quot;]
+        V_ATC[&quot;ATC&lt;br/&gt;Arthur's Town&quot;]
+        V_LGI[&quot;LGI&lt;br/&gt;Dead Man's Cay&quot;]
+        V_RCY[&quot;RCY&lt;br/&gt;Port Nelson&quot;]
+        V_RSD[&quot;RSD&lt;br/&gt;Rock Sound&quot;]
+        V_SML[&quot;SML&lt;br/&gt;Stella Maris&quot;]
+        V_TBI[&quot;TBI&lt;br/&gt;Cat Island&quot;]
+        V_AXP[&quot;AXP&lt;br/&gt;Spring Point&quot;]
+        V_CRI[&quot;CRI&lt;br/&gt;Colonel Hill&quot;]
+        V_IGA[&quot;IGA&lt;br/&gt;Matthew Town&quot;]
+        V_MYG[&quot;MYG&lt;br/&gt;Mayaguana&quot;]
+        V_ELH &lt;--&gt; V_NAS
+        V_FPO &lt;--&gt; V_NAS
+        V_GGT --&gt; V_GHB
+        V_GGT &lt;--&gt; V_NAS
+        V_GHB &lt;--&gt; V_NAS
+        V_MHH &lt;--&gt; V_NAS
+        V_NAS &lt;--&gt; V_ATC
+        V_NAS &lt;--&gt; V_LGI
+        V_NAS &lt;--&gt; V_RCY
+        V_NAS &lt;--&gt; V_RSD
+        V_NAS &lt;--&gt; V_SML
+        V_NAS &lt;--&gt; V_TBI
+        V_NAS &lt;--&gt; V_ZSA
+        V_NAS &lt;--&gt; V_AXP
+        V_NAS &lt;--&gt; V_CRI
+        V_NAS &lt;--&gt; V_IGA
+        V_NAS &lt;--&gt; V_MYG
+        V_ATC &lt;--&gt; V_TBI
+        V_AXP &lt;--&gt; V_CRI
+        V_IGA &lt;--&gt; V_MYG
+    end
+    EXT0[&quot;United States&quot;]
+    PAIS --&gt;|&quot;40 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Cayman Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Cayman_Islands.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Turks and Caicos Islands&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Turks_and_Caicos_Islands.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Jamaica&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Jamaica.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

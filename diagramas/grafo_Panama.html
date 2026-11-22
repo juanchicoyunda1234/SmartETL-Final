@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Panama</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Panama</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Panama: 7 aeropuertos, 9 rutas internas, 74 salen al exterior, 75 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Panama: 7 de 7 aeropuertos&quot;]
+        V_BOC[&quot;BOC&lt;br/&gt;Bocas Del Toro&quot;]
+        V_PAC[&quot;PAC&lt;br/&gt;Panama&quot;]
+        V_CHX[&quot;CHX&lt;br/&gt;Changuinola&quot;]
+        V_DAV[&quot;DAV&lt;br/&gt;David&quot;]
+        V_JQE[&quot;JQE&lt;br/&gt;Jaqué&quot;]
+        V_PUE[&quot;PUE&lt;br/&gt;Puerto Obaldia&quot;]
+        V_PTY[&quot;PTY&lt;br/&gt;Panama City&quot;]
+        V_BOC &lt;--&gt; V_PAC
+        V_PAC --&gt; V_CHX
+        V_PAC &lt;--&gt; V_DAV
+        V_PAC &lt;--&gt; V_PUE
+        V_CHX --&gt; V_BOC
+        V_JQE --&gt; V_PAC
+    end
+    EXT0[&quot;Costa Rica&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Costa_Rica.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;United States&quot;]
+    PAIS --&gt;|&quot;14 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Haiti&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Haiti.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Trinidad and Tobago&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Trinidad_and_Tobago.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;El Salvador&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_El_Salvador.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Paraguay&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Paraguay.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Aruba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Aruba.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Netherlands Antilles&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Netherlands_Antilles.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Guatemala&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Guatemala.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Jamaica&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Jamaica.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Nicaragua&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Nicaragua.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Uruguay&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Uruguay.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Bahamas&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT22
+    click EXT22 &quot;grafo_Bahamas.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Honduras&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Honduras.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Puerto Rico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT26
+    click EXT26 &quot;grafo_Puerto_Rico.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Bolivia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT27
+    click EXT27 &quot;grafo_Bolivia.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT28
+    click EXT28 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Australia</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Australia</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Australia: 113 aeropuertos, 441 rutas internas, 131 salen al exterior, 126 llegan del exterior. Se dibuja hasta el nivel 1 desde SYD</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Australia: 46 de 113 aeropuertos (árbol BFS desde SYD hasta nivel 1)&quot;]
+        V_SYD[&quot;SYD&lt;br/&gt;Sydney&quot;]
+        V_ADL[&quot;ADL&lt;br/&gt;Adelaide&quot;]
+        V_ASP[&quot;ASP&lt;br/&gt;Alice Springs&quot;]
+        V_BNE[&quot;BNE&lt;br/&gt;Brisbane&quot;]
+        V_CBR[&quot;CBR&lt;br/&gt;Canberra&quot;]
+        V_CNS[&quot;CNS&lt;br/&gt;Cairns&quot;]
+        V_DRW[&quot;DRW&lt;br/&gt;Darwin&quot;]
+        V_MEL[&quot;MEL&lt;br/&gt;Melbourne&quot;]
+        V_PER[&quot;PER&lt;br/&gt;Perth&quot;]
+        V_AVV[&quot;AVV&lt;br/&gt;Avalon&quot;]
+        V_AYQ[&quot;AYQ&lt;br/&gt;Uluru&quot;]
+        V_BNK[&quot;BNK&lt;br/&gt;Ballina Byron Bay&quot;]
+        V_HBA[&quot;HBA&lt;br/&gt;Hobart&quot;]
+        V_HTI[&quot;HTI&lt;br/&gt;Hamilton Island&quot;]
+        V_LST[&quot;LST&lt;br/&gt;Launceston&quot;]
+        V_MCY[&quot;MCY&lt;br/&gt;Maroochydore&quot;]
+        V_OOL[&quot;OOL&lt;br/&gt;Coolangatta&quot;]
+        V_TSV[&quot;TSV&lt;br/&gt;Townsville&quot;]
+        V_PQQ[&quot;PQQ&lt;br/&gt;Port Macquarie&quot;]
+        V_TWB[&quot;TWB&lt;br/&gt;Toowoomba&quot;]
+        V_ABX[&quot;ABX&lt;br/&gt;Albury&quot;]
+        V_ARM[&quot;ARM&lt;br/&gt;Armidale&quot;]
+        V_BME[&quot;BME&lt;br/&gt;Broome&quot;]
+        V_CFS[&quot;CFS&lt;br/&gt;Coff's Harbour&quot;]
+        V_DBO[&quot;DBO&lt;br/&gt;Dubbo&quot;]
+        V_GLT[&quot;GLT&lt;br/&gt;Gladstone&quot;]
+        V_KTA[&quot;KTA&lt;br/&gt;Karratha&quot;]
+        V_LDH[&quot;LDH&lt;br/&gt;Lord Howe Island&quot;]
+        V_MRZ[&quot;MRZ&lt;br/&gt;Moree&quot;]
+        V_TMW[&quot;TMW&lt;br/&gt;Tamworth&quot;]
+        V_WGA[&quot;WGA&lt;br/&gt;Wagga Wagga&quot;]
+        V_PPP[&quot;PPP&lt;br/&gt;Prosserpine&quot;]
+        V_HVB[&quot;HVB&lt;br/&gt;Hervey Bay&quot;]
+        V_MKY[&quot;MKY&lt;br/&gt;Mackay&quot;]
+        V_BHQ[&quot;BHQ&lt;br/&gt;Broken Hill&quot;]
+        V_BHS[&quot;BHS&lt;br/&gt;Bathurst&quot;]
+        V_GFF[&quot;GFF&lt;br/&gt;Griffith&quot;]
+        V_LSY[&quot;LSY&lt;br/&gt;Lismore&quot;]
+        V_MIM[&quot;MIM&lt;br/&gt;Merimbula&quot;]
+        V_MQL[&quot;MQL&lt;br/&gt;Mildura&quot;]
+        V_MYA[&quot;MYA&lt;br/&gt;Moruya&quot;]
+        V_NRA[&quot;NRA&lt;br/&gt;Narrandera&quot;]
+        V_NTL[&quot;NTL&lt;br/&gt;Newcastle&quot;]
+        V_OAG[&quot;OAG&lt;br/&gt;Orange&quot;]
+        V_PKE[&quot;PKE&lt;br/&gt;Parkes&quot;]
+        V_TRO[&quot;TRO&lt;br/&gt;Taree&quot;]
+        V_SYD --&gt; V_ADL
+        V_SYD --&gt; V_ASP
+        V_SYD --&gt; V_BNE
+        V_SYD --&gt; V_CBR
+        V_SYD --&gt; V_CNS
+        V_SYD --&gt; V_DRW
+        V_SYD --&gt; V_MEL
+        V_SYD --&gt; V_PER
+        V_SYD --&gt; V_AVV
+        V_SYD --&gt; V_AYQ
+        V_SYD --&gt; V_BNK
+        V_SYD --&gt; V_HBA
+        V_SYD --&gt; V_HTI
+        V_SYD --&gt; V_LST
+        V_SYD --&gt; V_MCY
+        V_SYD --&gt; V_OOL
+        V_SYD --&gt; V_TSV
+        V_SYD --&gt; V_PQQ
+        V_SYD --&gt; V_TWB
+        V_SYD --&gt; V_ABX
+        V_SYD --&gt; V_ARM
+        V_SYD --&gt; V_BME
+        V_SYD --&gt; V_CFS
+        V_SYD --&gt; V_DBO
+        V_SYD --&gt; V_GLT
+        V_SYD --&gt; V_KTA
+        V_SYD --&gt; V_LDH
+        V_SYD --&gt; V_MRZ
+        V_SYD --&gt; V_TMW
+        V_SYD --&gt; V_WGA
+        V_SYD --&gt; V_PPP
+        V_SYD --&gt; V_HVB
+        V_SYD --&gt; V_MKY
+        V_SYD --&gt; V_BHQ
+        V_SYD --&gt; V_BHS
+        V_SYD --&gt; V_GFF
+        V_SYD --&gt; V_LSY
+        V_SYD --&gt; V_MIM
+        V_SYD --&gt; V_MQL
+        V_SYD --&gt; V_MYA
+        V_SYD --&gt; V_NRA
+        V_SYD --&gt; V_NTL
+        V_SYD --&gt; V_OAG
+        V_SYD --&gt; V_PKE
+        V_SYD --&gt; V_TRO
+    end
+    EXT0[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Indonesia&quot;]
+    PAIS --&gt;|&quot;11 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Indonesia.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Philippines&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Philippines.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;East Timor&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_East_Timor.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;China&quot;]
+    PAIS --&gt;|&quot;10 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Mauritius&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Mauritius.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;18 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Christmas Island&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Christmas_Island.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;United States&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;India&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Taiwan&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Taiwan.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Fiji&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Fiji.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Vanuatu&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Vanuatu.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Norfolk Island&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_Norfolk_Island.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Cook Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT24
+    click EXT24 &quot;grafo_Cook_Islands.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Papua New Guinea&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT25
+    click EXT25 &quot;grafo_Papua_New_Guinea.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;New Caledonia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Vietnam&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_Vietnam.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Samoa&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Samoa.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Tonga&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Tonga.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Brunei&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT30
+    click EXT30 &quot;grafo_Brunei.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Solomon Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_Solomon_Islands.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Nauru&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT32
+    click EXT32 &quot;grafo_Nauru.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Guam&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT33
+    click EXT33 &quot;grafo_Guam.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

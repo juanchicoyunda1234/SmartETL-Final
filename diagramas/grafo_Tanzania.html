@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Tanzania</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Tanzania</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Tanzania: 8 aeropuertos, 18 rutas internas, 28 salen al exterior, 27 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Tanzania: 8 de 8 aeropuertos&quot;]
+        V_ZNZ[&quot;ZNZ&lt;br/&gt;Zanzibar&quot;]
+        V_JRO[&quot;JRO&lt;br/&gt;Kilimanjaro&quot;]
+        V_DAR[&quot;DAR&lt;br/&gt;Dar Es Salaam&quot;]
+        V_MWZ[&quot;MWZ&lt;br/&gt;Mwanza&quot;]
+        V_ARK[&quot;ARK&lt;br/&gt;Arusha&quot;]
+        V_BKZ[&quot;BKZ&lt;br/&gt;Bukoba&quot;]
+        V_HTMB[&quot;HTMB&lt;br/&gt;Mbeya&quot;]
+        V_MYW[&quot;MYW&lt;br/&gt;Mtwara&quot;]
+        V_ZNZ &lt;--&gt; V_JRO
+        V_ZNZ &lt;--&gt; V_DAR
+        V_JRO &lt;--&gt; V_DAR
+        V_JRO &lt;--&gt; V_MWZ
+        V_DAR --&gt; V_ARK
+        V_DAR &lt;--&gt; V_HTMB
+        V_DAR &lt;--&gt; V_MWZ
+        V_DAR &lt;--&gt; V_MYW
+        V_MWZ &lt;--&gt; V_BKZ
+        V_ARK --&gt; V_ZNZ
+    end
+    EXT0[&quot;Kenya&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Kenya.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Uganda&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Uganda.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Rwanda&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Rwanda.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Malawi&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Malawi.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Zimbabwe&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Zimbabwe.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Comoros&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Comoros.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Mozambique&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_Mozambique.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Oman&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Oman.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Mayotte&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Mayotte.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

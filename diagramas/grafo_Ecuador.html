@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Ecuador</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Ecuador</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Ecuador: 14 aeropuertos, 32 rutas internas, 26 salen al exterior, 27 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Ecuador: 14 de 14 aeropuertos&quot;]
+        V_GYE[&quot;GYE&lt;br/&gt;Guayaquil&quot;]
+        V_UIO[&quot;UIO&lt;br/&gt;Quito&quot;]
+        V_SCY[&quot;SCY&lt;br/&gt;San Cristóbal&quot;]
+        V_OCC[&quot;OCC&lt;br/&gt;Coca&quot;]
+        V_ESM[&quot;ESM&lt;br/&gt;Esmeraldas&quot;]
+        V_CUE[&quot;CUE&lt;br/&gt;Cuenca&quot;]
+        V_ETR[&quot;ETR&lt;br/&gt;Santa Rosa&quot;]
+        V_GPS[&quot;GPS&lt;br/&gt;Galapagos&quot;]
+        V_LOH[&quot;LOH&lt;br/&gt;La Toma (Catamayo)&quot;]
+        V_LTX[&quot;LTX&lt;br/&gt;Latacunga&quot;]
+        V_MEC[&quot;MEC&lt;br/&gt;Manta&quot;]
+        V_TNW[&quot;TNW&lt;br/&gt;Tena&quot;]
+        V_TUA[&quot;TUA&lt;br/&gt;Tulcan&quot;]
+        V_XMS[&quot;XMS&lt;br/&gt;Macas&quot;]
+        V_GYE &lt;--&gt; V_SCY
+        V_GYE &lt;--&gt; V_UIO
+        V_GYE &lt;--&gt; V_CUE
+        V_GYE &lt;--&gt; V_ESM
+        V_GYE &lt;--&gt; V_GPS
+        V_GYE &lt;--&gt; V_LOH
+        V_GYE &lt;--&gt; V_LTX
+        V_UIO &lt;--&gt; V_OCC
+        V_UIO &lt;--&gt; V_CUE
+        V_UIO &lt;--&gt; V_ESM
+        V_UIO &lt;--&gt; V_ETR
+        V_UIO &lt;--&gt; V_LOH
+        V_UIO &lt;--&gt; V_MEC
+        V_UIO --&gt; V_TUA
+        V_UIO --&gt; V_XMS
+        V_OCC &lt;--&gt; V_LTX
+        V_TNW --&gt; V_UIO
+        V_XMS --&gt; V_TNW
+    end
+    EXT0[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;United States&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;El Salvador&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_El_Salvador.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

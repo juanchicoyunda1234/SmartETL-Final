@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Philippines</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Philippines</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Philippines: 37 aeropuertos, 130 rutas internas, 68 salen al exterior, 68 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Philippines: 37 de 37 aeropuertos&quot;]
+        V_BSO[&quot;BSO&lt;br/&gt;Basco&quot;]
+        V_MNL[&quot;MNL&lt;br/&gt;Manila&quot;]
+        V_BXU[&quot;BXU&lt;br/&gt;Butuan&quot;]
+        V_CBO[&quot;CBO&lt;br/&gt;Cotabato&quot;]
+        V_RPML[&quot;RPML&lt;br/&gt;Ladag&quot;]
+        V_CRM[&quot;CRM&lt;br/&gt;Catarman&quot;]
+        V_DGT[&quot;DGT&lt;br/&gt;Dumaguete&quot;]
+        V_GES[&quot;GES&lt;br/&gt;Romblon&quot;]
+        V_KLO[&quot;KLO&lt;br/&gt;Kalibo&quot;]
+        V_LGP[&quot;LGP&lt;br/&gt;Legazpi&quot;]
+        V_MPH[&quot;MPH&lt;br/&gt;Caticlan&quot;]
+        V_OZC[&quot;OZC&lt;br/&gt;Ozamis&quot;]
+        V_PPS[&quot;PPS&lt;br/&gt;Puerto Princesa&quot;]
+        V_RXS[&quot;RXS&lt;br/&gt;Roxas City&quot;]
+        V_SUG[&quot;SUG&lt;br/&gt;Sangley Point&quot;]
+        V_TUG[&quot;TUG&lt;br/&gt;Tuguegarao&quot;]
+        V_ZAM[&quot;ZAM&lt;br/&gt;Zamboanga&quot;]
+        V_BCD[&quot;BCD&lt;br/&gt;Bacolod&quot;]
+        V_CEB[&quot;CEB&lt;br/&gt;Cebu&quot;]
+        V_DVO[&quot;DVO&lt;br/&gt;Davao&quot;]
+        V_CGM[&quot;CGM&lt;br/&gt;Camiguin&quot;]
+        V_CRK[&quot;CRK&lt;br/&gt;Angeles City&quot;]
+        V_DPL[&quot;DPL&lt;br/&gt;Dipolog&quot;]
+        V_IAO[&quot;IAO&lt;br/&gt;Siargao&quot;]
+        V_ILO[&quot;ILO&lt;br/&gt;Iloilo&quot;]
+        V_PAG[&quot;PAG&lt;br/&gt;Pagadian&quot;]
+        V_TAC[&quot;TAC&lt;br/&gt;Tacloban&quot;]
+        V_USU[&quot;USU&lt;br/&gt;Busuanga&quot;]
+        V_CYZ[&quot;CYZ&lt;br/&gt;Cauayan&quot;]
+        V_LAO[&quot;LAO&lt;br/&gt;Laoag&quot;]
+        V_SJI[&quot;SJI&lt;br/&gt;San Jose&quot;]
+        V_TAG[&quot;TAG&lt;br/&gt;Tagbilaran&quot;]
+        V_VRC[&quot;VRC&lt;br/&gt;Virac&quot;]
+        V_WNP[&quot;WNP&lt;br/&gt;Naga&quot;]
+        V_CYP[&quot;CYP&lt;br/&gt;Calbayog City&quot;]
+        V_JOL[&quot;JOL&lt;br/&gt;Jolo&quot;]
+        V_MBT[&quot;MBT&lt;br/&gt;Masbate&quot;]
+        V_BSO &lt;--&gt; V_MNL
+        V_MNL &lt;--&gt; V_BXU
+        V_MNL &lt;--&gt; V_CBO
+        V_MNL &lt;--&gt; V_RPML
+        V_MNL &lt;--&gt; V_CRM
+        V_MNL &lt;--&gt; V_DGT
+        V_MNL &lt;--&gt; V_GES
+        V_MNL &lt;--&gt; V_KLO
+        V_MNL &lt;--&gt; V_LGP
+        V_MNL &lt;--&gt; V_MPH
+        V_MNL &lt;--&gt; V_OZC
+        V_MNL &lt;--&gt; V_PPS
+        V_MNL &lt;--&gt; V_RXS
+        V_MNL &lt;--&gt; V_SUG
+        V_MNL &lt;--&gt; V_TUG
+        V_MNL &lt;--&gt; V_ZAM
+        V_MNL &lt;--&gt; V_BCD
+        V_MNL &lt;--&gt; V_CEB
+        V_MNL &lt;--&gt; V_CYZ
+        V_MNL &lt;--&gt; V_DPL
+        V_MNL &lt;--&gt; V_DVO
+        V_MNL &lt;--&gt; V_ILO
+        V_MNL &lt;--&gt; V_LAO
+        V_MNL &lt;--&gt; V_PAG
+        V_MNL &lt;--&gt; V_SJI
+        V_MNL &lt;--&gt; V_TAC
+        V_MNL &lt;--&gt; V_TAG
+        V_MNL &lt;--&gt; V_USU
+        V_MNL &lt;--&gt; V_VRC
+        V_MNL &lt;--&gt; V_WNP
+        V_MNL &lt;--&gt; V_CYP
+        V_MNL &lt;--&gt; V_MBT
+        V_BXU &lt;--&gt; V_CEB
+        V_RPML &lt;--&gt; V_BCD
+        V_RPML &lt;--&gt; V_CEB
+        V_RPML &lt;--&gt; V_DVO
+        V_RPML &lt;--&gt; V_ILO
+        V_DGT &lt;--&gt; V_CEB
+        V_GES &lt;--&gt; V_CEB
+        V_GES &lt;--&gt; V_ILO
+        V_KLO &lt;--&gt; V_CEB
+        V_KLO &lt;--&gt; V_CRK
+        V_LGP &lt;--&gt; V_CEB
+        V_MPH &lt;--&gt; V_CEB
+        V_OZC &lt;--&gt; V_CEB
+        V_PPS &lt;--&gt; V_CEB
+        V_PPS &lt;--&gt; V_DVO
+        V_PPS &lt;--&gt; V_ILO
+        V_SUG &lt;--&gt; V_CEB
+        V_ZAM &lt;--&gt; V_CEB
+        V_ZAM &lt;--&gt; V_DVO
+        V_ZAM &lt;--&gt; V_JOL
+        V_BCD &lt;--&gt; V_CEB
+        V_BCD &lt;--&gt; V_DVO
+        V_CEB &lt;--&gt; V_CGM
+        V_CEB &lt;--&gt; V_CRK
+        V_CEB &lt;--&gt; V_DPL
+        V_CEB &lt;--&gt; V_DVO
+        V_CEB &lt;--&gt; V_IAO
+        V_CEB &lt;--&gt; V_ILO
+        V_CEB &lt;--&gt; V_PAG
+        V_CEB &lt;--&gt; V_TAC
+        V_CEB &lt;--&gt; V_USU
+        V_DVO &lt;--&gt; V_DPL
+        V_DVO &lt;--&gt; V_ILO
+    end
+    EXT0[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Brunei&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Brunei.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;China&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Indonesia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Indonesia.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Vietnam&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Vietnam.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Macau&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Macau.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Cambodia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_Cambodia.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Taiwan&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Taiwan.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Bahrain&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_Bahrain.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Guam&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Guam.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;United States&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Papua New Guinea&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Papua_New_Guinea.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Palau&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Palau.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

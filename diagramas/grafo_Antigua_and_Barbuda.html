@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Antigua and Barbuda</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Antigua and Barbuda</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Antigua and Barbuda: 1 aeropuertos, 0 rutas internas, 22 salen al exterior, 22 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Antigua and Barbuda: 1 de 1 aeropuertos&quot;]
+        V_ANU[&quot;ANU&lt;br/&gt;Antigua&quot;]
+    end
+    EXT0[&quot;Guadeloupe&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_Guadeloupe.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Saint Kitts and Nevis&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Saint_Kitts_and_Nevis.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;United States&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Trinidad and Tobago&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Trinidad_and_Tobago.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Barbados&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Barbados.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Jamaica&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Jamaica.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Anguilla&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Anguilla.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Dominica&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Dominica.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Puerto Rico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_Puerto_Rico.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Saint Lucia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Saint_Lucia.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Netherlands Antilles&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_Netherlands_Antilles.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

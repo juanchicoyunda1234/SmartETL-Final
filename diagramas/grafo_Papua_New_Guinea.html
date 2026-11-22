@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Papua New Guinea</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Papua New Guinea</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Papua New Guinea: 24 aeropuertos, 103 rutas internas, 12 salen al exterior, 12 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Papua New Guinea: 24 de 24 aeropuertos&quot;]
+        V_POM[&quot;POM&lt;br/&gt;Port Moresby&quot;]
+        V_BUA[&quot;BUA&lt;br/&gt;Buka Island&quot;]
+        V_RAB[&quot;RAB&lt;br/&gt;Tokua&quot;]
+        V_DAU[&quot;DAU&lt;br/&gt;Daru&quot;]
+        V_LAE[&quot;LAE&lt;br/&gt;Nadzab&quot;]
+        V_UNG[&quot;UNG&lt;br/&gt;Kiunga&quot;]
+        V_GKA[&quot;GKA&lt;br/&gt;Goroka&quot;]
+        V_HGU[&quot;HGU&lt;br/&gt;Mount Hagen&quot;]
+        V_MAG[&quot;MAG&lt;br/&gt;Madang&quot;]
+        V_GUR[&quot;GUR&lt;br/&gt;Gurney&quot;]
+        V_MIS[&quot;MIS&lt;br/&gt;Misima Island&quot;]
+        V_PNP[&quot;PNP&lt;br/&gt;Girua&quot;]
+        V_MXH[&quot;MXH&lt;br/&gt;Moro&quot;]
+        V_TBG[&quot;TBG&lt;br/&gt;Tabubil&quot;]
+        V_TIZ[&quot;TIZ&lt;br/&gt;Tari&quot;]
+        V_WWK[&quot;WWK&lt;br/&gt;Wewak&quot;]
+        V_HKN[&quot;HKN&lt;br/&gt;Hoskins&quot;]
+        V_KVG[&quot;KVG&lt;br/&gt;Kavieng&quot;]
+        V_MAS[&quot;MAS&lt;br/&gt;Momote&quot;]
+        V_BUL[&quot;BUL&lt;br/&gt;Bulolo&quot;]
+        V_CMU[&quot;CMU&lt;br/&gt;Kundiawa&quot;]
+        V_VAI[&quot;VAI&lt;br/&gt;Vanimo&quot;]
+        V_MDU[&quot;MDU&lt;br/&gt;Mendi&quot;]
+        V_WBM[&quot;WBM&lt;br/&gt;Wapenamanda&quot;]
+        V_POM &lt;--&gt; V_BUL
+        V_POM &lt;--&gt; V_DAU
+        V_POM &lt;--&gt; V_GKA
+        V_POM &lt;--&gt; V_GUR
+        V_POM &lt;--&gt; V_HGU
+        V_POM &lt;--&gt; V_HKN
+        V_POM &lt;--&gt; V_LAE
+        V_POM &lt;--&gt; V_MXH
+        V_POM &lt;--&gt; V_PNP
+        V_POM &lt;--&gt; V_RAB
+        V_POM &lt;--&gt; V_TBG
+        V_POM &lt;--&gt; V_TIZ
+        V_POM &lt;--&gt; V_UNG
+        V_POM &lt;--&gt; V_BUA
+        V_POM &lt;--&gt; V_CMU
+        V_POM &lt;--&gt; V_KVG
+        V_POM &lt;--&gt; V_MAG
+        V_POM &lt;--&gt; V_MAS
+        V_POM &lt;--&gt; V_MDU
+        V_POM &lt;--&gt; V_VAI
+        V_POM &lt;--&gt; V_WBM
+        V_POM &lt;--&gt; V_WWK
+        V_BUA &lt;--&gt; V_RAB
+        V_RAB &lt;--&gt; V_HKN
+        V_RAB &lt;--&gt; V_KVG
+        V_RAB &lt;--&gt; V_LAE
+        V_RAB &lt;--&gt; V_MAS
+        V_DAU &lt;--&gt; V_LAE
+        V_DAU &lt;--&gt; V_UNG
+        V_LAE &lt;--&gt; V_GKA
+        V_LAE &lt;--&gt; V_HGU
+        V_LAE &lt;--&gt; V_HKN
+        V_LAE &lt;--&gt; V_MAG
+        V_LAE &lt;--&gt; V_MAS
+        V_LAE &lt;--&gt; V_PNP
+        V_UNG --&gt; V_HGU
+        V_UNG &lt;--&gt; V_TBG
+        V_GKA &lt;--&gt; V_HGU
+        V_GKA &lt;--&gt; V_MAG
+        V_HGU &lt;--&gt; V_MAG
+        V_HGU &lt;--&gt; V_MXH
+        V_HGU &lt;--&gt; V_TBG
+        V_HGU &lt;--&gt; V_TIZ
+        V_HGU &lt;--&gt; V_WWK
+        V_MAG &lt;--&gt; V_WWK
+        V_MAG &lt;--&gt; V_MAS
+        V_MAG &lt;--&gt; V_VAI
+        V_GUR &lt;--&gt; V_MIS
+        V_GUR &lt;--&gt; V_PNP
+        V_MIS --&gt; V_BUA
+        V_TIZ --&gt; V_MXH
+        V_WWK &lt;--&gt; V_VAI
+        V_KVG &lt;--&gt; V_MAS
+    end
+    EXT0[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Philippines&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Philippines.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Indonesia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Indonesia.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Solomon Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Solomon_Islands.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Fiji&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Fiji.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>
