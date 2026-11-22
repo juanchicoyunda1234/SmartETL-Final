@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía de exposición SmartETL-DS</title>
+<style>
+:root {
+  --fondo: #f6f4ef;
+  --papel: #ffffff;
+  --texto: #1f2328;
+  --suave: #5b636d;
+  --linea: #e2ddd3;
+  --acento: #1f5f8b;
+  --acento-suave: #e6f0f7;
+  --decir: #fff6dc;
+  --decir-borde: #e0b84c;
+  --ok: #2f7a3e;
+  --codigo: #f1eee7;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fondo: #15181c;
+    --papel: #1d2126;
+    --texto: #e6e8eb;
+    --suave: #a0a8b2;
+    --linea: #30363d;
+    --acento: #6cb2e4;
+    --acento-suave: #1d2d3a;
+    --decir: #2e2817;
+    --decir-borde: #a8862f;
+    --ok: #6fc282;
+    --codigo: #262b31;
+  }
+}
+:root[data-theme="dark"] {
+  --fondo: #15181c;
+  --papel: #1d2126;
+  --texto: #e6e8eb;
+  --suave: #a0a8b2;
+  --linea: #30363d;
+  --acento: #6cb2e4;
+  --acento-suave: #1d2d3a;
+  --decir: #2e2817;
+  --decir-borde: #a8862f;
+  --ok: #6fc282;
+  --codigo: #262b31;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 16px/1.6 "Segoe UI", system-ui, sans-serif; }
+.marco { display: grid; grid-template-columns: 260px minmax(0, 1fr); max-width: 1280px; margin: 0 auto; }
+nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 24px 16px; border-right: 1px solid var(--linea); font-size: 14px; }
+nav b { display: block; margin: 0 0 8px; font-size: 15px; }
+nav a { display: block; padding: 4px 8px; border-radius: 6px; color: var(--suave); text-decoration: none; }
+nav a:hover { background: var(--acento-suave); color: var(--acento); }
+nav .sub { padding-left: 20px; font-size: 13px; }
+main { padding: 32px 40px 80px; min-width: 0; }
+h1 { font-size: 30px; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 23px; margin: 56px 0 12px; padding-top: 12px; border-top: 1px solid var(--linea); }
+h3 { font-size: 18px; margin: 28px 0 8px; }
+p { margin: 8px 0; }
+.lead { color: var(--suave); font-size: 17px; max-width: 760px; }
+code { font-family: Consolas, "Cascadia Mono", monospace; font-size: 0.9em; background: var(--codigo); padding: 1px 5px; border-radius: 4px; }
+pre { background: var(--codigo); padding: 12px 14px; border-radius: 8px; overflow-x: auto; font-size: 13.5px; line-height: 1.45; }
+pre code { background: none; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 14.5px; background: var(--papel); }
+th, td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--linea); }
+th { font-size: 13px; text-transform: uppercase; letter-spacing: .03em; color: var(--suave); }
+td:first-child { white-space: nowrap; }
+.tabla { overflow-x: auto; }
+.decir { background: var(--decir); border-left: 4px solid var(--decir-borde); padding: 10px 14px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.decir::before { content: "Qué decir"; display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--suave); margin-bottom: 2px; }
+.nota { background: var(--acento-suave); padding: 10px 14px; border-radius: 8px; margin: 12px 0; font-size: 15px; }
+details.paquete { background: var(--papel); border: 1px solid var(--linea); border-radius: 10px; margin: 12px 0; }
+details.paquete > summary { cursor: pointer; padding: 12px 16px; font-weight: 600; list-style: none; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+details.paquete > summary::before { content: "▸"; color: var(--acento); }
+details.paquete[open] > summary::before { content: "▾"; }
+details.paquete > summary span { font-weight: 400; color: var(--suave); font-size: 14px; }
+details.paquete .cuerpo { padding: 0 16px 12px; }
+.mapa { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 14px 0; }
+.mapa div { background: var(--papel); border: 1px solid var(--linea); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+.mapa div b { display: block; font-family: Consolas, monospace; color: var(--acento); }
+.paso { background: var(--papel); border: 1px solid var(--linea); border-radius: 10px; padding: 12px 16px; margin: 12px 0; }
+.paso.hecho { opacity: .55; }
+.paso header { display: flex; gap: 10px; align-items: center; font-weight: 600; }
+.paso header input { width: 18px; height: 18px; accent-color: var(--ok); }
+.paso .num { display: inline-grid; place-items: center; min-width: 26px; height: 26px; border-radius: 13px; background: var(--acento); color: #fff; font-size: 13px; }
+.paso dl { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 4px 12px; margin: 8px 0 0; font-size: 15px; }
+.paso dt { color: var(--suave); font-size: 13px; font-weight: 600; padding-top: 2px; }
+.paso dd { margin: 0; }
+.paso dd.dice { background: var(--decir); border-left: 3px solid var(--decir-borde); padding: 4px 10px; border-radius: 0 6px 6px 0; }
+.mermaid { background: var(--papel); border: 1px solid var(--linea); border-radius: 10px; padding: 12px; margin: 12px 0; text-align: center; overflow-x: auto; }
+.tema { margin-top: 18px; font-size: 13px; }
+.tema button { font: inherit; padding: 3px 8px; border: 1px solid var(--linea); background: var(--papel); color: var(--texto); border-radius: 6px; cursor: pointer; }
+.progreso { font-size: 13px; color: var(--suave); margin-top: 10px; }
+@media (max-width: 860px) {
+  .marco { grid-template-columns: 1fr; }
+  nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--linea); }
+  main { padding: 20px 16px 60px; }
+  .paso dl { grid-template-columns: 1fr; }
+}
+@media print {
+  nav { display: none; }
+  .marco { grid-template-columns: 1fr; }
+  details.paquete .cuerpo { display: block; }
+}
+</style>
+</head>
+<body>
+<div class="marco">
+<nav>
+  <b>Guía de exposición</b>
+  <a href="#inicio">Cómo usar esta guía</a>
+  <a href="#mapa">1. Mapa del proyecto</a>
+  <a href="#datos">2. Dónde están los datos</a>
+  <a href="#codigo">3. Recorrido por el código</a>
+  <a class="sub" href="#p-model">model</a>
+  <a class="sub" href="#p-estructuras">estructuras</a>
+  <a class="sub" href="#p-etl">etl</a>
+  <a class="sub" href="#p-algoritmos">algoritmos</a>
+  <a class="sub" href="#p-grafo">grafo</a>
+  <a class="sub" href="#p-ia">ia</a>
+  <a class="sub" href="#p-app">app</a>
+  <a class="sub" href="#p-pruebas">pruebas</a>
+  <a href="#ia">4. Cómo está hecha la IA</a>
+  <a href="#ejecucion">5. Ejecución paso a paso</a>
+  <a href="#planb">6. Si algo falla</a>
+  <a href="#preguntas">7. Preguntas rápidas</a>
+  <div class="progreso" id="progreso"></div>
+  <div class="tema">Tema: <button type="button" id="cambiarTema">claro / oscuro</button></div>
+</nav>
+
+<main>
+<section id="inicio">
+  <h1>SmartETL-DS: guía para exponer</h1>
+  <p class="lead">Esta guía es para ti, no para proyectar. Primero repasa el código carpeta por carpeta y las decisiones de diseño. Después entiende cómo funciona la IA. Al final, sigue la ejecución paso a paso: cada paso dice qué hacer, qué debe verse y qué decir.</p>
+  <div class="nota"><b>Frase de apertura:</b> "SmartETL-DS toma los datos reales y sucios de OpenFlights: 7.698 aeropuertos, 67.663 rutas y 6.162 aerolíneas. Los limpia con un ETL y los organiza con estructuras propias: lista, cola, pila, árbol BST y grafo. Además usa IA para generar flujogramas a partir de lo que el programa hizo de verdad, no de texto escrito a mano."</div>
+</section>
+
+<section id="mapa">
+  <h2>1. Mapa del proyecto</h2>
+  <p>La raíz es la carpeta <code>SmartETL_DS-main</code>. Todo se ejecuta desde ahí; si se abre desde otra carpeta, el programa la busca solo o pide elegir la carpeta <code>data</code>.</p>
+  <div class="mapa">
+    <div><b>src/model/</b>Las clases de datos: aeropuerto, ruta, aerolínea y error del ETL</div>
+    <div><b>src/estructuras/</b>Las estructuras propias: listas, cola, pila y BST</div>
+    <div><b>src/etl/</b>Extract, Transform y Load, y la ubicación del proyecto</div>
+    <div><b>src/algoritmos/</b>Ordenamiento, búsquedas, BFS, DFS, rutas y ciclos</div>
+    <div><b>src/grafo/</b>Vértices, grafo por país y mapa de países</div>
+    <div><b>src/ia/</b>Registro de eventos, prompts, clientes de API, diagramas y APIs guardadas</div>
+    <div><b>src/app/</b>La ventana Swing: una clase por pestaña</div>
+    <div><b>src/pruebas/</b>5 programas de prueba sin librerías</div>
+    <div><b>data/</b>Los CSV de OpenFlights; <code>data/demo/</code> tiene los archivos sucios</div>
+    <div><b>recursos/</b>Mermaid, svg-pan-zoom y vis-network locales, para no depender de internet</div>
+    <div><b>diagramas/</b>Diagramas generados: <code>.md</code> y páginas <code>ver_*.html</code> con zoom</div>
+    <div><b>evidencias_ia/</b>Prompt y respuesta de cada llamada a la IA, sin la clave</div>
+    <div><b>output/</b>Archivos limpios y reportes del Load (no se suben a Git)</div>
+    <div><b>docs/</b>Guion de demo, guía de defensa y esta guía</div>
+  </div>
+  <p>Orden de dependencias: <code>model</code> → <code>estructuras</code> → <code>etl</code> → <code>algoritmos</code> y <code>grafo</code> → <code>ia</code> → <code>app</code>. Las capas de abajo no conocen la ventana, por eso las pruebas pueden usarlas sin abrir Swing.</p>
+</section>
+
+<section id="datos">
+  <h2>2. Dónde están los datos en cada momento</h2>
+  <div class="mermaid">
+flowchart LR
+    A["data/*.csv<br/>en disco"] -->|Extract| B["Cola<br/>en memoria"]
+    B -->|Transform| C["Listas de válidos<br/>+ BST por IATA<br/>+ lista ordenada por ID"]
+    B -->|Transform| D["Pila de errores"]
+    C -->|Load| E["output/<br/>en disco"]
+    D -->|Load| E
+    C --> F["MapaPaises:<br/>BST de países con<br/>un grafo por país"]
+    F --> G["BFS / DFS<br/>RegistroEventos"]
+    G -->|IA| H["diagramas/ y<br/>evidencias_ia/"]
+  </div>
+  <div class="tabla"><table>
+    <tr><th>Lugar</th><th>Qué hay</th><th>Quién lo escribe</th></tr>
+    <tr><td><code>data/</code></td><td>airports.csv (7.698), routes.csv (67.663), airlines.csv (6.162), sin encabezados, con nulos <code>\N</code></td><td>Nadie: es la entrada</td></tr>
+    <tr><td><code>data/demo/</code></td><td>15 aeropuertos y 7 rutas sucias, con los 6 tipos de error</td><td>Nadie: entrada de la demo</td></tr>
+    <tr><td>Memoria</td><td>Cola de extracción, listas de válidos, pila de errores, BST, grafos, registro de eventos</td><td>ETL y algoritmos</td></tr>
+    <tr><td><code>output/</code></td><td>airports_limpios.csv, routes_limpias.csv, airlines_limpias.csv, errores_etl.txt, reporte_etl.txt</td><td><code>Load</code>, al pulsar Cargar</td></tr>
+    <tr><td><code>diagramas/</code></td><td>flujo_*.md, ver_*.html, grafo_&lt;País&gt;.html, visor_grafo.html, DOCUMENTACION.md</td><td><code>VisorHtml</code> y <code>VisorGrafo</code></td></tr>
+    <tr><td><code>evidencias_ia/</code></td><td>Un .md por llamada: fecha, proveedor, modelo, prompt, respuesta cruda y diagrama</td><td><code>AnalizadorIA</code></td></tr>
+    <tr><td><code>~/.smartetl/apis.properties</code></td><td>APIs guardadas: <code>nombre|proveedor|modelo|url|clave</code>, en tu carpeta de usuario, fuera del repositorio</td><td>Pestaña Guardar APIs</td></tr>
+    <tr><td><code>out/</code></td><td>Clases compiladas</td><td><code>javac</code></td></tr>
+  </table></div>
+</section>
+
+<section id="codigo">
+  <h2>3. Recorrido por el código</h2>
+  <p>Para cada paquete: la decisión de diseño principal y una línea por clase. Abre cada paquete en IntelliJ mientras lo explicas.</p>
+  <div class="nota">Reglas que respeta todo el código: estructuras propias (sin <code>ArrayList</code>, <code>HashMap</code> ni <code>Stack</code> fuera de la ventana), solo el JDK, sin comentarios, nombres en español, y las operaciones largas fuera del hilo de Swing.</div>
+
+  <details class="paquete" id="p-model" open>
+    <summary>model <span>6 clases · los datos tal como vienen</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> los campos se guardan como <b>texto crudo</b>. Extract no convierte ni limpia nada; eso es trabajo de Transform. La interfaz <code>Registro</code> permite que la tabla y las listas funcionen con cualquier tipo de archivo.</p>
+      <div class="tabla"><table>
+        <tr><td><code>Registro</code></td><td>Interfaz: <code>numeroCampos()</code> y <code>valor(columna)</code>. La tabla de la ventana la usa</td></tr>
+        <tr><td><code>Aeropuerto</code></td><td>14 campos de airports.csv. Tiene <code>conId</code> y <code>conIata</code> para crear "sondas" de búsqueda</td></tr>
+        <tr><td><code>Ruta</code></td><td>9 campos de routes.csv</td></tr>
+        <tr><td><code>Aerolinea</code></td><td>8 campos de airlines.csv</td></tr>
+        <tr><td><code>ErrorETL</code></td><td>Un registro inválido: fuente, línea, identificador, tipo, motivo y valor original</td></tr>
+        <tr><td><code>TipoError</code></td><td>Enum con 6 tipos. Su <code>ordinal()</code> indexa los arreglos de contadores</td></tr>
+      </table></div>
+      <div class="decir">"El modelo guarda los datos tal cual vienen del archivo. Así cada fase del ETL tiene una sola responsabilidad: Extract lee y Transform decide qué es válido."</div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-estructuras">
+    <summary>estructuras <span>10 clases · el corazón de la materia</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> todas las estructuras son <b>propias</b>, genéricas y con nodos propios. Cada una puede recibir un <code>RegistroEventos</code> opcional: si lo tiene, anota cada operación, y eso alimenta los flujogramas.</p>
+      <div class="tabla"><table>
+        <tr><td><code>Lista</code></td><td>Interfaz común de las dos listas: insertar, obtener, buscar, filtrar, contar</td></tr>
+        <tr><td><code>Nodo</code></td><td>Dato y referencia al siguiente</td></tr>
+        <tr><td><code>ListaEnlazada</code></td><td>Con <code>head</code> y <code>tail</code>: insertar al final O(1), buscar O(n). Se usa en adyacencias y eventos</td></tr>
+        <tr><td><code>ListaSecuencial</code></td><td>Arreglo que duplica su capacidad: acceso O(1), necesario para la búsqueda binaria y para ordenar</td></tr>
+        <tr><td><code>Cola</code></td><td>FIFO con <code>frente</code> y <code>fin</code>. La usan Extract y BFS</td></tr>
+        <tr><td><code>Pila</code></td><td>LIFO con <code>cima</code>. La usan los errores, DFS y la reconstrucción de caminos</td></tr>
+        <tr><td><code>NodoArbol</code></td><td>Dato, hijo izquierdo y hijo derecho</td></tr>
+        <tr><td><code>ArbolBST</code></td><td>Recibe un <code>Comparator</code>. Insertar, buscar, eliminar y altura son <b>iterativos</b>; los recorridos son recursivos y se bloquean si el árbol pasa de 2.000 niveles</td></tr>
+        <tr><td><code>Criterio</code></td><td>Interfaz para buscar y filtrar con una condición</td></tr>
+        <tr><td><code>ResultadoBusqueda</code></td><td>Elemento, posición (o profundidad) y número de comparaciones</td></tr>
+      </table></div>
+      <div class="decir">"Insertar y buscar en el BST son iterativos porque, si los IDs vienen ordenados, el árbol se vuelve una lista de 7.697 niveles, y la recursión desbordaría la pila de Java."</div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-etl">
+    <summary>etl <span>12 clases · Extract, Transform, Load</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> cada fase tiene su clase. El orden es aeropuertos → rutas → aerolíneas, porque los aeropuertos generan los índices que necesitan las rutas: el <b>BST por IATA</b> y la <b>lista ordenada por ID</b>.</p>
+      <div class="tabla"><table>
+        <tr><td><code>LectorCSV</code></td><td>Separa una línea respetando comillas y campos vacíos. No usa <code>split</code>, que pierde los campos vacíos del final</td></tr>
+        <tr><td><code>Extract</code></td><td>Lee el archivo a una <code>Lista</code> (Hito 1) o a una <code>Cola</code> (<code>extraerEnCola</code>)</td></tr>
+        <tr><td><code>OpcionesCarga</code>, <code>ModoCarga</code></td><td>Modos de carga del Hito 1: todos, primeros N, rango y aleatorio con semilla</td></tr>
+        <tr><td><code>FuenteDatos</code>, <code>Mapeador</code>, <code>ResultadoExtraccion</code></td><td>Describen cada CSV y el resultado de leerlo</td></tr>
+        <tr><td><code>Transform</code></td><td>Las reglas: ID numérico, campos obligatorios, rangos de latitud y longitud, duplicados (BST de IDs), referencias rotas, IDs nulos que se recuperan por IATA. Los válidos van a la lista y los inválidos a la <b>pila</b></td></tr>
+        <tr><td><code>DatosLimpios</code></td><td>Listas de válidos e índices: <code>buscarPorId</code> (binaria) y <code>buscarPorIata</code> (BST)</td></tr>
+        <tr><td><code>Load</code></td><td>Escribe los 3 CSV limpios, el archivo de errores y el reporte</td></tr>
+        <tr><td><code>ProcesoETL</code></td><td>Ejecuta las fases en orden, mide tiempos, registra eventos y avisa el progreso</td></tr>
+        <tr><td><code>Proyecto</code></td><td>Encuentra la carpeta del proyecto y resuelve todas las rutas relativas</td></tr>
+      </table></div>
+      <div class="decir">"Cuando una ruta trae el ID del aeropuerto como \N, lo recuperamos buscando su código IATA en el BST. Si el código no existe, el error es ID_NULO_NO_RECUPERABLE. Si el ID existe pero no está en airports, es REFERENCIA_ROTA. Así salen 589 errores: 473 y 116."</div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-algoritmos">
+    <summary>algoritmos <span>10 clases · ordenar, buscar y recorrer</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> los algoritmos <b>cuentan</b> su trabajo (comparaciones, movimientos, milisegundos) para poder compararlos con datos reales. Ordenan una <b>copia</b>, nunca la lista original.</p>
+      <div class="tabla"><table>
+        <tr><td><code>Ordenamiento</code></td><td>Burbuja (con corte si no hubo intercambios) e inserción</td></tr>
+        <tr><td><code>ResultadoOrdenamiento</code></td><td>La lista ordenada, comparaciones, movimientos y tiempo</td></tr>
+        <tr><td><code>Comparadores</code></td><td>Por ID numérico, IATA, nombre y país</td></tr>
+        <tr><td><code>Busqueda</code></td><td>Secuencial, binaria (solo sobre <code>ListaSecuencial</code> ordenada) y por BST</td></tr>
+        <tr><td><code>Vecinos</code></td><td>Junta los vecinos internos y los externos (de otros países) de un vértice</td></tr>
+        <tr><td><code>BFS</code></td><td>Con la <code>Cola</code> propia, por capas usando <code>tamanio()</code>; acepta nivel máximo y registra eventos</td></tr>
+        <tr><td><code>DFS</code></td><td>Con la <code>Pila</code> propia, iterativo; acepta profundidad máxima</td></tr>
+        <tr><td><code>Rutas</code></td><td>BFS que guarda el padre de cada vértice; reconstruye el camino con una pila</td></tr>
+        <tr><td><code>Ciclos</code></td><td>DFS con estados blanco, gris y negro; ignora la ida y vuelta A-B-A</td></tr>
+        <tr><td><code>ResultadoRecorrido</code></td><td>Los visitados, conteo por nivel y países por nivel</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-grafo">
+    <summary>grafo <span>5 clases · un grafo por país</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> en vez de un grafo mundial gigante, hay <b>un grafo por país</b>, guardados en un <b>BST de países</b> y construidos la primera vez que se piden. Las rutas al exterior se guardan aparte, y al recorrer se salta al grafo del otro país.</p>
+      <div class="tabla"><table>
+        <tr><td><code>Vertice</code></td><td>Aeropuerto, <code>adyacentes</code> (internos), <code>externos</code>, llegadas, y los campos de trabajo de los recorridos (marca, nivel, padre, estado)</td></tr>
+        <tr><td><code>Grafo</code></td><td>Lista de vértices; agregar vértice, agregar arista (sin repetir) y buscar vértice</td></tr>
+        <tr><td><code>GrafoPais</code></td><td>Grafo, nombre del país y contadores: rutas internas, salidas y llegadas</td></tr>
+        <tr><td><code>MapaPaises</code></td><td>BST de 237 países; <code>obtener(país)</code> construye si hace falta; arreglo <code>verticePorId</code> para encontrar un vértice en O(1)</td></tr>
+        <tr><td><code>Agrupacion</code></td><td>Cuenta por clave, por ejemplo las rutas externas por país destino</td></tr>
+      </table></div>
+      <div class="decir">"Para saber si un vértice ya fue visitado no usamos un HashSet. Cada recorrido tiene un número de corrida, y 'visitado' significa que la marca del vértice es igual a ese número. Es O(1) y no hay que limpiar nada."</div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-ia">
+    <summary>ia <span>17 clases · flujogramas y explicaciones</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> la IA <b>no sustituye</b> a las estructuras. Solo recibe lo que el programa registró al ejecutarse y devuelve un diagrama o un texto. Si no hay API, un generador local hace el mismo trabajo. Cada resultado se comprueba y queda como evidencia.</p>
+      <div class="tabla"><table>
+        <tr><td><code>Evento</code>, <code>RegistroEventos</code></td><td>Lo que pasó: tipo, texto, aeropuerto, vecinos nuevos, estado de la cola o pila y nivel. Se guarda en una <code>ListaEnlazada</code></td></tr>
+        <tr><td><code>TrazasEstructuras</code></td><td>Ejecuta en el momento una traza corta de cola, pila, lista y BST</td></tr>
+        <tr><td><code>GeneradorPrompt</code></td><td>Arma el prompt: reglas (español, solo Mermaid, comillas, &lt;br/&gt;, no inventar) más los eventos reales o datos agregados</td></tr>
+        <tr><td><code>GeneradorFlujogramaLocal</code>, <code>Mermaid</code></td><td>El respaldo sin IA: el mismo diagrama, generado de forma determinista</td></tr>
+        <tr><td><code>ProveedorIA</code></td><td>Interfaz: recibe un prompt y devuelve un texto</td></tr>
+        <tr><td><code>ClienteCompatibleOpenAI</code></td><td>Gemini, OpenAI, GLM y GitHub Models, con el formato chat/completions</td></tr>
+        <tr><td><code>ClienteAnthropic</code></td><td>Claude, con las cabeceras <code>x-api-key</code> y <code>anthropic-version</code></td></tr>
+        <tr><td><code>ConfiguracionIA</code></td><td>Proveedor, modelo, URL editable, clave en memoria, modo y espera de 30 s</td></tr>
+        <tr><td><code>AnalizadorIA</code></td><td>El director: llama a la API o al respaldo, limpia la respuesta, comprueba la coherencia, escribe el HTML y la evidencia, y avisa el progreso</td></tr>
+        <tr><td><code>Json</code></td><td>Arma y lee el JSON a mano (sin librerías)</td></tr>
+        <tr><td><code>VisorHtml</code>, <code>VisorGrafo</code></td><td>Las páginas con zoom (Mermaid y svg-pan-zoom) y el visor interactivo (vis-network)</td></tr>
+        <tr><td><code>ResultadoIA</code></td><td>El contenido, si usó la API, el aviso, la coherencia y las rutas del HTML y de la evidencia</td></tr>
+        <tr><td><code>ApiGuardada</code>, <code>AlmacenApis</code></td><td>Las APIs con nombre en <code>~/.smartetl/apis.properties</code>, escapando el carácter <code>|</code></td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-app">
+    <summary>app <span>12 clases · la ventana Swing</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> <b>una clase por pestaña</b>. Los datos se comparten en <code>Sesion</code>, y todo lo lento corre en un <code>SwingWorker</code> que muestra en la barra de estado qué está haciendo y cuántos segundos lleva.</p>
+      <div class="tabla"><table>
+        <tr><td><code>Main</code></td><td>Busca la carpeta del proyecto; si no la encuentra, pide elegir la carpeta <code>data</code></td></tr>
+        <tr><td><code>VentanaPrincipal</code></td><td>El <code>JTabbedPane</code> con 6 pestañas</td></tr>
+        <tr><td><code>Sesion</code></td><td>El ETL real, el mapa de países, los últimos BFS y DFS, y las APIs guardadas</td></tr>
+        <tr><td><code>Tarea</code>, <code>Animacion</code></td><td>Ejecutan en segundo plano y muestran "⏳ mensaje... N s"</td></tr>
+        <tr><td><code>PanelDatos</code>, <code>ModeloTablaRegistros</code></td><td>La pestaña del Hito 1, sin cambios de comportamiento</td></tr>
+        <tr><td><code>PanelETL</code></td><td>Cola, listas de válidos, pila de errores, contadores y Cargar</td></tr>
+        <tr><td><code>PanelEstructuras</code></td><td>Ordenar, comparar búsquedas y operar el BST</td></tr>
+        <tr><td><code>PanelGrafo</code></td><td>Países, conexiones, BFS, DFS, rutas, ciclos, drill-down y visor</td></tr>
+        <tr><td><code>PanelIA</code></td><td>Proveedor, URL, Validar API, las funciones de IA y Ver diagrama</td></tr>
+        <tr><td><code>PanelGuardarApis</code></td><td>Guardar, eliminar y cargar configuraciones de API</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <details class="paquete" id="p-pruebas">
+    <summary>pruebas <span>5 programas · 220 verificaciones</span></summary>
+    <div class="cuerpo">
+      <p><b>Decisión:</b> programas con <code>main</code>, sin JUnit. Imprimen OK o FALLA y terminan con <code>fallaron: 0</code>. Usan las cifras reales del dataset como aserciones.</p>
+      <div class="tabla"><table>
+        <tr><td><code>PruebasHito1</code></td><td>53: lector CSV, listas, Extract</td></tr>
+        <tr><td><code>PruebasHito2</code></td><td>55: cola, pila, ETL completo (589 errores), Load, ordenamiento, búsquedas</td></tr>
+        <tr><td><code>PruebasHito3</code></td><td>32: BST (altura 177, UIO en 13 comparaciones, desbalance 1.499)</td></tr>
+        <tr><td><code>PruebasHito4</code></td><td>20: grafos de 4 países, BFS, DFS, UIO→CUZ, ciclos, 37.110 pares</td></tr>
+        <tr><td><code>PruebasIA</code></td><td>60: prompts, limpieza, coherencia, generador local, APIs guardadas, que la clave no se filtre</td></tr>
+      </table></div>
+    </div>
+  </details>
+</section>
+
+<section id="ia">
+  <h2>4. Cómo está hecha la IA</h2>
+  <p>La idea en una frase: <b>el algoritmo trabaja, deja un registro, y la IA convierte ese registro en un diagrama</b>, que después se comprueba.</p>
+  <div class="mermaid">
+flowchart TD
+    A["BFS se ejecuta con la Cola propia"] --> B["Cada paso se anota en RegistroEventos"]
+    B --> C["GeneradorPrompt: reglas + eventos reales"]
+    C --> D{"¿Modo API y hay clave?"}
+    D -->|Sí| E["ClienteAnthropic o ClienteCompatibleOpenAI"]
+    D -->|No| L["GeneradorFlujogramaLocal"]
+    E --> F{"¿Respondió un diagrama válido?"}
+    F -->|Sí| G["Limpiar la respuesta"]
+    F -->|No| L
+    G --> H["Coherencia: ¿faltan o sobran aeropuertos?"]
+    L --> H
+    H --> I["diagramas/ver_flujo_bfs.html"]
+    H --> J["evidencias_ia/ (sin la clave)"]
+  </div>
+
+  <h3>Las cuatro piezas que hay que saber explicar</h3>
+  <div class="tabla"><table>
+    <tr><th>Pieza</th><th>Qué hace</th><th>Ejemplo</th></tr>
+    <tr><td>Registro de eventos</td><td>Mientras corre, el algoritmo anota cada paso</td><td><code>Paso 1: desencolar UIO | vecinos nuevos: GYE, OCC, CUE… | cola = [GYE, …]</code></td></tr>
+    <tr><td>Prompt</td><td>Reglas fijas más los eventos reales. A la IA se le pide solo Mermaid en español y que no invente datos</td><td>Los niveles profundos se mandan ya resumidos: "Nivel 2: 4 aeropuertos nuevos en 1 país"</td></tr>
+    <tr><td>Respaldo local</td><td>Si no hay clave o internet, o la respuesta no sirve, el programa genera el diagrama él mismo</td><td>El BFS de Ecuador sale igual al ejemplo de la especificación</td></tr>
+    <tr><td>Coherencia</td><td>Compara los aeropuertos esperados con los que aparecen en el diagrama</td><td>"faltan: GYE | sobran: MIA" si la IA se equivocó</td></tr>
+  </table></div>
+
+  <h3>Proveedores y claves</h3>
+  <p>Hay dos clientes HTTP, escritos con <code>java.net.http.HttpClient</code> y JSON hecho a mano:</p>
+  <ul>
+    <li><b>Formato chat/completions</b> (<code>ClienteCompatibleOpenAI</code>): Gemini, OpenAI, GLM (Z.ai, o la URL de China si se cambia) y GitHub Models, con un token de GitHub y el modelo como <code>openai/gpt-4.1-mini</code>.</li>
+    <li><b>Formato de Anthropic</b> (<code>ClienteAnthropic</code>): Claude.</li>
+  </ul>
+  <p>La URL es editable, y el botón <b>Validar API</b> manda una petición mínima antes de usarla. Las claves pueden guardarse con nombre en <code>~/.smartetl/apis.properties</code>, en tu carpeta de usuario y nunca en el repositorio. Nunca se escriben en <code>evidencias_ia/</code>, en el HTML ni en los mensajes; una prueba lo verifica.</p>
+  <div class="decir">"La IA no recorre el grafo: el BFS lo hace nuestra cola. La IA recibe lo que el BFS anotó y lo dibuja. Como un modelo se puede equivocar, el programa revisa que estén todos los aeropuertos del registro y que no haya ninguno inventado. Y si no hay internet, el generador local dibuja lo mismo."</div>
+  <div class="decir">"A la IA solo mandamos datos públicos de OpenFlights o conteos. Para analizar errores le mandamos solo cuántos hay de cada tipo, nunca los registros."</div>
+</section>
+
+<section id="ejecucion">
+  <h2>5. Ejecución paso a paso</h2>
+  <p>Marca cada paso cuando lo hagas en el ensayo; las marcas se guardan en este navegador.</p>
+  <div class="nota"><b>Antes de empezar:</b> en <code>cmd</code>, dentro de <code>SmartETL_DS-main</code>:
+<pre><code>javac -encoding UTF-8 -d out src\model\*.java src\estructuras\*.java src\etl\*.java src\algoritmos\*.java src\grafo\*.java src\ia\*.java src\app\*.java src\pruebas\*.java
+java -cp out app.Main</code></pre>
+  Ten abiertos IntelliJ (con <code>Cola.java</code>, <code>ArbolBST.java</code> y <code>BFS.java</code> en pestañas) y la carpeta <code>output</code> vacía.</div>
+
+  <div id="pasos"></div>
+</section>
+
+<section id="planb">
+  <h2>6. Si algo falla</h2>
+  <div class="tabla"><table>
+    <tr><th>Problema</th><th>Qué hacer</th><th>Qué decir</th></tr>
+    <tr><td>No hay internet o la API falla</td><td>Pestaña IA → Modo "Solo local"</td><td>"Por eso existe el respaldo: el diagrama sale del mismo registro de eventos"</td></tr>
+    <tr><td>Validar API en rojo</td><td>Leer el motivo: 401 = clave, 404 = modelo o URL, 429 = límite de uso</td><td>"El programa me dice exactamente qué falló"</td></tr>
+    <tr><td>"No encontré la carpeta data"</td><td>Elegir la carpeta <code>data</code> en el selector</td><td>"Detecta la carpeta del proyecto; si no la encuentra, la pide"</td></tr>
+    <tr><td>El navegador no se abre</td><td>Abrir a mano <code>diagramas/ver_flujo_bfs.html</code></td><td></td></tr>
+    <tr><td>Piden ver el código de algo</td><td>Ir a <code>estructuras/</code> o <code>algoritmos/</code></td><td>Usar la sección 3 de esta guía</td></tr>
+  </table></div>
+</section>
+
+<section id="preguntas">
+  <h2>7. Preguntas rápidas</h2>
+  <div class="tabla"><table>
+    <tr><th>Pregunta</th><th>Respuesta corta</th></tr>
+    <tr><td>¿Por qué cola en el ETL?</td><td>Los registros se procesan en el orden en que se leyeron, uno por uno: eso es FIFO</td></tr>
+    <tr><td>¿Por qué pila para los errores?</td><td>El último error queda arriba y apilar es O(1); además la pila sirve para el DFS</td></tr>
+    <tr><td>¿Por qué la binaria no va en la lista enlazada?</td><td>Llegar al elemento del medio cuesta O(n); se perdería la ventaja</td></tr>
+    <tr><td>¿Por qué la altura del BST es 177 y no 12?</td><td>Depende del orden de inserción; no balanceamos (no hay AVL). Aun así, el promedio es de 19 comparaciones contra 2.556</td></tr>
+    <tr><td>¿Por qué BFS da la ruta más corta?</td><td>Visita todos los aeropuertos a 1 vuelo antes que los de 2</td></tr>
+    <tr><td>¿Cómo sabe que la IA no inventó?</td><td>Por la comprobación de coherencia contra el registro de eventos</td></tr>
+    <tr><td>¿Dónde está la clave?</td><td>En memoria, o en <code>~/.smartetl/apis.properties</code> si la guardé; nunca en el repositorio ni en las evidencias</td></tr>
+  </table></div>
+  <p>Para las respuestas largas con trazas a mano: <code>docs/GUIA-DEFENSA.md</code>.</p>
+</section>
+</main>
+</div>
+
+<script>
+var PASOS = [
+  {t: "Abrir el programa", h: "Ejecutar java -cp out app.Main.", v: "La ventana con 6 pestañas; en el título, la carpeta del proyecto.", d: "Son seis pestañas, una por cada parte del proyecto: datos, ETL, estructuras, grafo, IA y APIs guardadas."},
+  {t: "ETL con los datos reales", h: "Pestaña ETL → Ejecutar ETL (datos reales).", v: "Mensajes de Extract y Transform en la barra; luego la cola (primeros 20), las listas de válidos, la pila con 589 errores y los contadores.", d: "Extract lee cada CSV y lo encola. Transform desencola registro por registro: si es válido va a la lista, si no, a la pila con su tipo y su motivo. De 67.663 rutas, 67.074 son válidas y 589 tienen error: 473 referencias rotas y 116 IDs nulos que no se pudieron recuperar."},
+  {t: "La cima de la pila", h: "Señalar la primera línea de la pila de errores.", v: "cima → rutas, línea 67569, REFERENCIA_ROTA.", d: "La pila es LIFO: arriba está el último error encontrado."},
+  {t: "Archivos sucios de demostración", h: "Ejecutar demostración.", v: "Los 6 tipos de error en los contadores.", d: "El dataset real no trae duplicados ni rangos malos, así que preparamos un archivo pequeño con un ID repetido, una latitud de 95, un nombre vacío, un ID 'A7' y un país nulo."},
+  {t: "Load", h: "Ejecutar ETL (datos reales) otra vez → Cargar; abrir output/reporte_etl.txt.", v: "5 archivos en output/.", d: "Load escribe los datos limpios, el archivo de errores y un reporte con los conteos y los tiempos."},
+  {t: "Comparar búsquedas", h: "Pestaña Estructuras → escribir UIO → Secuencial vs binaria vs BST.", v: "Lista 2.556, binaria 13, BST 13 comparaciones, y el camino en el BST.", d: "En la lista recorremos 2.556 nodos: O(n). La binaria parte la lista a la mitad cada vez: O(log n). El BST baja por 13 nodos. La binaria no va en la lista enlazada porque llegar al medio ya cuesta O(n)."},
+  {t: "Ordenar", h: "Burbuja por País; luego Inserción por País.", v: "Comparaciones y milisegundos de cada uno.", d: "Los dos son O(n²), pero inserción deja de comparar apenas encuentra el lugar. Ordenamos una copia: la lista original no cambia."},
+  {t: "BST y desbalance", h: "Construir → Altura y nodos → Desbalance.", v: "6.071 nodos, altura 177, promedio 19,3; el BST por ID tiene altura 1.499.", d: "La forma del árbol depende del orden de inserción. Con IDs ordenados, el árbol se vuelve una lista; por eso insertar y buscar son iterativos."},
+  {t: "Grafo de Ecuador", h: "Pestaña Grafo → elegir Ecuador → Construir seleccionados.", v: "14 aeropuertos, 32 rutas internas, 26 salen, 27 llegan.", d: "Cada país es un grafo dirigido con listas de adyacencia. El BST de países guarda cada grafo y lo construye la primera vez que se pide."},
+  {t: "BFS", h: "Origen UIO, nivel máximo vacío, nivel del diagrama 1 → BFS.", v: "14 aeropuertos en los niveles 0, 1 y 2.", d: "BFS usa nuestra cola y avanza por capas: el nivel 1 son los 9 vuelos directos desde Quito, el nivel 2 los 4 que se alcanzan con una escala."},
+  {t: "Validar la API", h: "Pestaña IA → elegir una API guardada (o proveedor, modelo y clave) → Validar API.", v: "El indicador en verde con el tiempo de respuesta.", d: "Antes de usar la IA, el programa comprueba que la clave, el modelo y la URL funcionan."},
+  {t: "Flujograma BFS con IA", h: "Flujograma BFS.", v: "Mensajes 'Conectando con…'; luego el código Mermaid, el origen (API o respaldo) y la línea de coherencia.", d: "Este diagrama no está escrito a mano: sale del registro de eventos del BFS que acabamos de correr. Después el programa verifica que estén todos los aeropuertos y que no haya ninguno inventado."},
+  {t: "Ver el diagrama", h: "Ver diagrama.", v: "El HTML con zoom y el código debajo.", d: "Mermaid está en la carpeta recursos, así que funciona sin internet. El código queda visible para poder explicarlo."},
+  {t: "Drill-down por país", h: "Grafo → construir también Peru → Diagrama general con clic por país; clic en Ecuador.", v: "El diagrama general; el grafo de Ecuador con las rutas externas agrupadas por país.", d: "Cada país enlaza a su grafo; las rutas al exterior aparecen agrupadas, por ejemplo Colombia con 6 rutas."},
+  {t: "Ruta y ciclo", h: "Buscar ruta UIO → CUZ; Detectar ciclo en Ecuador.", v: "UIO → LIM → CUZ (2 vuelos); GYE → UIO → OCC → LTX → GYE.", d: "La ruta es un BFS que guarda el padre de cada aeropuerto; el ciclo es un DFS con estados gris y negro."},
+  {t: "Explicaciones con IA", h: "IA → Explicar árbol; Analizar errores ETL.", v: "Texto con las cifras reales.", d: "La IA explica con los datos reales que le mandamos. Para los errores solo le mandamos conteos, nunca registros."},
+  {t: "Evidencias y documentación", h: "Generar documentación; abrir una evidencia en evidencias_ia/.", v: "Avance '3 de 10…'; DOCUMENTACION.md y el .md de la evidencia, con el prompt y la respuesta, sin la clave.", d: "Cada llamada a la IA queda registrada: qué se le preguntó y qué respondió. Así se puede auditar."},
+  {t: "Visor interactivo", h: "Grafo → Abrir visor interactivo; niveles 1 y 2; desmarcar países; buscar LIM.", v: "23 aeropuertos a nivel 1 y 548 a nivel 2; colores por país.", d: "Es el mismo grafo exportado a una página. Si pido más de 2.000 nodos, me pide reducir los niveles o los países."},
+  {t: "Cierre", h: "Mostrar las pruebas: java -cp out pruebas.PruebasHito2.", v: "fallaron: 0.", d: "Todas las cifras que mostré están verificadas por 220 pruebas sobre los datos reales."}
+];
+var CLAVE = "smartetl-guia-pasos";
+function leerMarcas() { try { return JSON.parse(localStorage.getItem(CLAVE) || "{}"); } catch (e) { return {}; } }
+function guardarMarcas(m) { try { localStorage.setItem(CLAVE, JSON.stringify(m)); } catch (e) {} }
+function texto(etiqueta, contenido, clase) { var n = document.createElement(etiqueta); n.textContent = contenido; if (clase) { n.className = clase; } return n; }
+function actualizarProgreso(m) {
+  var hechos = 0; for (var k in m) { if (m[k]) { hechos++; } }
+  document.getElementById("progreso").textContent = "Ensayo: " + hechos + " de " + PASOS.length + " pasos";
+}
+function pintarPasos() {
+  var marcas = leerMarcas(); var caja = document.getElementById("pasos");
+  PASOS.forEach(function (p, i) {
+    var paso = document.createElement("article"); paso.className = "paso" + (marcas[i] ? " hecho" : "");
+    var cab = document.createElement("header");
+    var check = document.createElement("input"); check.type = "checkbox"; check.checked = !!marcas[i];
+    check.setAttribute("aria-label", "Paso " + (i + 1) + " hecho");
+    check.onchange = function () { var m = leerMarcas(); m[i] = check.checked; guardarMarcas(m); paso.className = "paso" + (check.checked ? " hecho" : ""); actualizarProgreso(m); };
+    cab.appendChild(check); cab.appendChild(texto("span", String(i + 1), "num")); cab.appendChild(texto("span", p.t));
+    var dl = document.createElement("dl");
+    dl.appendChild(texto("dt", "Hacer")); dl.appendChild(texto("dd", p.h));
+    dl.appendChild(texto("dt", "Se ve")); dl.appendChild(texto("dd", p.v));
+    dl.appendChild(texto("dt", "Decir")); dl.appendChild(texto("dd", "“" + p.d + "”", "dice"));
+    paso.appendChild(cab); paso.appendChild(dl); caja.appendChild(paso);
+  });
+  actualizarProgreso(marcas);
+}
+pintarPasos();
+document.getElementById("cambiarTema").onclick = function () {
+  var raiz = document.documentElement; var oscuro = raiz.getAttribute("data-theme") === "dark" ||
+    (!raiz.getAttribute("data-theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  raiz.setAttribute("data-theme", oscuro ? "light" : "dark");
+};
+</script>
+<script src="../recursos/mermaid.min.js"></script>
+<script>
+if (window.mermaid) {
+  var oscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({startOnLoad: true, theme: oscuro ? "dark" : "default", securityLevel: "strict", flowchart: {htmlLabels: true}});
+} else {
+  document.querySelectorAll(".mermaid").forEach(function (d) { d.style.textAlign = "left"; d.style.whiteSpace = "pre"; });
+}
+</script>
+</body>
+</html>
