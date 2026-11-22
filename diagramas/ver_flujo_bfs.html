@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Flujograma dinámico: BFS desde UIO (detalle hasta nivel 1)</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Flujograma dinámico: BFS desde UIO (detalle hasta nivel 1)</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Generado por IA desde el registro de eventos</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart TD
+    A([&quot;Inicio: BFS desde UIO (solo rutas internas)&quot;]) --&gt; B[&quot;Encolar UIO&lt;br/&gt;estado: [UIO]&quot;]
+    B --&gt; C[&quot;Paso 1: desencolar UIO&lt;br/&gt;vecinos nuevos: GYE, OCC, CUE, ESM, ETR, LOH, MEC, TUA, XMS&lt;br/&gt;estado: [GYE, OCC, CUE, ESM, ETR, LOH, MEC, TUA, XMS]&quot;]
+    C --&gt; D[&quot;Paso 2: desencolar GYE&lt;br/&gt;vecinos nuevos: SCY, GPS, LTX&lt;br/&gt;estado: [OCC, CUE, ESM, ETR, LOH, MEC, TUA, XMS, SCY, GPS, LTX]&quot;]
+    D --&gt; E[&quot;Pasos 3 a 9: desencolar OCC, CUE, ESM, ETR, LOH, MEC, TUA&lt;br/&gt;ninguno aporta vecinos nuevos&quot;]
+    E --&gt; F[&quot;Paso 10: desencolar XMS&lt;br/&gt;vecinos nuevos: TNW&lt;br/&gt;estado: [SCY, GPS, LTX, TNW]&quot;]
+    F --&gt; G[&quot;Nivel 2: 4 aeropuertos nuevos en 1 país&quot;]
+    G --&gt; H{&quot;¿Cola vacía?&quot;}
+    H --&gt;|&quot;Sí&quot;| I([&quot;Fin: 14 aeropuertos visitados&quot;])
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

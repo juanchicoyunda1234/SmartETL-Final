@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Flujograma del ETL (eventos reales)</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Flujograma del ETL (eventos reales)</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Generado por IA desde el registro de eventos</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart TD
+    A[&quot;Inicio del ETL&lt;br/&gt;Extract a Cola, Transform a Lista de válidos y Pila de errores&quot;] --&gt; B[&quot;Extract lee airports.csv&lt;br/&gt;7698 líneas, 0 no leídas&quot;]
+    B --&gt; C[&quot;7698 registros de aeropuertos&lt;br/&gt;encolados en la cola de extracción&quot;]
+    C --&gt; D[&quot;Transform: Desencolar registros&lt;br/&gt;Validación de aeropuertos&quot;]
+    D --&gt; E{&quot;¿Registro válido?&lt;br/&gt;7698 válidos, 0 inválidos&quot;}
+    E -- &quot;Sí&quot; --&gt; F[&quot;Lista de Válidos&lt;br/&gt;(Ej: 1 GKA, 2 MAG, 3 HGU)&quot;]
+    E -- &quot;No&quot; --&gt; G[&quot;Pila de Errores&quot;]
+    F --&gt; H[&quot;Transform de aeropuertos:&lt;br/&gt;7698 procesados, 7698 válidos, 0 inválidos&quot;]
+    H --&gt; I[&quot;Creación de Índices:&lt;br/&gt;BST global por IATA (6071 nodos)&lt;br/&gt;y lista ordenada por ID&quot;]
+    I --&gt; J[&quot;Extract lee routes.csv&lt;br/&gt;67663 líneas, 0 no leídas&quot;]
+    J --&gt; K[&quot;67663 registros de rutas&lt;br/&gt;encolados en la cola de extracción&quot;]
+    K --&gt; L[&quot;Transform: Desencolar registros&lt;br/&gt;Validación de rutas&quot;]
+    L --&gt; M{&quot;¿Registro válido?&lt;br/&gt;67074 válidos, 589 inválidos&quot;}
+    M -- &quot;Sí&quot; --&gt; N[&quot;Lista de Válidos&lt;br/&gt;(Ej: 2B AER-KZN, ASF-KZN, ASF-MRV)&quot;]
+    M -- &quot;No&quot; --&gt; O[&quot;Pila de Errores&lt;br/&gt;(Ej: REFERENCIA_ROTA, ID_NULO)&quot;]
+    N --&gt; P[&quot;Transform de rutas:&lt;br/&gt;67663 procesados, 67074 válidos,&lt;br/&gt;589 inválidos (REFERENCIA_ROTA 473, ID_NULO 116)&quot;]
+    O --&gt; P
+    P --&gt; Q[&quot;Extract lee airlines.csv&lt;br/&gt;6162 líneas, 0 no leídas&quot;]
+    Q --&gt; R[&quot;6162 registros de aerolíneas&lt;br/&gt;encolados en la cola de extracción&quot;]
+    R --&gt; S[&quot;Transform: Desencolar registros&lt;br/&gt;Validación de aerolíneas&quot;]
+    S --&gt; T{&quot;¿Registro válido?&lt;br/&gt;6162 válidos, 0 inválidos&quot;}
+    T -- &quot;Sí&quot; --&gt; U[&quot;Lista de Válidos&lt;br/&gt;(Ej: -1 Unknown, 1 Private, 2 135 Airways)&quot;]
+    T -- &quot;No&quot; --&gt; V[&quot;Pila de Errores&quot;]
+    U --&gt; W[&quot;Transform de aerolíneas:&lt;br/&gt;6162 procesados, 6162 válidos, 0 inválidos&quot;]
+    W --&gt; X[&quot;Load / Fin del Transform:&lt;br/&gt;80934 válidos en listas y 589 errores en la pila&lt;br/&gt;Escritura de archivos limpios&quot;]
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Flujograma: Pila (apilar y desapilar errores del ETL)</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Flujograma: Pila (apilar y desapilar errores del ETL)</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Generado por IA desde el registro de eventos</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart TD
+    P1[&quot;Paso 1: apilar | Apilar REFERENCIA_ROTA&lt;br/&gt;estado: [REFERENCIA_ROTA]&quot;]
+    P2[&quot;Paso 2: apilar | Apilar ID_NULO_NO_RECUPERABLE&lt;br/&gt;estado: [ID_NULO_NO_RECUPERABLE, REFERENCIA_ROTA]&quot;]
+    P3[&quot;Paso 3: apilar | Apilar DUPLICADO&lt;br/&gt;estado: [DUPLICADO, ID_NULO_NO_RECUPERABLE, REFERENCIA_ROTA]&quot;]
+    P4[&quot;Paso 4: desapilar | Desapilar DUPLICADO&lt;br/&gt;estado: [ID_NULO_NO_RECUPERABLE, REFERENCIA_ROTA]&quot;]
+    P5[&quot;Paso 5: apilar | Apilar RANGO_INVALIDO&lt;br/&gt;estado: [RANGO_INVALIDO, ID_NULO_NO_RECUPERABLE, REFERENCIA_ROTA]&quot;]
+    P6[&quot;Paso 6: desapilar | Desapilar RANGO_INVALIDO&lt;br/&gt;estado: [ID_NULO_NO_RECUPERABLE, REFERENCIA_ROTA]&quot;]
+    P1 --&gt; P2 --&gt; P3 --&gt; P4 --&gt; P5 --&gt; P6
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>
