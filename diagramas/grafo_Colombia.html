@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Colombia</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Colombia</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Colombia: 48 aeropuertos, 144 rutas internas, 64 salen al exterior, 64 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Colombia: 48 de 48 aeropuertos&quot;]
+        V_BOG[&quot;BOG&lt;br/&gt;Bogota&quot;]
+        V_CLO[&quot;CLO&lt;br/&gt;Cali&quot;]
+        V_MDE[&quot;MDE&lt;br/&gt;Rio Negro&quot;]
+        V_ACR[&quot;ACR&lt;br/&gt;Araracuara&quot;]
+        V_SVI[&quot;SVI&lt;br/&gt;San Vincente De Caguan&quot;]
+        V_ADZ[&quot;ADZ&lt;br/&gt;San Andres Island&quot;]
+        V_PVA[&quot;PVA&lt;br/&gt;Providencia&quot;]
+        V_APO[&quot;APO&lt;br/&gt;Carepa&quot;]
+        V_EOH[&quot;EOH&lt;br/&gt;Medellin&quot;]
+        V_AUC[&quot;AUC&lt;br/&gt;Arauca&quot;]
+        V_BUN[&quot;BUN&lt;br/&gt;Buenaventura&quot;]
+        V_CZU[&quot;CZU&lt;br/&gt;Corozal&quot;]
+        V_FLA[&quot;FLA&lt;br/&gt;Florencia&quot;]
+        V_IPI[&quot;IPI&lt;br/&gt;Ipiales&quot;]
+        V_MVP[&quot;MVP&lt;br/&gt;Mitu&quot;]
+        V_PCR[&quot;PCR&lt;br/&gt;Puerto Carreno&quot;]
+        V_PDA[&quot;PDA&lt;br/&gt;Puerto Inírida&quot;]
+        V_PSO[&quot;PSO&lt;br/&gt;Pasto&quot;]
+        V_PUU[&quot;PUU&lt;br/&gt;Puerto Asis&quot;]
+        V_RVE[&quot;RVE&lt;br/&gt;Saravena&quot;]
+        V_SJE[&quot;SJE&lt;br/&gt;San Jose Del Guaviare&quot;]
+        V_TME[&quot;TME&lt;br/&gt;Tame&quot;]
+        V_UIB[&quot;UIB&lt;br/&gt;Quibdo&quot;]
+        V_VGZ[&quot;VGZ&lt;br/&gt;Villa Garzon&quot;]
+        V_VVC[&quot;VVC&lt;br/&gt;Villavicencio&quot;]
+        V_BSC[&quot;BSC&lt;br/&gt;Bahia Solano&quot;]
+        V_GPI[&quot;GPI&lt;br/&gt;Guapi&quot;]
+        V_NQU[&quot;NQU&lt;br/&gt;Nuquí&quot;]
+        V_LET[&quot;LET&lt;br/&gt;Leticia&quot;]
+        V_LPD[&quot;LPD&lt;br/&gt;La Pedrera&quot;]
+        V_LQM[&quot;LQM&lt;br/&gt;Puerto Leguízamo&quot;]
+        V_AXM[&quot;AXM&lt;br/&gt;Armenia&quot;]
+        V_BAQ[&quot;BAQ&lt;br/&gt;Barranquilla&quot;]
+        V_BGA[&quot;BGA&lt;br/&gt;Bucaramanga&quot;]
+        V_CTG[&quot;CTG&lt;br/&gt;Cartagena&quot;]
+        V_CUC[&quot;CUC&lt;br/&gt;Cucuta&quot;]
+        V_EJA[&quot;EJA&lt;br/&gt;Barrancabermeja&quot;]
+        V_EYP[&quot;EYP&lt;br/&gt;Yopal&quot;]
+        V_IBE[&quot;IBE&lt;br/&gt;Ibague&quot;]
+        V_MTR[&quot;MTR&lt;br/&gt;Monteria&quot;]
+        V_MZL[&quot;MZL&lt;br/&gt;Manizales&quot;]
+        V_NVA[&quot;NVA&lt;br/&gt;Neiva&quot;]
+        V_PEI[&quot;PEI&lt;br/&gt;Pereira&quot;]
+        V_PPN[&quot;PPN&lt;br/&gt;Popayan&quot;]
+        V_RCH[&quot;RCH&lt;br/&gt;Rio Hacha&quot;]
+        V_SMR[&quot;SMR&lt;br/&gt;Santa Marta&quot;]
+        V_VUP[&quot;VUP&lt;br/&gt;Valledupar&quot;]
+        V_TCO[&quot;TCO&lt;br/&gt;Tumaco&quot;]
+        V_BOG &lt;--&gt; V_APO
+        V_BOG &lt;--&gt; V_AUC
+        V_BOG &lt;--&gt; V_BUN
+        V_BOG &lt;--&gt; V_CZU
+        V_BOG &lt;--&gt; V_EOH
+        V_BOG &lt;--&gt; V_FLA
+        V_BOG &lt;--&gt; V_IPI
+        V_BOG &lt;--&gt; V_MVP
+        V_BOG &lt;--&gt; V_PCR
+        V_BOG &lt;--&gt; V_PDA
+        V_BOG &lt;--&gt; V_PSO
+        V_BOG &lt;--&gt; V_PUU
+        V_BOG &lt;--&gt; V_RVE
+        V_BOG &lt;--&gt; V_SJE
+        V_BOG &lt;--&gt; V_SVI
+        V_BOG &lt;--&gt; V_TME
+        V_BOG &lt;--&gt; V_UIB
+        V_BOG &lt;--&gt; V_VGZ
+        V_BOG &lt;--&gt; V_VVC
+        V_BOG &lt;--&gt; V_ADZ
+        V_BOG &lt;--&gt; V_AXM
+        V_BOG &lt;--&gt; V_BAQ
+        V_BOG &lt;--&gt; V_BGA
+        V_BOG &lt;--&gt; V_CLO
+        V_BOG &lt;--&gt; V_CTG
+        V_BOG &lt;--&gt; V_CUC
+        V_BOG &lt;--&gt; V_EJA
+        V_BOG &lt;--&gt; V_EYP
+        V_BOG &lt;--&gt; V_IBE
+        V_BOG &lt;--&gt; V_LET
+        V_BOG &lt;--&gt; V_MDE
+        V_BOG &lt;--&gt; V_MTR
+        V_BOG &lt;--&gt; V_MZL
+        V_BOG &lt;--&gt; V_NVA
+        V_BOG &lt;--&gt; V_PEI
+        V_BOG &lt;--&gt; V_PPN
+        V_BOG &lt;--&gt; V_RCH
+        V_BOG &lt;--&gt; V_SMR
+        V_BOG &lt;--&gt; V_VUP
+        V_CLO &lt;--&gt; V_GPI
+        V_CLO &lt;--&gt; V_PUU
+        V_CLO &lt;--&gt; V_UIB
+        V_CLO &lt;--&gt; V_BAQ
+        V_CLO &lt;--&gt; V_CTG
+        V_CLO &lt;--&gt; V_MDE
+        V_CLO &lt;--&gt; V_PSO
+        V_CLO &lt;--&gt; V_TCO
+        V_CLO &lt;--&gt; V_ADZ
+        V_MDE &lt;--&gt; V_BAQ
+        V_MDE &lt;--&gt; V_BGA
+        V_MDE &lt;--&gt; V_CTG
+        V_MDE &lt;--&gt; V_CUC
+        V_MDE &lt;--&gt; V_SMR
+        V_MDE &lt;--&gt; V_ADZ
+        V_ACR &lt;--&gt; V_SVI
+        V_ADZ &lt;--&gt; V_PVA
+        V_ADZ &lt;--&gt; V_BAQ
+        V_ADZ &lt;--&gt; V_CTG
+        V_ADZ &lt;--&gt; V_PEI
+        V_APO &lt;--&gt; V_EOH
+        V_EOH &lt;--&gt; V_BSC
+        V_EOH &lt;--&gt; V_NQU
+        V_EOH &lt;--&gt; V_UIB
+        V_EOH &lt;--&gt; V_IBE
+        V_EOH &lt;--&gt; V_MTR
+        V_EOH &lt;--&gt; V_PEI
+        V_MVP &lt;--&gt; V_VVC
+        V_PCR &lt;--&gt; V_VVC
+        V_PDA &lt;--&gt; V_VVC
+        V_PUU &lt;--&gt; V_LQM
+        V_RVE &lt;--&gt; V_TME
+        V_LET &lt;--&gt; V_LPD
+    end
+    EXT0[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;United States&quot;]
+    PAIS --&gt;|&quot;18 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Aruba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Aruba.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Netherlands Antilles&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Netherlands_Antilles.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Guatemala&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_Guatemala.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Bolivia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Bolivia.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;El Salvador&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_El_Salvador.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT19
+    click EXT19 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Costa Rica&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Costa_Rica.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Puerto Rico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Puerto_Rico.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

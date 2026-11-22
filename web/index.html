@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartETL-DS</title>
+<link rel="icon" href="/recursos/iconos/plane.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/web/styles.css">
+<link rel="stylesheet" href="/web/componentes.css">
+<link rel="stylesheet" href="/web/estructuras.css">
+<link rel="stylesheet" href="/web/grafo.css">
+<link rel="stylesheet" href="/web/ia.css">
+<link rel="stylesheet" href="/web/reporte.css">
+</head>
+<body>
+<header class="encabezado">
+  <div class="marca">
+    <span class="marca-logo"><span class="icono" style="--icono:url(/recursos/iconos/plane.svg)"></span></span>
+    <div>
+      <div class="marca-nombre">SmartETL-DS</div>
+      <div class="marca-carpeta" id="carpeta" title="Carpeta del proyecto">Conectando con el servidor…</div>
+    </div>
+  </div>
+  <div class="encabezado-acciones">
+    <span class="estado-tarea" id="estadoTarea" hidden></span>
+    <button class="pildora-ia" id="pildoraIa" type="button" title="Estado de la IA">
+      <span class="punto" id="puntoIa"></span><span id="textoIa">IA sin validar</span>
+    </button>
+    <button class="boton-icono" id="botonTema" type="button" aria-label="Cambiar entre tema claro y oscuro">
+      <span class="icono icono-sol" style="--icono:url(/recursos/iconos/sun.svg)"></span>
+      <span class="icono icono-luna" style="--icono:url(/recursos/iconos/moon.svg)"></span>
+    </button>
+  </div>
+</header>
+
+<nav class="pestanas" role="tablist" aria-label="Secciones">
+  <button role="tab" class="pestana" data-vista="datos" aria-selected="true"><span class="icono" style="--icono:url(/recursos/iconos/database.svg)"></span>Datos</button>
+  <button role="tab" class="pestana" data-vista="etl" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/workflow.svg)"></span>ETL</button>
+  <button role="tab" class="pestana" data-vista="estructuras" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/boxes.svg)"></span>Estructuras</button>
+  <button role="tab" class="pestana" data-vista="grafo" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span>Grafo</button>
+  <button role="tab" class="pestana" data-vista="ia" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/sparkles.svg)"></span>IA</button>
+  <span class="pestanas-espacio"></span>
+  <button role="tab" class="pestana pestana-reporte" data-vista="reporte" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/file-text.svg)"></span>Reporte</button>
+</nav>
+
+<main class="contenido">
+  <section class="vista activa" id="vista-datos" role="tabpanel">
+    <div class="vista-cabecera">
+      <div>
+        <h1>Datos</h1>
+        <p class="subtitulo">Exploración del archivo crudo (no alimenta el ETL)</p>
+      </div>
+    </div>
+    <div class="tarjeta panel">
+      <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/folder-open.svg)"></span>Origen y carga (Extract)</div>
+      <div class="fila-campos">
+        <div class="campo">
+          <span class="etiqueta">Datos</span>
+          <div class="segmentado" id="datosFuente" role="group" aria-label="Fuente de datos"></div>
+        </div>
+        <div class="campo campo-ancho" data-campo="archivo">
+          <label class="etiqueta" for="datosArchivo">Archivo</label>
+          <select id="datosArchivo"></select>
+          <input id="datosRuta" type="text" placeholder="Ruta del CSV, por ejemplo data/airports.csv" hidden>
+          <span class="campo-error"></span>
+        </div>
+        <div class="campo">
+          <span class="etiqueta">Guardar en</span>
+          <div class="segmentado" id="datosEstructura" role="group" aria-label="Estructura de destino">
+            <button type="button" data-valor="enlazada" aria-pressed="true" title="Nodos enlazados con head y tail">Lista enlazada</button>
+            <button type="button" data-valor="secuencial" aria-pressed="false" title="Arreglo que duplica su capacidad">Lista secuencial</button>
+          </div>
+        </div>
+      </div>
+      <div class="fila-campos">
+        <div class="campo" data-campo="modo">
+          <label class="etiqueta" for="datosModo">Modo de carga</label>
+          <select id="datosModo">
+            <option value="TODOS">Todos</option>
+            <option value="PRIMEROS">Primeros N</option>
+            <option value="RANGO">Rango de filas</option>
+            <option value="ALEATORIO">Aleatorio N</option>
+          </select>
+        </div>
+        <div class="campo campo-corto" data-campo="cantidad" data-modos="PRIMEROS ALEATORIO" hidden>
+          <label class="etiqueta" for="datosCantidad">N</label>
+          <input id="datosCantidad" type="text" inputmode="numeric" value="10">
+          <span class="campo-error"></span>
+        </div>
+        <div class="campo campo-corto" data-campo="desde" data-modos="RANGO" hidden>
+          <label class="etiqueta" for="datosDesde">Desde</label>
+          <input id="datosDesde" type="text" inputmode="numeric" value="1">
+          <span class="campo-error"></span>
+        </div>
+        <div class="campo campo-corto" data-campo="hasta" data-modos="RANGO" hidden>
+          <label class="etiqueta" for="datosHasta">Hasta</label>
+          <input id="datosHasta" type="text" inputmode="numeric" value="50">
+          <span class="campo-error"></span>
+        </div>
+        <div class="campo campo-corto" data-campo="semilla" data-modos="ALEATORIO" hidden>
+          <label class="etiqueta" for="datosSemilla">Semilla</label>
+          <input id="datosSemilla" type="text" inputmode="numeric" value="42" placeholder="vacía = al azar">
+          <span class="campo-error"></span>
+        </div>
+        <div class="campo campo-boton">
+          <button class="boton boton-primario" id="botonCargarDatos" type="button" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/download.svg)"></span>Cargar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="chips" id="datosResumen" hidden></div>
+
+    <div class="tarjeta panel" id="datosConsulta" hidden>
+      <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Consulta sobre la lista</div>
+      <div class="fila-campos">
+        <div class="campo">
+          <label class="etiqueta" for="datosColumna">Campo</label>
+          <select id="datosColumna"></select>
+        </div>
+        <div class="campo campo-ancho" data-campo="valor">
+          <label class="etiqueta" for="datosValor">Valor</label>
+          <input id="datosValor" type="text" placeholder="Por ejemplo UIO">
+          <span class="campo-error"></span>
+        </div>
+        <div class="campo campo-boton">
+          <div class="acciones">
+            <button class="boton boton-primario" id="botonBuscarDatos" type="button" data-tarea title="Primera coincidencia exacta"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Buscar</button>
+            <button class="boton" id="botonFiltrarDatos" type="button" data-tarea title="Todas las filas que contienen el texto"><span class="icono" style="--icono:url(/recursos/iconos/filter.svg)"></span>Filtrar</button>
+            <button class="boton" id="botonTodosDatos" type="button" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/list.svg)"></span>Ver todos</button>
+          </div>
+        </div>
+      </div>
+      <div class="resultado-consulta" id="datosResultado" aria-live="polite"></div>
+    </div>
+
+    <div class="tarjeta tabla-tarjeta" id="datosTabla" hidden>
+      <div class="tabla-cabecera">
+        <div class="leyenda">
+          <span class="etiqueta-nulo">\N</span> nulo en el origen
+          <span class="etiqueta-vacio">vacío</span> campo vacío
+        </div>
+        <span class="chip chip-acento" id="datosFiltro" hidden></span>
+      </div>
+      <div class="tabla-contenedor">
+        <table class="tabla" id="datosTablaHtml">
+          <thead></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="paginacion" id="datosPaginacion"></div>
+    </div>
+
+    <div class="vacio" id="datosVacio">
+      <span class="vacio-icono"><span class="icono" style="--icono:url(/recursos/iconos/table-2.svg)"></span></span>
+      <h2>Explora un CSV tal como viene</h2>
+      <p>Elige la fuente y la estructura, y pulsa Cargar. Los valores se muestran crudos, con sus nulos y vacíos.</p>
+    </div>
+  </section>
+
+  <section class="vista" id="vista-etl" role="tabpanel">
+    <div class="vista-cabecera">
+      <div>
+        <h1>ETL</h1>
+        <p class="subtitulo">Extract → Cola → Transform → Lista de válidos y Pila de errores → Load</p>
+      </div>
+      <div class="acciones">
+        <span class="chip chip-neutro" id="etlFuente"><span class="icono" style="--icono:url(/recursos/iconos/folder-open.svg)"></span><span>Fuente: archivos completos (airports, routes, airlines)</span></span>
+        <button class="boton boton-primario" id="botonEtlReal" type="button" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Ejecutar ETL</button>
+        <button class="boton" id="botonEtlDemo" type="button" data-tarea title="Usa los archivos sucios de data/demo con los 6 tipos de error"><span class="icono" style="--icono:url(/recursos/iconos/triangle-alert.svg)"></span>Demostración</button>
+        <button class="boton" id="botonEtlCargar" type="button" data-tarea data-deshabilitado="si" disabled title="Escribe los archivos limpios y los reportes en output/"><span class="icono" style="--icono:url(/recursos/iconos/save.svg)"></span>Cargar (Load)</button>
+      </div>
+    </div>
+
+    <div class="tarjeta pipeline" id="etlPipeline" aria-label="Pipeline del ETL">
+      <div class="nodo" data-etapa="extract"><span class="nodo-icono"><span class="icono" style="--icono:url(/recursos/iconos/download.svg)"></span></span><b>Extract</b><span class="nodo-valor">—</span><span class="nodo-detalle">lee los CSV</span></div>
+      <span class="flecha" data-hacia="cola"></span>
+      <div class="nodo" data-etapa="cola"><span class="nodo-icono"><span class="icono" style="--icono:url(/recursos/iconos/list.svg)"></span></span><b>Cola</b><span class="nodo-valor">—</span><span class="nodo-detalle">FIFO de registros</span></div>
+      <span class="flecha" data-hacia="transform"></span>
+      <div class="nodo" data-etapa="transform"><span class="nodo-icono"><span class="icono" style="--icono:url(/recursos/iconos/shuffle.svg)"></span></span><b>Transform</b><span class="nodo-valor">—</span><span class="nodo-detalle">valida y limpia</span></div>
+      <span class="flecha flecha-doble" data-hacia="validos"></span>
+      <div class="nodos-rama">
+        <div class="nodo" data-etapa="validos"><span class="nodo-icono"><span class="icono" style="--icono:url(/recursos/iconos/circle-check.svg)"></span></span><b>Válidos</b><span class="nodo-valor">—</span><span class="nodo-detalle">listas secuenciales</span></div>
+        <div class="nodo" data-etapa="pila"><span class="nodo-icono"><span class="icono" style="--icono:url(/recursos/iconos/layers.svg)"></span></span><b>Pila de errores</b><span class="nodo-valor">—</span><span class="nodo-detalle">LIFO de ErrorETL</span></div>
+      </div>
+      <span class="flecha" data-hacia="load"></span>
+      <div class="nodo" data-etapa="load"><span class="nodo-icono"><span class="icono" style="--icono:url(/recursos/iconos/save.svg)"></span></span><b>Load</b><span class="nodo-valor">—</span><span class="nodo-detalle">escribe output/</span></div>
+    </div>
+
+    <div class="zona-resultados" id="resultadosEtl">
+      <div class="vacio" id="vacioEtl">
+        <span class="vacio-icono"><span class="icono" style="--icono:url(/recursos/iconos/workflow.svg)"></span></span>
+        <h2>Ejecuta el ETL para ver resultados</h2>
+        <p>Se leen los tres archivos, se validan registro por registro y los errores van a una pila.</p>
+        <button class="boton boton-primario" type="button" data-accion="etl-real" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Ejecutar ETL</button>
+      </div>
+
+      <div id="etlContenido" hidden>
+        <div class="kpis" id="kpisEtl"></div>
+
+        <div class="rejilla-2">
+          <div class="tarjeta">
+            <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/list.svg)"></span>Cola de extracción<span class="panel-nota">antes del Transform</span></div>
+            <div class="segmentado" id="etlColaFuentes" role="group" aria-label="Fuente de la cola"></div>
+            <div class="cola" id="etlCola"></div>
+            <p class="nota" id="etlColaNota"></p>
+          </div>
+          <div class="tarjeta">
+            <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/layers.svg)"></span>Pila de errores<span class="panel-nota">la cima es el último error</span></div>
+            <div class="filtros" id="etlPilaFiltros" role="group" aria-label="Filtrar por tipo de error"></div>
+            <div class="pila" id="etlPila"></div>
+            <div class="paginacion paginacion-compacta" id="etlPilaPaginacion"></div>
+          </div>
+        </div>
+
+        <div class="rejilla-3">
+          <div class="tarjeta">
+            <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/table-2.svg)"></span>Por fuente</div>
+            <table class="tabla tabla-compacta" id="etlTablaFuentes"></table>
+          </div>
+          <div class="tarjeta">
+            <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/gauge.svg)"></span>Válidos vs inválidos</div>
+            <div class="grafico"><canvas id="etlDona" aria-label="Gráfico de dona de válidos e inválidos"></canvas></div>
+          </div>
+          <div class="tarjeta">
+            <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/triangle-alert.svg)"></span>Errores por tipo</div>
+            <div class="grafico"><canvas id="etlBarras" aria-label="Gráfico de barras de errores por tipo"></canvas></div>
+          </div>
+        </div>
+
+        <div class="tarjeta tabla-tarjeta">
+          <div class="tabla-cabecera">
+            <div class="panel-titulo sin-margen"><span class="icono" style="--icono:url(/recursos/iconos/circle-check.svg)"></span>Listas de válidos</div>
+            <div class="segmentado" id="etlValidosFuentes" role="group" aria-label="Fuente de los válidos"></div>
+          </div>
+          <div class="tabla-contenedor">
+            <table class="tabla" id="etlValidosTabla"><thead></thead><tbody></tbody></table>
+          </div>
+          <div class="paginacion" id="etlValidosPaginacion"></div>
+        </div>
+
+        <div class="tarjeta panel" id="etlIa">
+          <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/sparkles.svg)"></span>Con IA<span class="panel-nota">mismas funciones que la pestaña IA</span></div>
+          <div class="acciones">
+            <button class="boton" id="botonEtlResumenIa" type="button" data-tarea>✨ Resumen con IA</button>
+            <button class="boton" id="botonEtlFlujoIa" type="button" data-tarea>✨ Flujograma con IA</button>
+          </div>
+          <div id="etlIaResultado"></div>
+        </div>
+
+        <div class="tarjeta panel" id="etlArchivos" hidden>
+          <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/save.svg)"></span>Archivos escritos en output/</div>
+          <ul class="lista-archivos" id="etlListaArchivos"></ul>
+        </div>
+
+        <details class="tarjeta desplegable" id="etlReporte">
+          <summary><span class="icono" style="--icono:url(/recursos/iconos/file-text.svg)"></span>Ver reporte completo</summary>
+          <pre class="texto-mono" id="etlReporteTexto"></pre>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="vista" id="vista-estructuras" role="tabpanel">
+    <div class="vista-cabecera">
+      <div>
+        <h1>Estructuras</h1>
+        <p class="subtitulo">Ordenamiento, búsquedas y árbol binario de búsqueda sobre los aeropuertos limpios</p>
+      </div>
+    </div>
+    <div class="tarjeta aviso-datos" id="estDatos" hidden>
+      <span class="vacio-icono"><span class="icono" style="--icono:url(/recursos/iconos/database.svg)"></span></span>
+      <div>
+        <b>Estas operaciones usan los aeropuertos limpios del ETL real</b>
+        <p>Todavía no se ejecutó el ETL con datos reales en esta sesión. Tarda unos 2 segundos.</p>
+      </div>
+      <button class="boton boton-primario" id="estPreparar" type="button" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Preparar datos</button>
+    </div>
+
+    <div class="subpestanas-grandes" role="tablist" id="estPestanas" aria-label="Secciones de estructuras">
+      <button role="tab" type="button" data-sub="ordenamiento" aria-selected="true"><span class="icono" style="--icono:url(/recursos/iconos/shuffle.svg)"></span>Ordenamiento</button>
+      <button role="tab" type="button" data-sub="busquedas" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Búsquedas</button>
+      <button role="tab" type="button" data-sub="bst" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span>BST</button>
+      <button role="tab" type="button" data-sub="recorridos" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/route.svg)"></span>Recorridos</button>
+      <button role="tab" type="button" data-sub="desbalance" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/gauge.svg)"></span>Desbalance</button>
+    </div>
+
+    <div class="subvista activa" id="est-ordenamiento" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/shuffle.svg)"></span>Ordenar los aeropuertos limpios<span class="panel-nota">se ordena una copia; la lista original no cambia</span></div>
+        <div class="fila-campos">
+          <div class="campo"><span class="etiqueta">Algoritmo</span><div class="segmentado" id="estAlgoritmo"></div></div>
+          <div class="campo"><label class="etiqueta" for="estCampo">Campo</label>
+            <select id="estCampo"><option value="IATA">IATA</option><option value="Nombre">Nombre</option><option value="Pais">País</option></select></div>
+          <div class="campo campo-boton"><div class="acciones">
+            <button class="boton boton-primario" id="estOrdenar" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Ordenar</button>
+            <button class="boton" id="estComparar" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/gauge.svg)"></span>Comparar burbuja vs inserción</button>
+          </div></div>
+        </div>
+        <div id="estOrdenResultado"></div>
+      </div>
+      <div class="tarjeta panel" id="estComparacion" hidden>
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/gauge.svg)"></span>Burbuja vs inserción<span class="panel-nota" id="estComparacionNota"></span></div>
+        <div class="grafico grafico-alto"><canvas id="estGraficoOrden" aria-label="Comparaciones y tiempo de burbuja e inserción"></canvas></div>
+      </div>
+
+      <div class="tarjeta panel visualizador">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/boxes.svg)"></span>Visualizador de ordenamiento<span class="panel-nota">Visualización didáctica validada contra el Ordenamiento de Java</span></div>
+        <div class="fila-campos">
+          <div class="campo"><span class="etiqueta">Algoritmo</span><div class="segmentado" id="visAlgoritmo"></div></div>
+          <div class="campo"><label class="etiqueta" for="visCampo">Ordenar por</label>
+            <select id="visCampo"><option value="IATA">IATA</option><option value="Nombre">Nombre</option><option value="Pais">País</option></select></div>
+          <div class="campo"><span class="etiqueta">Muestra</span><div class="segmentado" id="visCantidad"></div></div>
+          <div class="campo campo-boton"><button class="boton" id="visNueva" type="button" data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/shuffle.svg)"></span>Nueva muestra</button></div>
+        </div>
+        <div class="vis-controles">
+          <button class="boton boton-primario" id="visReproducir" type="button"><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span><span>Reproducir</span></button>
+          <button class="boton" id="visPaso" type="button"><span class="icono" style="--icono:url(/recursos/iconos/step-forward.svg)"></span>Paso a paso</button>
+          <button class="boton" id="visReiniciar" type="button"><span class="icono" style="--icono:url(/recursos/iconos/rotate-ccw.svg)"></span>Reiniciar</button>
+          <label class="vis-velocidad">Velocidad <input type="range" id="visVelocidad" min="1" max="10" value="5"></label>
+          <span class="chip chip-aviso">Comparaciones <b id="visComparaciones">0</b></span>
+          <span class="chip chip-error"><span id="visNombreMovimientos">Intercambios</span> <b id="visMovimientos">0</b></span>
+        </div>
+        <div class="vis-escenario" id="visEscenario" aria-live="off"></div>
+        <div class="vis-leyenda"><span><i class="ley-compara"></i>compara</span><span><i class="ley-cambia"></i>intercambia o desplaza</span><span><i class="ley-ordenado"></i>en su lugar</span></div>
+        <div class="vis-validacion" id="visValidacion" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="subvista" id="est-busquedas" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>El mismo código IATA en tres estructuras</div>
+        <div class="fila-campos">
+          <div class="campo"><label class="etiqueta" for="estIata">Código IATA</label><input id="estIata" type="text" value="UIO" maxlength="4"></div>
+          <div class="campo campo-boton"><button class="boton boton-primario" id="estBuscar" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Secuencial vs binaria vs BST</button></div>
+        </div>
+      </div>
+      <div id="estBusquedaResultado"></div>
+      <div class="tarjeta info">
+        <span class="icono" style="--icono:url(/recursos/iconos/info.svg)"></span>
+        <div><b>¿Por qué la búsqueda binaria no se usa sobre la lista enlazada?</b>
+          <p>La binaria salta al elemento del medio y descarta la mitad en cada paso. Necesita llegar a cualquier posición en O(1), como en la ListaSecuencial (un arreglo). En una ListaEnlazada, obtener(i) recorre desde head nodo por nodo (O(n)), así que cada salto costaría O(n) y se perdería la ventaja.</p></div>
+      </div>
+    </div>
+
+    <div class="subvista" id="est-bst" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span>Copia de trabajo del BST por IATA<span class="chip chip-neutro" id="estCopia">Sin construir</span></div>
+        <div class="fila-campos">
+          <div class="campo campo-boton"><button class="boton boton-primario" id="estConstruir" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/layers.svg)"></span>Construir</button></div>
+          <div class="campo"><label class="etiqueta" for="estClave">Código IATA</label><input id="estClave" type="text" value="UIO" maxlength="4"></div>
+          <div class="campo campo-boton"><div class="acciones">
+            <button class="boton" type="button" data-operacion="insertar" data-tarea data-requiere="arbol"><span class="icono" style="--icono:url(/recursos/iconos/plus.svg)"></span>Insertar</button>
+            <button class="boton" type="button" data-operacion="buscar" data-tarea data-requiere="arbol"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Buscar</button>
+            <button class="boton" type="button" data-operacion="eliminar" data-tarea data-requiere="arbol"><span class="icono" style="--icono:url(/recursos/iconos/trash-2.svg)"></span>Eliminar</button>
+            <button class="boton" id="estMedidas" type="button" data-tarea data-requiere="arbol"><span class="icono" style="--icono:url(/recursos/iconos/gauge.svg)"></span>Altura y nodos</button>
+          </div></div>
+        </div>
+        <div id="estBstResultado"></div>
+      </div>
+      <div id="estMedidasResultado"></div>
+    </div>
+
+    <div class="subvista" id="est-recorridos" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/route.svg)"></span>Recorridos del BST (copia de trabajo)</div>
+        <div class="fila-campos">
+          <div class="campo"><span class="etiqueta">Recorrido</span><div class="segmentado" id="estTipoRecorrido"></div></div>
+          <div class="campo campo-corto"><label class="etiqueta" for="estLimite">Límite</label><input id="estLimite" type="text" inputmode="numeric" value="24"></div>
+          <div class="campo campo-boton"><button class="boton boton-primario" id="estRecorrer" type="button" data-tarea data-requiere="arbol"><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Recorrer</button></div>
+        </div>
+        <p class="nota" id="estRecorridoNota">Inorden: izquierda, raíz, derecha (sale ordenado). Preorden: raíz, izquierda, derecha. Postorden: izquierda, derecha, raíz.</p>
+        <div class="recorrido" id="estRecorridoChips"></div>
+      </div>
+    </div>
+
+    <div class="subvista" id="est-desbalance" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/gauge.svg)"></span>¿Qué pasa si las claves llegan ordenadas?</div>
+        <p class="nota">Se arma un BST con los primeros 1.500 aeropuertos por ID (los IDs vienen ordenados en el archivo) y se compara con el BST global por IATA.</p>
+        <div class="acciones"><button class="boton boton-primario" id="estDesbalance" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Comparar</button></div>
+      </div>
+      <div id="estDesbalanceResultado"></div>
+    </div>
+  </section>
+
+  <section class="vista" id="vista-grafo" role="tabpanel">
+    <div class="vista-cabecera">
+      <div>
+        <h1>Grafo</h1>
+        <p class="subtitulo">Un grafo por país, con rutas internas y rutas hacia otros países</p>
+      </div>
+    </div>
+    <div class="tarjeta aviso-datos" id="grafoDatos" hidden>
+      <span class="vacio-icono"><span class="icono" style="--icono:url(/recursos/iconos/database.svg)"></span></span>
+      <div>
+        <b>Los grafos se arman con los aeropuertos y rutas del ETL real</b>
+        <p>Todavía no se ejecutó el ETL con datos reales en esta sesión. Tarda unos 2 segundos.</p>
+      </div>
+      <button class="boton boton-primario" id="grafoPreparar" type="button" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Preparar datos</button>
+    </div>
+
+    <div class="grafo-arriba">
+      <div class="tarjeta panel paises-panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/layers.svg)"></span>Países<span class="chip chip-neutro" id="grafoSeleccion">0 seleccionados</span></div>
+        <label class="buscador"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span><input id="grafoBuscador" type="search" placeholder="Buscar país, por ejemplo Ecuador" aria-label="Buscar país"></label>
+        <div class="lista-paises" id="grafoLista" role="group" aria-label="Países del BST de países"></div>
+        <div class="acciones">
+          <button class="boton boton-primario" id="grafoConstruir" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Construir seleccionados</button>
+          <button class="boton" id="grafoTodos" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/timer.svg)"></span>Construir todos</button>
+          <button class="boton boton-fantasma" id="grafoLimpiar" type="button"><span class="icono" style="--icono:url(/recursos/iconos/x.svg)"></span>Quitar selección</button>
+        </div>
+      </div>
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span>Grafos construidos<span class="panel-nota">un país construido no se vuelve a construir</span></div>
+        <div id="grafoKpis">
+          <p class="nota">Elige uno o varios países y pulsa Construir, o construye todos para medir el tiempo total (criterio: menos de 10 s).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subpestanas-grandes" role="tablist" id="grafoPestanas" aria-label="Secciones del grafo">
+      <button role="tab" type="button" data-sub="conexiones" aria-selected="true"><span class="icono" style="--icono:url(/recursos/iconos/plane.svg)"></span>Conexiones</button>
+      <button role="tab" type="button" data-sub="recorridos" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/workflow.svg)"></span>BFS y DFS</button>
+      <button role="tab" type="button" data-sub="ruta" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/route.svg)"></span>Ruta y ciclo</button>
+      <button role="tab" type="button" data-sub="diagramas" aria-selected="false"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span>Diagrama y visor</button>
+    </div>
+
+    <div class="subvista activa" id="grafo-conexiones" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/plane.svg)"></span>Conexiones directas de un aeropuerto</div>
+        <div class="fila-campos">
+          <div class="campo"><label class="etiqueta" for="grafoIata">Aeropuerto IATA</label><input id="grafoIata" type="text" value="UIO" maxlength="4" placeholder="ej. UIO"></div>
+          <div class="campo campo-boton"><button class="boton boton-primario" id="grafoVerConexiones" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span>Ver conexiones</button></div>
+        </div>
+        <div id="grafoConexionesInfo"></div>
+        <div class="lienzo-red" id="grafoRedConexiones" hidden></div>
+        <div class="red-leyenda" id="grafoLeyendaConexiones" hidden><span><i class="ley-centro"></i>aeropuerto elegido</span><span><i class="ley-interna"></i>ruta interna</span><span><i class="ley-externa"></i>países a los que sale (tamaño = rutas)</span></div>
+      </div>
+    </div>
+
+    <div class="subvista" id="grafo-recorridos" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/workflow.svg)"></span>Recorridos: BFS con la Cola propia, DFS con la Pila propia</div>
+        <div class="fila-campos">
+          <div class="campo"><span class="etiqueta">Algoritmo</span><div class="segmentado" id="grafoAlgoritmo"></div></div>
+          <div class="campo"><label class="etiqueta" for="grafoOrigen">Origen</label><input id="grafoOrigen" type="text" value="UIO" maxlength="4" placeholder="ej. UIO"></div>
+          <div class="campo"><label class="etiqueta" for="grafoNivelMaximo">Nivel máximo <span class="ayuda" tabindex="0" data-ayuda="Hasta qué nivel (BFS) o profundidad (DFS) se recorre. Vacío = sin límite."><span class="icono" style="--icono:url(/recursos/iconos/info.svg)"></span></span></label><input id="grafoNivelMaximo" type="number" min="0" placeholder="ej. 3 (vacío = sin límite)"></div>
+          <div class="campo"><label class="etiqueta" for="grafoNivelDiagrama">Nivel del diagrama <span class="ayuda" tabindex="0" data-ayuda="Hasta qué nivel se dibuja el flujograma que genera la pestaña IA con este recorrido."><span class="icono" style="--icono:url(/recursos/iconos/info.svg)"></span></span></label><input id="grafoNivelDiagrama" type="number" min="1" value="1" placeholder="ej. 1"></div>
+          <label class="casilla"><input type="checkbox" id="grafoFronteras">Cruzar fronteras (rutas externas)</label>
+          <div class="campo campo-boton"><button class="boton boton-primario" id="grafoRecorrer" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/play.svg)"></span>Recorrer</button></div>
+        </div>
+        <div id="grafoRecorridoInfo"></div>
+        <div class="red-cabecera" id="grafoRecorridoCabecera" hidden>
+          <span class="panel-nota">Orden de visita real del BFS/DFS</span>
+          <button class="boton boton-fantasma" id="grafoRepetir" type="button"><span class="icono" style="--icono:url(/recursos/iconos/rotate-ccw.svg)"></span>Repetir animación</button>
+        </div>
+        <div class="lienzo-red" id="grafoRedRecorrido" hidden></div>
+        <div class="red-leyenda" id="grafoLeyendaRecorrido"></div>
+        <div class="grafico grafico-alto" id="grafoNivelesCaja" hidden><canvas id="grafoGraficoNiveles" aria-label="Aeropuertos por nivel del BFS"></canvas></div>
+        <div class="recorrido" id="grafoOrdenVisita"></div>
+      </div>
+    </div>
+
+    <div class="subvista" id="grafo-ruta" role="tabpanel">
+      <div class="rejilla-2">
+        <div class="tarjeta panel">
+          <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/route.svg)"></span>Ruta más corta (en vuelos)</div>
+          <div class="fila-campos">
+            <div class="campo"><label class="etiqueta" for="grafoDesde">De</label><input id="grafoDesde" type="text" value="UIO" maxlength="4" placeholder="ej. UIO"></div>
+            <div class="campo"><label class="etiqueta" for="grafoHasta">A</label><input id="grafoHasta" type="text" value="CUZ" maxlength="4" placeholder="ej. CUZ"></div>
+            <div class="campo campo-boton"><button class="boton boton-primario" id="grafoBuscarRuta" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Buscar ruta</button></div>
+          </div>
+          <div id="grafoRutaInfo"></div>
+          <div class="lienzo-red lienzo-bajo" id="grafoRedRuta" hidden></div>
+        </div>
+        <div class="tarjeta panel">
+          <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/rotate-ccw.svg)"></span>Detectar un ciclo en un país</div>
+          <div class="fila-campos">
+            <div class="campo"><label class="etiqueta" for="grafoPaisCiclo">País</label><input id="grafoPaisCiclo" type="text" value="Ecuador" list="grafoPaisesDatalist" placeholder="ej. Ecuador"></div>
+            <div class="campo campo-boton"><button class="boton boton-primario" id="grafoDetectarCiclo" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/search.svg)"></span>Detectar ciclo</button></div>
+          </div>
+          <datalist id="grafoPaisesDatalist"></datalist>
+          <div id="grafoCicloInfo"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subvista" id="grafo-diagramas" role="tabpanel">
+      <div class="tarjeta panel">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span>Diagrama general y visor interactivo</div>
+        <div class="fila-campos">
+          <div class="campo"><label class="etiqueta" for="grafoNivelGeneral">Nivel del diagrama <span class="ayuda" tabindex="0" data-ayuda="En países grandes (más de 60 aeropuertos) se dibuja el árbol BFS solo hasta este nivel."><span class="icono" style="--icono:url(/recursos/iconos/info.svg)"></span></span></label><input id="grafoNivelGeneral" type="number" min="1" value="1" placeholder="ej. 1"></div>
+          <div class="campo campo-boton"><div class="acciones">
+            <button class="boton boton-primario" id="grafoGeneral" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span>Diagrama general</button>
+            <button class="boton" id="grafoVisor" type="button" data-tarea data-requiere="datos"><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span>Visor interactivo</button>
+          </div></div>
+        </div>
+        <p class="nota">El diagrama general usa los países ya construidos. Haz clic en un país para ver su grafo aquí mismo.</p>
+        <div class="marco-cabecera" id="grafoMarcoCabecera" hidden>
+          <b id="grafoMarcoTitulo"></b>
+          <div class="acciones">
+            <button class="boton boton-fantasma" id="grafoMarcoVolver" type="button"><span class="icono" style="--icono:url(/recursos/iconos/chevron-left.svg)"></span>Volver al general</button>
+            <a class="boton boton-fantasma" id="grafoMarcoAbrir" target="_blank" rel="noopener"><span class="icono" style="--icono:url(/recursos/iconos/link.svg)"></span>Abrir en otra pestaña</a>
+          </div>
+        </div>
+        <iframe class="marco-diagrama" id="grafoMarco" title="Diagrama del grafo" hidden></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="vista" id="vista-ia" role="tabpanel">
+    <div class="vista-cabecera">
+      <div>
+        <h1>IA</h1>
+        <p class="subtitulo">Flujogramas y explicaciones generados a partir de eventos reales de la ejecución</p>
+      </div>
+    </div>
+    <div class="ia-disposicion">
+      <div class="ia-principal">
+        <div class="tarjeta panel conexion" id="iaConexion">
+          <div class="conexion-linea">
+            <span class="ia-indicador" id="iaIndicador" data-estado="sin_validar"><span class="punto-estado"></span><span id="iaIndicadorTexto">Sin validar</span></span>
+            <span class="conexion-resumen" id="iaResumenConexion"></span>
+            <div class="acciones">
+              <button class="boton boton-fantasma" id="iaGestionar" type="button"><span class="icono" style="--icono:url(/recursos/iconos/key-round.svg)"></span>Gestionar APIs</button>
+              <button class="boton boton-fantasma" id="iaPlegar" type="button" aria-expanded="true" aria-controls="iaFormulario"><span class="icono" style="--icono:url(/recursos/iconos/chevron-down.svg)"></span><span>Ocultar</span></button>
+            </div>
+          </div>
+          <div class="conexion-formulario" id="iaFormulario">
+            <div class="rejilla-campos">
+              <div class="campo"><label class="etiqueta" for="iaProveedor">Proveedor</label><select id="iaProveedor"></select></div>
+              <div class="campo"><label class="etiqueta" for="iaGuardada">API guardada</label><select id="iaGuardada"><option value="">(elige una)</option></select></div>
+              <div class="campo"><label class="etiqueta" for="iaModelo">Modelo</label><input id="iaModelo" type="text" autocomplete="off" placeholder="ej. gemini-2.5-flash"><small class="ayuda-campo" id="iaAyudaModelo"></small></div>
+              <div class="campo"><label class="etiqueta" for="iaClave">Clave</label>
+                <div class="campo-clave"><input id="iaClave" type="password" autocomplete="off" spellcheck="false"><button class="boton-icono" id="iaOjo" type="button" aria-label="Mostrar la clave" aria-pressed="false"><span class="icono" style="--icono:url(/recursos/iconos/eye.svg)"></span></button></div>
+                <small class="ayuda-campo" id="iaAyudaClave"></small>
+                <span class="chip chip-neutro chip-origen" id="iaOrigenClave" hidden></span></div>
+              <div class="campo campo-ancho"><label class="etiqueta" for="iaUrl">URL</label><input id="iaUrl" type="text" autocomplete="off" spellcheck="false"><small class="ayuda-campo">Se rellena al elegir el proveedor; puedes cambiarla.</small></div>
+              <div class="campo"><span class="etiqueta">Modo</span><div class="segmentado" id="iaModo"></div></div>
+            </div>
+            <div class="acciones">
+              <button class="boton boton-primario" id="iaValidar" type="button" data-tarea><span class="icono" style="--icono:url(/recursos/iconos/circle-check.svg)"></span>Validar API</button>
+              <span class="nota" id="iaNotaConexion">La clave solo viaja al servidor local y queda en su memoria; nunca vuelve al navegador.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ia-opciones">
+          <label class="casilla"><input type="checkbox" id="iaIncluirResumen" checked>Incluir resumen bajo cada diagrama</label>
+          <label class="casilla"><input type="checkbox" id="iaManoAlzada">Estilo dibujado a mano</label>
+        </div>
+
+        <div class="grupos-ia" id="iaFunciones">
+          <div class="grupo-ia">
+            <h3><span class="icono" style="--icono:url(/recursos/iconos/workflow.svg)"></span>ETL</h3>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_etl"><span class="icono" style="--icono:url(/recursos/iconos/workflow.svg)"></span><b>Flujograma ETL</b><small>Extract, Transform y Load desde el registro real</small></button>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="errores_etl"><span class="icono" style="--icono:url(/recursos/iconos/triangle-alert.svg)"></span><b>Analizar errores</b><small>Qué dicen los errores sobre la calidad de los datos</small></button>
+          </div>
+          <div class="grupo-ia">
+            <h3><span class="icono" style="--icono:url(/recursos/iconos/boxes.svg)"></span>Estructuras</h3>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_cola"><span class="icono" style="--icono:url(/recursos/iconos/arrow-right.svg)"></span><b>Cola</b><small>Traza real: encolar y desencolar (FIFO)</small></button>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_pila"><span class="icono" style="--icono:url(/recursos/iconos/layers.svg)"></span><b>Pila</b><small>Traza real: apilar y desapilar (LIFO)</small></button>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_lista"><span class="icono" style="--icono:url(/recursos/iconos/list.svg)"></span><b>Lista enlazada</b><small>Traza real: insertar, buscar y eliminar nodos</small></button>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_bst"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span><b>BST</b><small>Traza real: inserciones y búsqueda en el árbol</small></button>
+          </div>
+          <div class="grupo-ia">
+            <h3><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span>Recorridos</h3>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_bfs"><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span><b>BFS</b><small>El último BFS de la pestaña Grafo (o desde UIO)</small></button>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="flujo_dfs"><span class="icono" style="--icono:url(/recursos/iconos/route.svg)"></span><b>DFS</b><small>El último DFS de la pestaña Grafo (o desde UIO)</small></button>
+          </div>
+          <div class="grupo-ia">
+            <h3><span class="icono" style="--icono:url(/recursos/iconos/file-text.svg)"></span>Explicaciones</h3>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="explicar_arbol"><span class="icono" style="--icono:url(/recursos/iconos/git-fork.svg)"></span><b>Árbol</b><small>Forma, altura y camino de búsqueda del BST</small></button>
+            <button class="funcion-ia" type="button" data-tarea data-funcion="explicar_grafo"><span class="icono" style="--icono:url(/recursos/iconos/network.svg)"></span><b>Grafo</b><small>Vértices y rutas del último país usado</small></button>
+          </div>
+          <div class="grupo-ia">
+            <h3><span class="icono" style="--icono:url(/recursos/iconos/save.svg)"></span>Documentación</h3>
+            <button class="funcion-ia" type="button" data-tarea id="iaDocumentacion"><span class="icono" style="--icono:url(/recursos/iconos/file-text.svg)"></span><b>Generar documentación</b><small>Las 10 funciones y diagramas/DOCUMENTACION.md</small></button>
+          </div>
+        </div>
+
+        <div id="iaResultado"></div>
+      </div>
+
+      <aside class="tarjeta panel ia-historial">
+        <div class="panel-titulo"><span class="icono" style="--icono:url(/recursos/iconos/history.svg)"></span>Historial de la sesión</div>
+        <p class="nota">Se reabren sin volver a llamar a la API.</p>
+        <div class="historial-lista" id="iaHistorial"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="vista" id="vista-reporte" role="tabpanel">
+    <div class="vista-cabecera">
+      <div>
+        <h1>Reporte</h1>
+        <p class="subtitulo">Resumen de lo ejecutado en esta sesión, listo para guardar como PDF</p>
+      </div>
+    </div>
+    <div class="reporte-barra">
+      <span class="nota" id="reporteEstado">Solo entra lo ejecutado en esta sesión.</span>
+      <div class="acciones">
+        <button class="boton" id="reporteActualizar" type="button"><span class="icono" style="--icono:url(/recursos/iconos/refresh-cw.svg)"></span>Actualizar</button>
+        <button class="boton boton-primario" id="reporteImprimir" type="button"><span class="icono" style="--icono:url(/recursos/iconos/printer.svg)"></span>Descargar PDF</button>
+      </div>
+    </div>
+    <p class="nota reporte-ayuda">En el diálogo de impresión elige <b>Guardar como PDF</b>, tamaño <b>A4</b> y activa <b>Gráficos de fondo</b> para conservar los colores.</p>
+    <article class="hoja" id="reporteHoja" data-tema="claro" aria-label="Reporte de la sesión">
+      <section class="portada">
+        <div class="portada-logos">
+          <img src="/recursos/logos/uta.png" alt="Escudo de la Universidad Técnica de Ambato" class="logo-uta">
+          <img src="/recursos/logos/fisei.png" alt="Logo de la Facultad de Ingeniería en Sistemas, Electrónica e Industrial" class="logo-fisei">
+        </div>
+        <p class="portada-institucion">Universidad Técnica de Ambato · Facultad de Ingeniería en Sistemas, Electrónica e Industrial</p>
+        <h1>SmartETL-DS</h1>
+        <p class="portada-sub">Reporte de la sesión: ETL, estructuras de datos, grafos de rutas aéreas e IA sobre OpenFlights</p>
+        <dl class="portada-datos">
+          <div><dt>Asignatura</dt><dd>Estructura de Datos</dd></div>
+          <div><dt>Carrera</dt><dd>Ingeniería de Software · Tercer semestre</dd></div>
+          <div><dt>Fecha</dt><dd id="reporteFecha"></dd></div>
+          <div><dt>Carpeta</dt><dd id="reporteCarpeta" class="texto-pequeno"></dd></div>
+        </dl>
+        <h3>Integrantes</h3>
+        <ul class="portada-integrantes">
+          <li>Chico Yunda Juan Carlos (líder)</li>
+          <li>Tuza Quinatoa Noemi</li>
+          <li>Romo Nunez Joseph</li>
+          <li>Llamuca Abrajan Andres</li>
+          <li>Torosina Armendariz Jeremy</li>
+          <li>Altamirano Segovia Jullisa</li>
+        </ul>
+      </section>
+      <div id="reporteCuerpo"></div>
+    </article>
+  </section>
+</main>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="/recursos/chart.umd.min.js"></script>
+<script type="module" src="/web/js/app.js"></script>
+</body>
+</html>

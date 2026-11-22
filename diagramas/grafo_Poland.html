@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Poland</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Poland</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Poland: 11 aeropuertos, 24 rutas internas, 283 salen al exterior, 283 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Poland: 11 de 11 aeropuertos&quot;]
+        V_WAW[&quot;WAW&lt;br/&gt;Warsaw&quot;]
+        V_KTW[&quot;KTW&lt;br/&gt;Katowice&quot;]
+        V_POZ[&quot;POZ&lt;br/&gt;Poznan&quot;]
+        V_WRO[&quot;WRO&lt;br/&gt;Wroclaw&quot;]
+        V_KRK[&quot;KRK&lt;br/&gt;Krakow&quot;]
+        V_GDN[&quot;GDN&lt;br/&gt;Gdansk&quot;]
+        V_SZZ[&quot;SZZ&lt;br/&gt;Szczecin&quot;]
+        V_WMI[&quot;WMI&lt;br/&gt;Warsaw&quot;]
+        V_BZG[&quot;BZG&lt;br/&gt;Bydgoszcz&quot;]
+        V_RZE[&quot;RZE&lt;br/&gt;Rzeszow&quot;]
+        V_LUZ[&quot;LUZ&lt;br/&gt;Lublin&quot;]
+        V_WAW &lt;--&gt; V_GDN
+        V_WAW &lt;--&gt; V_KRK
+        V_WAW &lt;--&gt; V_KTW
+        V_WAW &lt;--&gt; V_POZ
+        V_WAW &lt;--&gt; V_RZE
+        V_WAW &lt;--&gt; V_SZZ
+        V_WAW &lt;--&gt; V_WRO
+        V_WRO &lt;--&gt; V_WMI
+        V_WRO &lt;--&gt; V_GDN
+        V_KRK &lt;--&gt; V_GDN
+        V_GDN &lt;--&gt; V_WMI
+        V_GDN &lt;--&gt; V_LUZ
+    end
+    EXT0[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;29 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Greece&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Greece.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;61 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Denmark&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Denmark.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;France&quot;]
+    PAIS --&gt;|&quot;14 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Finland&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Finland.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;28 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Belarus&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Belarus.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Latvia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Latvia.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;China&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;18 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Norway&quot;]
+    PAIS --&gt;|&quot;30 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Norway.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Ireland&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Ireland.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Bulgaria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Bulgaria.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Slovenia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Slovenia.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Serbia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Serbia.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Croatia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Croatia.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Sweden&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_Sweden.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Belgium&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Belgium.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Hungary&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT22
+    click EXT22 &quot;grafo_Hungary.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Armenia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Armenia.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;United States&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Ukraine&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_Ukraine.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Cyprus&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Cyprus.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT29
+    click EXT29 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT30
+    click EXT30 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Romania&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_Romania.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Czech Republic&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT32
+    click EXT32 &quot;grafo_Czech_Republic.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Georgia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT33
+    click EXT33 &quot;grafo_Georgia.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Estonia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT34
+    click EXT34 &quot;grafo_Estonia.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Israel&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT35
+    click EXT35 &quot;grafo_Israel.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Austria&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT36
+    click EXT36 &quot;grafo_Austria.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Lithuania&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT37
+    click EXT37 &quot;grafo_Lithuania.html&quot; &quot;Abrir país&quot;
+    EXT38[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT38
+    click EXT38 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT39[&quot;Malta&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT39
+    click EXT39 &quot;grafo_Malta.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

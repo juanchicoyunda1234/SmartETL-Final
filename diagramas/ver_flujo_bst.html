@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Flujograma: BST por IATA (insertar, buscar y eliminar)</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Flujograma: BST por IATA (insertar, buscar y eliminar)</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Generado por IA desde el registro de eventos</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart TD
+    P1[&quot;Paso 1: insertar&lt;br/&gt;Insertar MEX: el árbol estaba vacío, queda como raíz&lt;br/&gt;nodos en el árbol: 1&quot;]
+    P2[&quot;Paso 2: insertar&lt;br/&gt;Insertar GYE como hoja tras 1 comparaciones&lt;br/&gt;camino: MEX (izquierda), GYE (encontrado)&lt;br/&gt;nodos en el árbol: 2&quot;]
+    P3[&quot;Paso 3: insertar&lt;br/&gt;Insertar UIO como hoja tras 1 comparaciones&lt;br/&gt;camino: MEX (derecha), UIO (encontrado)&lt;br/&gt;nodos en el árbol: 3&quot;]
+    P4[&quot;Paso 4: insertar&lt;br/&gt;Insertar BOG como hoja tras 2 comparaciones&lt;br/&gt;camino: MEX (izquierda), GYE (izquierda), BOG (encontrado)&lt;br/&gt;nodos en el árbol: 4&quot;]
+    P5[&quot;Paso 5: insertar&lt;br/&gt;Insertar LIM como hoja tras 2 comparaciones&lt;br/&gt;camino: MEX (izquierda), GYE (derecha), LIM (encontrado)&lt;br/&gt;nodos en el árbol: 5&quot;]
+    P6[&quot;Paso 6: insertar&lt;br/&gt;Insertar SCL como hoja tras 2 comparaciones&lt;br/&gt;camino: MEX (derecha), UIO (izquierda), SCL (encontrado)&lt;br/&gt;nodos en el árbol: 6&quot;]
+    P7[&quot;Paso 7: insertar&lt;br/&gt;Insertar CUE como hoja tras 3 comparaciones&lt;br/&gt;camino: MEX (izquierda), GYE (izquierda), BOG (derecha), CUE (encontrado)&lt;br/&gt;nodos en el árbol: 7&quot;]
+    P8[&quot;Paso 8: buscar&lt;br/&gt;Buscar LIM: encontrado tras 3 comparaciones&lt;br/&gt;camino: MEX (izquierda), GYE (derecha), LIM (encontrado)&lt;br/&gt;nodos en el árbol: 7&quot;]
+    P9[&quot;Paso 9: eliminar&lt;br/&gt;Eliminar GYE (caso: dos hijos, se reemplaza por el sucesor inorden LIM)&lt;br/&gt;nodos en el árbol: 6&quot;]
+    P10[&quot;Paso 10: buscar&lt;br/&gt;Buscar CUE: encontrado tras 4 comparaciones&lt;br/&gt;camino: MEX (izquierda), LIM (izquierda), BOG (derecha), CUE (encontrado)&lt;br/&gt;nodos en el árbol: 6&quot;]
+    P1 --&gt; P2
+    P2 --&gt; P3
+    P3 --&gt; P4
+    P4 --&gt; P5
+    P5 --&gt; P6
+    P6 --&gt; P7
+    P7 --&gt; P8
+    P8 --&gt; P9
+    P9 --&gt; P10
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

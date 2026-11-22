@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Zimbabwe</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Zimbabwe</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Zimbabwe: 3 aeropuertos, 6 rutas internas, 13 salen al exterior, 16 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Zimbabwe: 3 de 3 aeropuertos&quot;]
+        V_HRE[&quot;HRE&lt;br/&gt;Harare&quot;]
+        V_VFA[&quot;VFA&lt;br/&gt;Victoria Falls&quot;]
+        V_BUQ[&quot;BUQ&lt;br/&gt;Bulawayo&quot;]
+        V_HRE &lt;--&gt; V_BUQ
+        V_HRE &lt;--&gt; V_VFA
+        V_VFA &lt;--&gt; V_BUQ
+    end
+    EXT0[&quot;Zambia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_Zambia.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Kenya&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Kenya.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Botswana&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Botswana.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Malawi&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Malawi.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Tanzania&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Tanzania.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Namibia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Namibia.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

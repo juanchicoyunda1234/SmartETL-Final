@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Construcción de grafos por país</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Construcción de grafos por país</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Clic en un país para abrir su grafo</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart TD
+    N0([&quot;Inicio: construir grafos por país&quot;])
+    N1[&quot;Construir grafo Papua New Guinea&lt;br/&gt;24 aeropuertos, 103 rutas internas&lt;br/&gt;12 salen, 12 llegan del exterior&quot;]
+    N0 --&gt; N1
+    click N1 &quot;grafo_Papua_New_Guinea.html&quot; &quot;Abrir detalle&quot;
+    N2[&quot;Construir grafo Greenland&lt;br/&gt;20 aeropuertos, 53 rutas internas&lt;br/&gt;3 salen, 3 llegan del exterior&quot;]
+    N1 --&gt; N2
+    click N2 &quot;grafo_Greenland.html&quot; &quot;Abrir detalle&quot;
+    N3[&quot;Construir grafo Iceland&lt;br/&gt;5 aeropuertos, 6 rutas internas&lt;br/&gt;33 salen, 35 llegan del exterior&quot;]
+    N2 --&gt; N3
+    click N3 &quot;grafo_Iceland.html&quot; &quot;Abrir detalle&quot;
+    N4[&quot;Construir grafo Canada&lt;br/&gt;208 aeropuertos, 832 rutas internas&lt;br/&gt;333 salen, 336 llegan del exterior&quot;]
+    N3 --&gt; N4
+    click N4 &quot;grafo_Canada.html&quot; &quot;Abrir detalle&quot;
+    N5[&quot;Construir grafo Algeria&lt;br/&gt;29 aeropuertos, 86 rutas internas&lt;br/&gt;83 salen, 83 llegan del exterior&quot;]
+    N4 --&gt; N5
+    click N5 &quot;grafo_Algeria.html&quot; &quot;Abrir detalle&quot;
+    N6[&quot;Construir grafo Benin&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;18 salen, 19 llegan del exterior&quot;]
+    N5 --&gt; N6
+    click N6 &quot;grafo_Benin.html&quot; &quot;Abrir detalle&quot;
+    N7[&quot;Construir grafo Burkina Faso&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;15 salen, 14 llegan del exterior&quot;]
+    N6 --&gt; N7
+    click N7 &quot;grafo_Burkina_Faso.html&quot; &quot;Abrir detalle&quot;
+    N8[&quot;Construir grafo Ghana&lt;br/&gt;5 aeropuertos, 8 rutas internas&lt;br/&gt;26 salen, 24 llegan del exterior&quot;]
+    N7 --&gt; N8
+    click N8 &quot;grafo_Ghana.html&quot; &quot;Abrir detalle&quot;
+    N9[&quot;Construir grafo Cote d'Ivoire&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;21 salen, 20 llegan del exterior&quot;]
+    N8 --&gt; N9
+    click N9 &quot;grafo_Cote_d_Ivoire.html&quot; &quot;Abrir detalle&quot;
+    N10[&quot;Construir grafo Nigeria&lt;br/&gt;18 aeropuertos, 50 rutas internas&lt;br/&gt;48 salen, 47 llegan del exterior&quot;]
+    N9 --&gt; N10
+    click N10 &quot;grafo_Nigeria.html&quot; &quot;Abrir detalle&quot;
+    N11[&quot;Construir grafo Niger&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 9 llegan del exterior&quot;]
+    N10 --&gt; N11
+    click N11 &quot;grafo_Niger.html&quot; &quot;Abrir detalle&quot;
+    N12[&quot;Construir grafo Tunisia&lt;br/&gt;8 aeropuertos, 15 rutas internas&lt;br/&gt;112 salen, 113 llegan del exterior&quot;]
+    N11 --&gt; N12
+    click N12 &quot;grafo_Tunisia.html&quot; &quot;Abrir detalle&quot;
+    N13[&quot;Construir grafo Togo&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;14 salen, 14 llegan del exterior&quot;]
+    N12 --&gt; N13
+    click N13 &quot;grafo_Togo.html&quot; &quot;Abrir detalle&quot;
+    N14[&quot;Construir grafo Belgium&lt;br/&gt;5 aeropuertos, 1 rutas internas&lt;br/&gt;237 salen, 237 llegan del exterior&quot;]
+    N13 --&gt; N14
+    click N14 &quot;grafo_Belgium.html&quot; &quot;Abrir detalle&quot;
+    N15[&quot;Construir grafo Germany&lt;br/&gt;32 aeropuertos, 143 rutas internas&lt;br/&gt;1266 salen, 1262 llegan del exterior&quot;]
+    N14 --&gt; N15
+    click N15 &quot;grafo_Germany.html&quot; &quot;Abrir detalle&quot;
+    N16[&quot;Construir grafo Estonia&lt;br/&gt;3 aeropuertos, 2 rutas internas&lt;br/&gt;28 salen, 28 llegan del exterior&quot;]
+    N15 --&gt; N16
+    click N16 &quot;grafo_Estonia.html&quot; &quot;Abrir detalle&quot;
+    N17[&quot;Construir grafo Finland&lt;br/&gt;19 aeropuertos, 38 rutas internas&lt;br/&gt;94 salen, 94 llegan del exterior&quot;]
+    N16 --&gt; N17
+    click N17 &quot;grafo_Finland.html&quot; &quot;Abrir detalle&quot;
+    N18[&quot;Construir grafo United Kingdom&lt;br/&gt;52 aeropuertos, 253 rutas internas&lt;br/&gt;1306 salen, 1298 llegan del exterior&quot;]
+    N17 --&gt; N18
+    click N18 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir detalle&quot;
+    N19[&quot;Construir grafo Guernsey&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;14 salen, 15 llegan del exterior&quot;]
+    N18 --&gt; N19
+    click N19 &quot;grafo_Guernsey.html&quot; &quot;Abrir detalle&quot;
+    N20[&quot;Construir grafo Jersey&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;30 salen, 29 llegan del exterior&quot;]
+    N19 --&gt; N20
+    click N20 &quot;grafo_Jersey.html&quot; &quot;Abrir detalle&quot;
+    N21[&quot;Construir grafo Isle of Man&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;10 salen, 10 llegan del exterior&quot;]
+    N20 --&gt; N21
+    click N21 &quot;grafo_Isle_of_Man.html&quot; &quot;Abrir detalle&quot;
+    N22[&quot;Construir grafo Falkland Islands&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 1 llegan del exterior&quot;]
+    N21 --&gt; N22
+    click N22 &quot;grafo_Falkland_Islands.html&quot; &quot;Abrir detalle&quot;
+    N23[&quot;Construir grafo Netherlands&lt;br/&gt;5 aeropuertos, 4 rutas internas&lt;br/&gt;334 salen, 332 llegan del exterior&quot;]
+    N22 --&gt; N23
+    click N23 &quot;grafo_Netherlands.html&quot; &quot;Abrir detalle&quot;
+    N24[&quot;Construir grafo Ireland&lt;br/&gt;7 aeropuertos, 4 rutas internas&lt;br/&gt;221 salen, 221 llegan del exterior&quot;]
+    N23 --&gt; N24
+    click N24 &quot;grafo_Ireland.html&quot; &quot;Abrir detalle&quot;
+    N25[&quot;Construir grafo Denmark&lt;br/&gt;8 aeropuertos, 18 rutas internas&lt;br/&gt;168 salen, 167 llegan del exterior&quot;]
+    N24 --&gt; N25
+    click N25 &quot;grafo_Denmark.html&quot; &quot;Abrir detalle&quot;
+    N26[&quot;Construir grafo Faroe Islands&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N25 --&gt; N26
+    click N26 &quot;grafo_Faroe_Islands.html&quot; &quot;Abrir detalle&quot;
+    N27[&quot;Construir grafo Luxembourg&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;54 salen, 54 llegan del exterior&quot;]
+    N26 --&gt; N27
+    click N27 &quot;grafo_Luxembourg.html&quot; &quot;Abrir detalle&quot;
+    N28[&quot;Construir grafo Norway&lt;br/&gt;49 aeropuertos, 241 rutas internas&lt;br/&gt;241 salen, 239 llegan del exterior&quot;]
+    N27 --&gt; N28
+    click N28 &quot;grafo_Norway.html&quot; &quot;Abrir detalle&quot;
+    N29[&quot;Construir grafo Poland&lt;br/&gt;11 aeropuertos, 24 rutas internas&lt;br/&gt;283 salen, 283 llegan del exterior&quot;]
+    N28 --&gt; N29
+    click N29 &quot;grafo_Poland.html&quot; &quot;Abrir detalle&quot;
+    N30[&quot;Construir grafo Sweden&lt;br/&gt;39 aeropuertos, 111 rutas internas&lt;br/&gt;204 salen, 204 llegan del exterior&quot;]
+    N29 --&gt; N30
+    click N30 &quot;grafo_Sweden.html&quot; &quot;Abrir detalle&quot;
+    N31[&quot;Construir grafo South Africa&lt;br/&gt;19 aeropuertos, 69 rutas internas&lt;br/&gt;81 salen, 81 llegan del exterior&quot;]
+    N30 --&gt; N31
+    click N31 &quot;grafo_South_Africa.html&quot; &quot;Abrir detalle&quot;
+    N32[&quot;Construir grafo Botswana&lt;br/&gt;4 aeropuertos, 8 rutas internas&lt;br/&gt;11 salen, 11 llegan del exterior&quot;]
+    N31 --&gt; N32
+    click N32 &quot;grafo_Botswana.html&quot; &quot;Abrir detalle&quot;
+    N33[&quot;Construir grafo Congo (Brazzaville)&lt;br/&gt;3 aeropuertos, 4 rutas internas&lt;br/&gt;19 salen, 18 llegan del exterior&quot;]
+    N32 --&gt; N33
+    click N33 &quot;grafo_Congo_Brazzaville.html&quot; &quot;Abrir detalle&quot;
+    N34[&quot;Construir grafo Congo (Kinshasa)&lt;br/&gt;18 aeropuertos, 39 rutas internas&lt;br/&gt;11 salen, 15 llegan del exterior&quot;]
+    N33 --&gt; N34
+    click N34 &quot;grafo_Congo_Kinshasa.html&quot; &quot;Abrir detalle&quot;
+    N35[&quot;Construir grafo Swaziland&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 1 llegan del exterior&quot;]
+    N34 --&gt; N35
+    click N35 &quot;grafo_Swaziland.html&quot; &quot;Abrir detalle&quot;
+    N36[&quot;Construir grafo Central African Republic&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 2 llegan del exterior&quot;]
+    N35 --&gt; N36
+    click N36 &quot;grafo_Central_African_Republic.html&quot; &quot;Abrir detalle&quot;
+    N37[&quot;Construir grafo Equatorial Guinea&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;8 salen, 9 llegan del exterior&quot;]
+    N36 --&gt; N37
+    click N37 &quot;grafo_Equatorial_Guinea.html&quot; &quot;Abrir detalle&quot;
+    N38[&quot;Construir grafo Mauritius&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;24 salen, 23 llegan del exterior&quot;]
+    N37 --&gt; N38
+    click N38 &quot;grafo_Mauritius.html&quot; &quot;Abrir detalle&quot;
+    N39[&quot;Construir grafo Cameroon&lt;br/&gt;5 aeropuertos, 8 rutas internas&lt;br/&gt;24 salen, 27 llegan del exterior&quot;]
+    N38 --&gt; N39
+    click N39 &quot;grafo_Cameroon.html&quot; &quot;Abrir detalle&quot;
+    N40[&quot;Construir grafo Zambia&lt;br/&gt;8 aeropuertos, 16 rutas internas&lt;br/&gt;19 salen, 15 llegan del exterior&quot;]
+    N39 --&gt; N40
+    click N40 &quot;grafo_Zambia.html&quot; &quot;Abrir detalle&quot;
+    N41[&quot;Construir grafo Comoros&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;7 salen, 6 llegan del exterior&quot;]
+    N40 --&gt; N41
+    click N41 &quot;grafo_Comoros.html&quot; &quot;Abrir detalle&quot;
+    N42[&quot;Construir grafo Mayotte&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;7 salen, 10 llegan del exterior&quot;]
+    N41 --&gt; N42
+    click N42 &quot;grafo_Mayotte.html&quot; &quot;Abrir detalle&quot;
+    N43[&quot;Construir grafo Reunion&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;14 salen, 14 llegan del exterior&quot;]
+    N42 --&gt; N43
+    click N43 &quot;grafo_Reunion.html&quot; &quot;Abrir detalle&quot;
+    N44[&quot;Construir grafo Madagascar&lt;br/&gt;13 aeropuertos, 42 rutas internas&lt;br/&gt;17 salen, 16 llegan del exterior&quot;]
+    N43 --&gt; N44
+    click N44 &quot;grafo_Madagascar.html&quot; &quot;Abrir detalle&quot;
+    N45[&quot;Construir grafo Angola&lt;br/&gt;14 aeropuertos, 42 rutas internas&lt;br/&gt;24 salen, 24 llegan del exterior&quot;]
+    N44 --&gt; N45
+    click N45 &quot;grafo_Angola.html&quot; &quot;Abrir detalle&quot;
+    N46[&quot;Construir grafo Gabon&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;17 salen, 16 llegan del exterior&quot;]
+    N45 --&gt; N46
+    click N46 &quot;grafo_Gabon.html&quot; &quot;Abrir detalle&quot;
+    N47[&quot;Construir grafo Sao Tome and Principe&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 3 llegan del exterior&quot;]
+    N46 --&gt; N47
+    click N47 &quot;grafo_Sao_Tome_and_Principe.html&quot; &quot;Abrir detalle&quot;
+    N48[&quot;Construir grafo Mozambique&lt;br/&gt;10 aeropuertos, 36 rutas internas&lt;br/&gt;16 salen, 16 llegan del exterior&quot;]
+    N47 --&gt; N48
+    click N48 &quot;grafo_Mozambique.html&quot; &quot;Abrir detalle&quot;
+    N49[&quot;Construir grafo Seychelles&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N48 --&gt; N49
+    click N49 &quot;grafo_Seychelles.html&quot; &quot;Abrir detalle&quot;
+    N50[&quot;Construir grafo Chad&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;9 salen, 9 llegan del exterior&quot;]
+    N49 --&gt; N50
+    click N50 &quot;grafo_Chad.html&quot; &quot;Abrir detalle&quot;
+    N51[&quot;Construir grafo Zimbabwe&lt;br/&gt;3 aeropuertos, 6 rutas internas&lt;br/&gt;13 salen, 16 llegan del exterior&quot;]
+    N50 --&gt; N51
+    click N51 &quot;grafo_Zimbabwe.html&quot; &quot;Abrir detalle&quot;
+    N52[&quot;Construir grafo Malawi&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;8 salen, 9 llegan del exterior&quot;]
+    N51 --&gt; N52
+    click N52 &quot;grafo_Malawi.html&quot; &quot;Abrir detalle&quot;
+    N53[&quot;Construir grafo Lesotho&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 1 llegan del exterior&quot;]
+    N52 --&gt; N53
+    click N53 &quot;grafo_Lesotho.html&quot; &quot;Abrir detalle&quot;
+    N54[&quot;Construir grafo Mali&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;16 salen, 16 llegan del exterior&quot;]
+    N53 --&gt; N54
+    click N54 &quot;grafo_Mali.html&quot; &quot;Abrir detalle&quot;
+    N55[&quot;Construir grafo Gambia&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;7 salen, 7 llegan del exterior&quot;]
+    N54 --&gt; N55
+    click N55 &quot;grafo_Gambia.html&quot; &quot;Abrir detalle&quot;
+    N56[&quot;Construir grafo Spain&lt;br/&gt;40 aeropuertos, 288 rutas internas&lt;br/&gt;1079 salen, 1080 llegan del exterior&quot;]
+    N55 --&gt; N56
+    click N56 &quot;grafo_Spain.html&quot; &quot;Abrir detalle&quot;
+    N57[&quot;Construir grafo Sierra Leone&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;11 salen, 11 llegan del exterior&quot;]
+    N56 --&gt; N57
+    click N57 &quot;grafo_Sierra_Leone.html&quot; &quot;Abrir detalle&quot;
+    N58[&quot;Construir grafo Guinea-Bissau&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;5 salen, 5 llegan del exterior&quot;]
+    N57 --&gt; N58
+    click N58 &quot;grafo_Guinea_Bissau.html&quot; &quot;Abrir detalle&quot;
+    N59[&quot;Construir grafo Liberia&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N58 --&gt; N59
+    click N59 &quot;grafo_Liberia.html&quot; &quot;Abrir detalle&quot;
+    N60[&quot;Construir grafo Morocco&lt;br/&gt;13 aeropuertos, 21 rutas internas&lt;br/&gt;199 salen, 199 llegan del exterior&quot;]
+    N59 --&gt; N60
+    click N60 &quot;grafo_Morocco.html&quot; &quot;Abrir detalle&quot;
+    N61[&quot;Construir grafo Senegal&lt;br/&gt;3 aeropuertos, 4 rutas internas&lt;br/&gt;30 salen, 29 llegan del exterior&quot;]
+    N60 --&gt; N61
+    click N61 &quot;grafo_Senegal.html&quot; &quot;Abrir detalle&quot;
+    N62[&quot;Construir grafo Mauritania&lt;br/&gt;3 aeropuertos, 6 rutas internas&lt;br/&gt;9 salen, 9 llegan del exterior&quot;]
+    N61 --&gt; N62
+    click N62 &quot;grafo_Mauritania.html&quot; &quot;Abrir detalle&quot;
+    N63[&quot;Construir grafo Guinea&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N62 --&gt; N63
+    click N63 &quot;grafo_Guinea.html&quot; &quot;Abrir detalle&quot;
+    N64[&quot;Construir grafo Cape Verde&lt;br/&gt;7 aeropuertos, 18 rutas internas&lt;br/&gt;26 salen, 29 llegan del exterior&quot;]
+    N63 --&gt; N64
+    click N64 &quot;grafo_Cape_Verde.html&quot; &quot;Abrir detalle&quot;
+    N65[&quot;Construir grafo Ethiopia&lt;br/&gt;13 aeropuertos, 32 rutas internas&lt;br/&gt;57 salen, 61 llegan del exterior&quot;]
+    N64 --&gt; N65
+    click N65 &quot;grafo_Ethiopia.html&quot; &quot;Abrir detalle&quot;
+    N66[&quot;Construir grafo Burundi&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 4 llegan del exterior&quot;]
+    N65 --&gt; N66
+    click N66 &quot;grafo_Burundi.html&quot; &quot;Abrir detalle&quot;
+    N67[&quot;Construir grafo Somalia&lt;br/&gt;5 aeropuertos, 11 rutas internas&lt;br/&gt;12 salen, 14 llegan del exterior&quot;]
+    N66 --&gt; N67
+    click N67 &quot;grafo_Somalia.html&quot; &quot;Abrir detalle&quot;
+    N68[&quot;Construir grafo Egypt&lt;br/&gt;10 aeropuertos, 23 rutas internas&lt;br/&gt;146 salen, 145 llegan del exterior&quot;]
+    N67 --&gt; N68
+    click N68 &quot;grafo_Egypt.html&quot; &quot;Abrir detalle&quot;
+    N69[&quot;Construir grafo Kenya&lt;br/&gt;16 aeropuertos, 38 rutas internas&lt;br/&gt;69 salen, 67 llegan del exterior&quot;]
+    N68 --&gt; N69
+    click N69 &quot;grafo_Kenya.html&quot; &quot;Abrir detalle&quot;
+    N70[&quot;Construir grafo Libya&lt;br/&gt;8 aeropuertos, 16 rutas internas&lt;br/&gt;30 salen, 30 llegan del exterior&quot;]
+    N69 --&gt; N70
+    click N70 &quot;grafo_Libya.html&quot; &quot;Abrir detalle&quot;
+    N71[&quot;Construir grafo Rwanda&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;15 salen, 16 llegan del exterior&quot;]
+    N70 --&gt; N71
+    click N71 &quot;grafo_Rwanda.html&quot; &quot;Abrir detalle&quot;
+    N72[&quot;Construir grafo Sudan&lt;br/&gt;5 aeropuertos, 8 rutas internas&lt;br/&gt;20 salen, 21 llegan del exterior&quot;]
+    N71 --&gt; N72
+    click N72 &quot;grafo_Sudan.html&quot; &quot;Abrir detalle&quot;
+    N73[&quot;Construir grafo South Sudan&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;7 salen, 8 llegan del exterior&quot;]
+    N72 --&gt; N73
+    click N73 &quot;grafo_South_Sudan.html&quot; &quot;Abrir detalle&quot;
+    N74[&quot;Construir grafo Tanzania&lt;br/&gt;8 aeropuertos, 18 rutas internas&lt;br/&gt;28 salen, 27 llegan del exterior&quot;]
+    N73 --&gt; N74
+    click N74 &quot;grafo_Tanzania.html&quot; &quot;Abrir detalle&quot;
+    N75[&quot;Construir grafo Uganda&lt;br/&gt;4 aeropuertos, 6 rutas internas&lt;br/&gt;17 salen, 13 llegan del exterior&quot;]
+    N74 --&gt; N75
+    click N75 &quot;grafo_Uganda.html&quot; &quot;Abrir detalle&quot;
+    N76[&quot;Construir grafo Albania&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;18 salen, 18 llegan del exterior&quot;]
+    N75 --&gt; N76
+    click N76 &quot;grafo_Albania.html&quot; &quot;Abrir detalle&quot;
+    N77[&quot;Construir grafo Bulgaria&lt;br/&gt;4 aeropuertos, 6 rutas internas&lt;br/&gt;57 salen, 57 llegan del exterior&quot;]
+    N76 --&gt; N77
+    click N77 &quot;grafo_Bulgaria.html&quot; &quot;Abrir detalle&quot;
+    N78[&quot;Construir grafo Cyprus&lt;br/&gt;3 aeropuertos, 0 rutas internas&lt;br/&gt;86 salen, 88 llegan del exterior&quot;]
+    N77 --&gt; N78
+    click N78 &quot;grafo_Cyprus.html&quot; &quot;Abrir detalle&quot;
+    N79[&quot;Construir grafo Croatia&lt;br/&gt;8 aeropuertos, 22 rutas internas&lt;br/&gt;132 salen, 132 llegan del exterior&quot;]
+    N78 --&gt; N79
+    click N79 &quot;grafo_Croatia.html&quot; &quot;Abrir detalle&quot;
+    N80[&quot;Construir grafo France&lt;br/&gt;55 aeropuertos, 312 rutas internas&lt;br/&gt;883 salen, 880 llegan del exterior&quot;]
+    N79 --&gt; N80
+    click N80 &quot;grafo_France.html&quot; &quot;Abrir detalle&quot;
+    N81[&quot;Construir grafo Saint Pierre and Miquelon&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 3 llegan del exterior&quot;]
+    N80 --&gt; N81
+    click N81 &quot;grafo_Saint_Pierre_and_Miquelon.html&quot; &quot;Abrir detalle&quot;
+    N82[&quot;Construir grafo Greece&lt;br/&gt;39 aeropuertos, 131 rutas internas&lt;br/&gt;356 salen, 366 llegan del exterior&quot;]
+    N81 --&gt; N82
+    click N82 &quot;grafo_Greece.html&quot; &quot;Abrir detalle&quot;
+    N83[&quot;Construir grafo Hungary&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;79 salen, 79 llegan del exterior&quot;]
+    N82 --&gt; N83
+    click N83 &quot;grafo_Hungary.html&quot; &quot;Abrir detalle&quot;
+    N84[&quot;Construir grafo Italy&lt;br/&gt;36 aeropuertos, 302 rutas internas&lt;br/&gt;877 salen, 884 llegan del exterior&quot;]
+    N83 --&gt; N84
+    click N84 &quot;grafo_Italy.html&quot; &quot;Abrir detalle&quot;
+    N85[&quot;Construir grafo Slovenia&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;22 salen, 22 llegan del exterior&quot;]
+    N84 --&gt; N85
+    click N85 &quot;grafo_Slovenia.html&quot; &quot;Abrir detalle&quot;
+    N86[&quot;Construir grafo Czech Republic&lt;br/&gt;5 aeropuertos, 2 rutas internas&lt;br/&gt;101 salen, 101 llegan del exterior&quot;]
+    N85 --&gt; N86
+    click N86 &quot;grafo_Czech_Republic.html&quot; &quot;Abrir detalle&quot;
+    N87[&quot;Construir grafo Israel&lt;br/&gt;5 aeropuertos, 8 rutas internas&lt;br/&gt;79 salen, 77 llegan del exterior&quot;]
+    N86 --&gt; N87
+    click N87 &quot;grafo_Israel.html&quot; &quot;Abrir detalle&quot;
+    N88[&quot;Construir grafo Malta&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;76 salen, 76 llegan del exterior&quot;]
+    N87 --&gt; N88
+    click N88 &quot;grafo_Malta.html&quot; &quot;Abrir detalle&quot;
+    N89[&quot;Construir grafo Austria&lt;br/&gt;6 aeropuertos, 11 rutas internas&lt;br/&gt;174 salen, 175 llegan del exterior&quot;]
+    N88 --&gt; N89
+    click N89 &quot;grafo_Austria.html&quot; &quot;Abrir detalle&quot;
+    N90[&quot;Construir grafo Portugal&lt;br/&gt;14 aeropuertos, 54 rutas internas&lt;br/&gt;246 salen, 243 llegan del exterior&quot;]
+    N89 --&gt; N90
+    click N90 &quot;grafo_Portugal.html&quot; &quot;Abrir detalle&quot;
+    N91[&quot;Construir grafo Bosnia and Herzegovina&lt;br/&gt;4 aeropuertos, 2 rutas internas&lt;br/&gt;17 salen, 17 llegan del exterior&quot;]
+    N90 --&gt; N91
+    click N91 &quot;grafo_Bosnia_and_Herzegovina.html&quot; &quot;Abrir detalle&quot;
+    N92[&quot;Construir grafo Romania&lt;br/&gt;12 aeropuertos, 14 rutas internas&lt;br/&gt;103 salen, 102 llegan del exterior&quot;]
+    N91 --&gt; N92
+    click N92 &quot;grafo_Romania.html&quot; &quot;Abrir detalle&quot;
+    N93[&quot;Construir grafo Switzerland&lt;br/&gt;5 aeropuertos, 6 rutas internas&lt;br/&gt;248 salen, 246 llegan del exterior&quot;]
+    N92 --&gt; N93
+    click N93 &quot;grafo_Switzerland.html&quot; &quot;Abrir detalle&quot;
+    N94[&quot;Construir grafo Turkey&lt;br/&gt;44 aeropuertos, 215 rutas internas&lt;br/&gt;421 salen, 427 llegan del exterior&quot;]
+    N93 --&gt; N94
+    click N94 &quot;grafo_Turkey.html&quot; &quot;Abrir detalle&quot;
+    N95[&quot;Construir grafo Moldova&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;25 salen, 25 llegan del exterior&quot;]
+    N94 --&gt; N95
+    click N95 &quot;grafo_Moldova.html&quot; &quot;Abrir detalle&quot;
+    N96[&quot;Construir grafo Macedonia&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;22 salen, 22 llegan del exterior&quot;]
+    N95 --&gt; N96
+    click N96 &quot;grafo_Macedonia.html&quot; &quot;Abrir detalle&quot;
+    N97[&quot;Construir grafo Gibraltar&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;5 salen, 5 llegan del exterior&quot;]
+    N96 --&gt; N97
+    click N97 &quot;grafo_Gibraltar.html&quot; &quot;Abrir detalle&quot;
+    N98[&quot;Construir grafo Serbia&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;68 salen, 68 llegan del exterior&quot;]
+    N97 --&gt; N98
+    click N98 &quot;grafo_Serbia.html&quot; &quot;Abrir detalle&quot;
+    N99[&quot;Construir grafo Montenegro&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;18 salen, 18 llegan del exterior&quot;]
+    N98 --&gt; N99
+    click N99 &quot;grafo_Montenegro.html&quot; &quot;Abrir detalle&quot;
+    N100[&quot;Construir grafo Slovakia&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;20 salen, 20 llegan del exterior&quot;]
+    N99 --&gt; N100
+    click N100 &quot;grafo_Slovakia.html&quot; &quot;Abrir detalle&quot;
+    N101[&quot;Construir grafo Turks and Caicos Islands&lt;br/&gt;4 aeropuertos, 8 rutas internas&lt;br/&gt;18 salen, 18 llegan del exterior&quot;]
+    N100 --&gt; N101
+    click N101 &quot;grafo_Turks_and_Caicos_Islands.html&quot; &quot;Abrir detalle&quot;
+    N102[&quot;Construir grafo Dominican Republic&lt;br/&gt;7 aeropuertos, 4 rutas internas&lt;br/&gt;105 salen, 101 llegan del exterior&quot;]
+    N101 --&gt; N102
+    click N102 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir detalle&quot;
+    N103[&quot;Construir grafo Guatemala&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;19 salen, 21 llegan del exterior&quot;]
+    N102 --&gt; N103
+    click N103 &quot;grafo_Guatemala.html&quot; &quot;Abrir detalle&quot;
+    N104[&quot;Construir grafo Honduras&lt;br/&gt;7 aeropuertos, 19 rutas internas&lt;br/&gt;27 salen, 26 llegan del exterior&quot;]
+    N103 --&gt; N104
+    click N104 &quot;grafo_Honduras.html&quot; &quot;Abrir detalle&quot;
+    N105[&quot;Construir grafo Jamaica&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;43 salen, 44 llegan del exterior&quot;]
+    N104 --&gt; N105
+    click N105 &quot;grafo_Jamaica.html&quot; &quot;Abrir detalle&quot;
+    N106[&quot;Construir grafo Mexico&lt;br/&gt;57 aeropuertos, 322 rutas internas&lt;br/&gt;224 salen, 224 llegan del exterior&quot;]
+    N105 --&gt; N106
+    click N106 &quot;grafo_Mexico.html&quot; &quot;Abrir detalle&quot;
+    N107[&quot;Construir grafo Nicaragua&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N106 --&gt; N107
+    click N107 &quot;grafo_Nicaragua.html&quot; &quot;Abrir detalle&quot;
+    N108[&quot;Construir grafo Panama&lt;br/&gt;7 aeropuertos, 9 rutas internas&lt;br/&gt;74 salen, 75 llegan del exterior&quot;]
+    N107 --&gt; N108
+    click N108 &quot;grafo_Panama.html&quot; &quot;Abrir detalle&quot;
+    N109[&quot;Construir grafo Costa Rica&lt;br/&gt;13 aeropuertos, 30 rutas internas&lt;br/&gt;39 salen, 39 llegan del exterior&quot;]
+    N108 --&gt; N109
+    click N109 &quot;grafo_Costa_Rica.html&quot; &quot;Abrir detalle&quot;
+    N110[&quot;Construir grafo El Salvador&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;32 salen, 31 llegan del exterior&quot;]
+    N109 --&gt; N110
+    click N110 &quot;grafo_El_Salvador.html&quot; &quot;Abrir detalle&quot;
+    N111[&quot;Construir grafo Haiti&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;12 salen, 12 llegan del exterior&quot;]
+    N110 --&gt; N111
+    click N111 &quot;grafo_Haiti.html&quot; &quot;Abrir detalle&quot;
+    N112[&quot;Construir grafo Cuba&lt;br/&gt;9 aeropuertos, 16 rutas internas&lt;br/&gt;52 salen, 47 llegan del exterior&quot;]
+    N111 --&gt; N112
+    click N112 &quot;grafo_Cuba.html&quot; &quot;Abrir detalle&quot;
+    N113[&quot;Construir grafo Cayman Islands&lt;br/&gt;3 aeropuertos, 6 rutas internas&lt;br/&gt;16 salen, 18 llegan del exterior&quot;]
+    N112 --&gt; N113
+    click N113 &quot;grafo_Cayman_Islands.html&quot; &quot;Abrir detalle&quot;
+    N114[&quot;Construir grafo Bahamas&lt;br/&gt;19 aeropuertos, 39 rutas internas&lt;br/&gt;49 salen, 50 llegan del exterior&quot;]
+    N113 --&gt; N114
+    click N114 &quot;grafo_Bahamas.html&quot; &quot;Abrir detalle&quot;
+    N115[&quot;Construir grafo Belize&lt;br/&gt;3 aeropuertos, 6 rutas internas&lt;br/&gt;13 salen, 13 llegan del exterior&quot;]
+    N114 --&gt; N115
+    click N115 &quot;grafo_Belize.html&quot; &quot;Abrir detalle&quot;
+    N116[&quot;Construir grafo Cook Islands&lt;br/&gt;6 aeropuertos, 11 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N115 --&gt; N116
+    click N116 &quot;grafo_Cook_Islands.html&quot; &quot;Abrir detalle&quot;
+    N117[&quot;Construir grafo Fiji&lt;br/&gt;10 aeropuertos, 28 rutas internas&lt;br/&gt;22 salen, 20 llegan del exterior&quot;]
+    N116 --&gt; N117
+    click N117 &quot;grafo_Fiji.html&quot; &quot;Abrir detalle&quot;
+    N118[&quot;Construir grafo Tonga&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N117 --&gt; N118
+    click N118 &quot;grafo_Tonga.html&quot; &quot;Abrir detalle&quot;
+    N119[&quot;Construir grafo Kiribati&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;5 salen, 5 llegan del exterior&quot;]
+    N118 --&gt; N119
+    click N119 &quot;grafo_Kiribati.html&quot; &quot;Abrir detalle&quot;
+    N120[&quot;Construir grafo Wallis and Futuna&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;2 salen, 2 llegan del exterior&quot;]
+    N119 --&gt; N120
+    click N120 &quot;grafo_Wallis_and_Futuna.html&quot; &quot;Abrir detalle&quot;
+    N121[&quot;Construir grafo Samoa&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 5 llegan del exterior&quot;]
+    N120 --&gt; N121
+    click N121 &quot;grafo_Samoa.html&quot; &quot;Abrir detalle&quot;
+    N122[&quot;Construir grafo American Samoa&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 1 llegan del exterior&quot;]
+    N121 --&gt; N122
+    click N122 &quot;grafo_American_Samoa.html&quot; &quot;Abrir detalle&quot;
+    N123[&quot;Construir grafo French Polynesia&lt;br/&gt;27 aeropuertos, 91 rutas internas&lt;br/&gt;7 salen, 7 llegan del exterior&quot;]
+    N122 --&gt; N123
+    click N123 &quot;grafo_French_Polynesia.html&quot; &quot;Abrir detalle&quot;
+    N124[&quot;Construir grafo Vanuatu&lt;br/&gt;27 aeropuertos, 80 rutas internas&lt;br/&gt;7 salen, 7 llegan del exterior&quot;]
+    N123 --&gt; N124
+    click N124 &quot;grafo_Vanuatu.html&quot; &quot;Abrir detalle&quot;
+    N125[&quot;Construir grafo New Caledonia&lt;br/&gt;11 aeropuertos, 23 rutas internas&lt;br/&gt;9 salen, 9 llegan del exterior&quot;]
+    N124 --&gt; N125
+    click N125 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir detalle&quot;
+    N126[&quot;Construir grafo New Zealand&lt;br/&gt;25 aeropuertos, 104 rutas internas&lt;br/&gt;34 salen, 43 llegan del exterior&quot;]
+    N125 --&gt; N126
+    click N126 &quot;grafo_New_Zealand.html&quot; &quot;Abrir detalle&quot;
+    N127[&quot;Construir grafo Afghanistan&lt;br/&gt;4 aeropuertos, 6 rutas internas&lt;br/&gt;20 salen, 18 llegan del exterior&quot;]
+    N126 --&gt; N127
+    click N127 &quot;grafo_Afghanistan.html&quot; &quot;Abrir detalle&quot;
+    N128[&quot;Construir grafo Bahrain&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;40 salen, 40 llegan del exterior&quot;]
+    N127 --&gt; N128
+    click N128 &quot;grafo_Bahrain.html&quot; &quot;Abrir detalle&quot;
+    N129[&quot;Construir grafo Saudi Arabia&lt;br/&gt;26 aeropuertos, 124 rutas internas&lt;br/&gt;224 salen, 229 llegan del exterior&quot;]
+    N128 --&gt; N129
+    click N129 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir detalle&quot;
+    N130[&quot;Construir grafo Iran&lt;br/&gt;43 aeropuertos, 189 rutas internas&lt;br/&gt;96 salen, 97 llegan del exterior&quot;]
+    N129 --&gt; N130
+    click N130 &quot;grafo_Iran.html&quot; &quot;Abrir detalle&quot;
+    N131[&quot;Construir grafo Jordan&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;56 salen, 57 llegan del exterior&quot;]
+    N130 --&gt; N131
+    click N131 &quot;grafo_Jordan.html&quot; &quot;Abrir detalle&quot;
+    N132[&quot;Construir grafo Kuwait&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;57 salen, 57 llegan del exterior&quot;]
+    N131 --&gt; N132
+    click N132 &quot;grafo_Kuwait.html&quot; &quot;Abrir detalle&quot;
+    N133[&quot;Construir grafo Lebanon&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;45 salen, 44 llegan del exterior&quot;]
+    N132 --&gt; N133
+    click N133 &quot;grafo_Lebanon.html&quot; &quot;Abrir detalle&quot;
+    N134[&quot;Construir grafo United Arab Emirates&lt;br/&gt;8 aeropuertos, 9 rutas internas&lt;br/&gt;391 salen, 384 llegan del exterior&quot;]
+    N133 --&gt; N134
+    click N134 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir detalle&quot;
+    N135[&quot;Construir grafo Oman&lt;br/&gt;3 aeropuertos, 4 rutas internas&lt;br/&gt;57 salen, 56 llegan del exterior&quot;]
+    N134 --&gt; N135
+    click N135 &quot;grafo_Oman.html&quot; &quot;Abrir detalle&quot;
+    N136[&quot;Construir grafo Pakistan&lt;br/&gt;22 aeropuertos, 80 rutas internas&lt;br/&gt;101 salen, 102 llegan del exterior&quot;]
+    N135 --&gt; N136
+    click N136 &quot;grafo_Pakistan.html&quot; &quot;Abrir detalle&quot;
+    N137[&quot;Construir grafo Iraq&lt;br/&gt;6 aeropuertos, 0 rutas internas&lt;br/&gt;59 salen, 58 llegan del exterior&quot;]
+    N136 --&gt; N137
+    click N137 &quot;grafo_Iraq.html&quot; &quot;Abrir detalle&quot;
+    N138[&quot;Construir grafo Qatar&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;116 salen, 118 llegan del exterior&quot;]
+    N137 --&gt; N138
+    click N138 &quot;grafo_Qatar.html&quot; &quot;Abrir detalle&quot;
+    N139[&quot;Construir grafo Northern Mariana Islands&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;10 salen, 9 llegan del exterior&quot;]
+    N138 --&gt; N139
+    click N139 &quot;grafo_Northern_Mariana_Islands.html&quot; &quot;Abrir detalle&quot;
+    N140[&quot;Construir grafo Guam&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;19 salen, 19 llegan del exterior&quot;]
+    N139 --&gt; N140
+    click N140 &quot;grafo_Guam.html&quot; &quot;Abrir detalle&quot;
+    N141[&quot;Construir grafo Marshall Islands&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;5 salen, 5 llegan del exterior&quot;]
+    N140 --&gt; N141
+    click N141 &quot;grafo_Marshall_Islands.html&quot; &quot;Abrir detalle&quot;
+    N142[&quot;Construir grafo Micronesia&lt;br/&gt;4 aeropuertos, 4 rutas internas&lt;br/&gt;5 salen, 5 llegan del exterior&quot;]
+    N141 --&gt; N142
+    click N142 &quot;grafo_Micronesia.html&quot; &quot;Abrir detalle&quot;
+    N143[&quot;Construir grafo Palau&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;6 salen, 6 llegan del exterior&quot;]
+    N142 --&gt; N143
+    click N143 &quot;grafo_Palau.html&quot; &quot;Abrir detalle&quot;
+    N144[&quot;Construir grafo Taiwan&lt;br/&gt;9 aeropuertos, 22 rutas internas&lt;br/&gt;173 salen, 172 llegan del exterior&quot;]
+    N143 --&gt; N144
+    click N144 &quot;grafo_Taiwan.html&quot; &quot;Abrir detalle&quot;
+    N145[&quot;Construir grafo Japan&lt;br/&gt;62 aeropuertos, 350 rutas internas&lt;br/&gt;267 salen, 268 llegan del exterior&quot;]
+    N144 --&gt; N145
+    click N145 &quot;grafo_Japan.html&quot; &quot;Abrir detalle&quot;
+    N146[&quot;Construir grafo South Korea&lt;br/&gt;15 aeropuertos, 40 rutas internas&lt;br/&gt;198 salen, 198 llegan del exterior&quot;]
+    N145 --&gt; N146
+    click N146 &quot;grafo_South_Korea.html&quot; &quot;Abrir detalle&quot;
+    N147[&quot;Construir grafo Philippines&lt;br/&gt;37 aeropuertos, 130 rutas internas&lt;br/&gt;68 salen, 68 llegan del exterior&quot;]
+    N146 --&gt; N147
+    click N147 &quot;grafo_Philippines.html&quot; &quot;Abrir detalle&quot;
+    N148[&quot;Construir grafo Argentina&lt;br/&gt;36 aeropuertos, 125 rutas internas&lt;br/&gt;49 salen, 50 llegan del exterior&quot;]
+    N147 --&gt; N148
+    click N148 &quot;grafo_Argentina.html&quot; &quot;Abrir detalle&quot;
+    N149[&quot;Construir grafo Brazil&lt;br/&gt;124 aeropuertos, 710 rutas internas&lt;br/&gt;119 salen, 117 llegan del exterior&quot;]
+    N148 --&gt; N149
+    click N149 &quot;grafo_Brazil.html&quot; &quot;Abrir detalle&quot;
+    N150[&quot;Construir grafo Chile&lt;br/&gt;16 aeropuertos, 56 rutas internas&lt;br/&gt;33 salen, 32 llegan del exterior&quot;]
+    N149 --&gt; N150
+    click N150 &quot;grafo_Chile.html&quot; &quot;Abrir detalle&quot;
+    N151[&quot;Construir grafo Ecuador&lt;br/&gt;14 aeropuertos, 32 rutas internas&lt;br/&gt;26 salen, 27 llegan del exterior&quot;]
+    N150 --&gt; N151
+    click N151 &quot;grafo_Ecuador.html&quot; &quot;Abrir detalle&quot;
+    N152[&quot;Construir grafo Paraguay&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;10 salen, 10 llegan del exterior&quot;]
+    N151 --&gt; N152
+    click N152 &quot;grafo_Paraguay.html&quot; &quot;Abrir detalle&quot;
+    N153[&quot;Construir grafo Colombia&lt;br/&gt;48 aeropuertos, 144 rutas internas&lt;br/&gt;64 salen, 64 llegan del exterior&quot;]
+    N152 --&gt; N153
+    click N153 &quot;grafo_Colombia.html&quot; &quot;Abrir detalle&quot;
+    N154[&quot;Construir grafo Bolivia&lt;br/&gt;15 aeropuertos, 52 rutas internas&lt;br/&gt;14 salen, 15 llegan del exterior&quot;]
+    N153 --&gt; N154
+    click N154 &quot;grafo_Bolivia.html&quot; &quot;Abrir detalle&quot;
+    N155[&quot;Construir grafo Suriname&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;7 salen, 7 llegan del exterior&quot;]
+    N154 --&gt; N155
+    click N155 &quot;grafo_Suriname.html&quot; &quot;Abrir detalle&quot;
+    N156[&quot;Construir grafo French Guiana&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N155 --&gt; N156
+    click N156 &quot;grafo_French_Guiana.html&quot; &quot;Abrir detalle&quot;
+    N157[&quot;Construir grafo Peru&lt;br/&gt;20 aeropuertos, 54 rutas internas&lt;br/&gt;41 salen, 41 llegan del exterior&quot;]
+    N156 --&gt; N157
+    click N157 &quot;grafo_Peru.html&quot; &quot;Abrir detalle&quot;
+    N158[&quot;Construir grafo Uruguay&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;14 salen, 14 llegan del exterior&quot;]
+    N157 --&gt; N158
+    click N158 &quot;grafo_Uruguay.html&quot; &quot;Abrir detalle&quot;
+    N159[&quot;Construir grafo Venezuela&lt;br/&gt;23 aeropuertos, 66 rutas internas&lt;br/&gt;45 salen, 45 llegan del exterior&quot;]
+    N158 --&gt; N159
+    click N159 &quot;grafo_Venezuela.html&quot; &quot;Abrir detalle&quot;
+    N160[&quot;Construir grafo Guyana&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N159 --&gt; N160
+    click N160 &quot;grafo_Guyana.html&quot; &quot;Abrir detalle&quot;
+    N161[&quot;Construir grafo Antigua and Barbuda&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;22 salen, 22 llegan del exterior&quot;]
+    N160 --&gt; N161
+    click N161 &quot;grafo_Antigua_and_Barbuda.html&quot; &quot;Abrir detalle&quot;
+    N162[&quot;Construir grafo Barbados&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;17 salen, 18 llegan del exterior&quot;]
+    N161 --&gt; N162
+    click N162 &quot;grafo_Barbados.html&quot; &quot;Abrir detalle&quot;
+    N163[&quot;Construir grafo Dominica&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N162 --&gt; N163
+    click N163 &quot;grafo_Dominica.html&quot; &quot;Abrir detalle&quot;
+    N164[&quot;Construir grafo Martinique&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;11 salen, 10 llegan del exterior&quot;]
+    N163 --&gt; N164
+    click N164 &quot;grafo_Martinique.html&quot; &quot;Abrir detalle&quot;
+    N165[&quot;Construir grafo Guadeloupe&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;12 salen, 13 llegan del exterior&quot;]
+    N164 --&gt; N165
+    click N165 &quot;grafo_Guadeloupe.html&quot; &quot;Abrir detalle&quot;
+    N166[&quot;Construir grafo Grenada&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N165 --&gt; N166
+    click N166 &quot;grafo_Grenada.html&quot; &quot;Abrir detalle&quot;
+    N167[&quot;Construir grafo Virgin Islands&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;21 salen, 22 llegan del exterior&quot;]
+    N166 --&gt; N167
+    click N167 &quot;grafo_Virgin_Islands.html&quot; &quot;Abrir detalle&quot;
+    N168[&quot;Construir grafo Puerto Rico&lt;br/&gt;6 aeropuertos, 6 rutas internas&lt;br/&gt;53 salen, 52 llegan del exterior&quot;]
+    N167 --&gt; N168
+    click N168 &quot;grafo_Puerto_Rico.html&quot; &quot;Abrir detalle&quot;
+    N169[&quot;Construir grafo Saint Kitts and Nevis&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;9 salen, 9 llegan del exterior&quot;]
+    N168 --&gt; N169
+    click N169 &quot;grafo_Saint_Kitts_and_Nevis.html&quot; &quot;Abrir detalle&quot;
+    N170[&quot;Construir grafo Saint Lucia&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;17 salen, 17 llegan del exterior&quot;]
+    N169 --&gt; N170
+    click N170 &quot;grafo_Saint_Lucia.html&quot; &quot;Abrir detalle&quot;
+    N171[&quot;Construir grafo Aruba&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;25 salen, 25 llegan del exterior&quot;]
+    N170 --&gt; N171
+    click N171 &quot;grafo_Aruba.html&quot; &quot;Abrir detalle&quot;
+    N172[&quot;Construir grafo Netherlands Antilles&lt;br/&gt;5 aeropuertos, 8 rutas internas&lt;br/&gt;52 salen, 53 llegan del exterior&quot;]
+    N171 --&gt; N172
+    click N172 &quot;grafo_Netherlands_Antilles.html&quot; &quot;Abrir detalle&quot;
+    N173[&quot;Construir grafo Anguilla&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N172 --&gt; N173
+    click N173 &quot;grafo_Anguilla.html&quot; &quot;Abrir detalle&quot;
+    N174[&quot;Construir grafo Trinidad and Tobago&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;23 salen, 23 llegan del exterior&quot;]
+    N173 --&gt; N174
+    click N174 &quot;grafo_Trinidad_and_Tobago.html&quot; &quot;Abrir detalle&quot;
+    N175[&quot;Construir grafo British Virgin Islands&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;7 salen, 6 llegan del exterior&quot;]
+    N174 --&gt; N175
+    click N175 &quot;grafo_British_Virgin_Islands.html&quot; &quot;Abrir detalle&quot;
+    N176[&quot;Construir grafo Saint Vincent and the Grenadines&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;4 salen, 5 llegan del exterior&quot;]
+    N175 --&gt; N176
+    click N176 &quot;grafo_Saint_Vincent_and_the_Grenadines.html&quot; &quot;Abrir detalle&quot;
+    N177[&quot;Construir grafo Kazakhstan&lt;br/&gt;17 aeropuertos, 74 rutas internas&lt;br/&gt;78 salen, 78 llegan del exterior&quot;]
+    N176 --&gt; N177
+    click N177 &quot;grafo_Kazakhstan.html&quot; &quot;Abrir detalle&quot;
+    N178[&quot;Construir grafo Kyrgyzstan&lt;br/&gt;2 aeropuertos, 2 rutas internas&lt;br/&gt;33 salen, 33 llegan del exterior&quot;]
+    N177 --&gt; N178
+    click N178 &quot;grafo_Kyrgyzstan.html&quot; &quot;Abrir detalle&quot;
+    N179[&quot;Construir grafo Azerbaijan&lt;br/&gt;5 aeropuertos, 3 rutas internas&lt;br/&gt;44 salen, 45 llegan del exterior&quot;]
+    N178 --&gt; N179
+    click N179 &quot;grafo_Azerbaijan.html&quot; &quot;Abrir detalle&quot;
+    N180[&quot;Construir grafo Russia&lt;br/&gt;113 aeropuertos, 705 rutas internas&lt;br/&gt;585 salen, 589 llegan del exterior&quot;]
+    N179 --&gt; N180
+    click N180 &quot;grafo_Russia.html&quot; &quot;Abrir detalle&quot;
+    N181[&quot;Construir grafo Ukraine&lt;br/&gt;13 aeropuertos, 20 rutas internas&lt;br/&gt;132 salen, 130 llegan del exterior&quot;]
+    N180 --&gt; N181
+    click N181 &quot;grafo_Ukraine.html&quot; &quot;Abrir detalle&quot;
+    N182[&quot;Construir grafo Belarus&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;41 salen, 41 llegan del exterior&quot;]
+    N181 --&gt; N182
+    click N182 &quot;grafo_Belarus.html&quot; &quot;Abrir detalle&quot;
+    N183[&quot;Construir grafo Turkmenistan&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;11 salen, 11 llegan del exterior&quot;]
+    N182 --&gt; N183
+    click N183 &quot;grafo_Turkmenistan.html&quot; &quot;Abrir detalle&quot;
+    N184[&quot;Construir grafo Tajikistan&lt;br/&gt;4 aeropuertos, 0 rutas internas&lt;br/&gt;57 salen, 58 llegan del exterior&quot;]
+    N183 --&gt; N184
+    click N184 &quot;grafo_Tajikistan.html&quot; &quot;Abrir detalle&quot;
+    N185[&quot;Construir grafo Uzbekistan&lt;br/&gt;11 aeropuertos, 21 rutas internas&lt;br/&gt;79 salen, 79 llegan del exterior&quot;]
+    N184 --&gt; N185
+    click N185 &quot;grafo_Uzbekistan.html&quot; &quot;Abrir detalle&quot;
+    N186[&quot;Construir grafo India&lt;br/&gt;71 aeropuertos, 381 rutas internas&lt;br/&gt;240 salen, 238 llegan del exterior&quot;]
+    N185 --&gt; N186
+    click N186 &quot;grafo_India.html&quot; &quot;Abrir detalle&quot;
+    N187[&quot;Construir grafo Sri Lanka&lt;br/&gt;6 aeropuertos, 10 rutas internas&lt;br/&gt;41 salen, 40 llegan del exterior&quot;]
+    N186 --&gt; N187
+    click N187 &quot;grafo_Sri_Lanka.html&quot; &quot;Abrir detalle&quot;
+    N188[&quot;Construir grafo Cambodia&lt;br/&gt;3 aeropuertos, 4 rutas internas&lt;br/&gt;32 salen, 32 llegan del exterior&quot;]
+    N187 --&gt; N188
+    click N188 &quot;grafo_Cambodia.html&quot; &quot;Abrir detalle&quot;
+    N189[&quot;Construir grafo Bangladesh&lt;br/&gt;8 aeropuertos, 14 rutas internas&lt;br/&gt;36 salen, 39 llegan del exterior&quot;]
+    N188 --&gt; N189
+    click N189 &quot;grafo_Bangladesh.html&quot; &quot;Abrir detalle&quot;
+    N190[&quot;Construir grafo Hong Kong&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;133 salen, 134 llegan del exterior&quot;]
+    N189 --&gt; N190
+    click N190 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir detalle&quot;
+    N191[&quot;Construir grafo Laos&lt;br/&gt;8 aeropuertos, 18 rutas internas&lt;br/&gt;18 salen, 18 llegan del exterior&quot;]
+    N190 --&gt; N191
+    click N191 &quot;grafo_Laos.html&quot; &quot;Abrir detalle&quot;
+    N192[&quot;Construir grafo Macau&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;38 salen, 38 llegan del exterior&quot;]
+    N191 --&gt; N192
+    click N192 &quot;grafo_Macau.html&quot; &quot;Abrir detalle&quot;
+    N193[&quot;Construir grafo Nepal&lt;br/&gt;10 aeropuertos, 18 rutas internas&lt;br/&gt;23 salen, 23 llegan del exterior&quot;]
+    N192 --&gt; N193
+    click N193 &quot;grafo_Nepal.html&quot; &quot;Abrir detalle&quot;
+    N194[&quot;Construir grafo Bhutan&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;5 salen, 5 llegan del exterior&quot;]
+    N193 --&gt; N194
+    click N194 &quot;grafo_Bhutan.html&quot; &quot;Abrir detalle&quot;
+    N195[&quot;Construir grafo Maldives&lt;br/&gt;7 aeropuertos, 16 rutas internas&lt;br/&gt;25 salen, 23 llegan del exterior&quot;]
+    N194 --&gt; N195
+    click N195 &quot;grafo_Maldives.html&quot; &quot;Abrir detalle&quot;
+    N196[&quot;Construir grafo Thailand&lt;br/&gt;32 aeropuertos, 100 rutas internas&lt;br/&gt;185 salen, 184 llegan del exterior&quot;]
+    N195 --&gt; N196
+    click N196 &quot;grafo_Thailand.html&quot; &quot;Abrir detalle&quot;
+    N197[&quot;Construir grafo Vietnam&lt;br/&gt;20 aeropuertos, 80 rutas internas&lt;br/&gt;81 salen, 81 llegan del exterior&quot;]
+    N196 --&gt; N197
+    click N197 &quot;grafo_Vietnam.html&quot; &quot;Abrir detalle&quot;
+    N198[&quot;Construir grafo Burma&lt;br/&gt;15 aeropuertos, 39 rutas internas&lt;br/&gt;24 salen, 24 llegan del exterior&quot;]
+    N197 --&gt; N198
+    click N198 &quot;grafo_Burma.html&quot; &quot;Abrir detalle&quot;
+    N199[&quot;Construir grafo Indonesia&lt;br/&gt;64 aeropuertos, 297 rutas internas&lt;br/&gt;94 salen, 93 llegan del exterior&quot;]
+    N198 --&gt; N199
+    click N199 &quot;grafo_Indonesia.html&quot; &quot;Abrir detalle&quot;
+    N200[&quot;Construir grafo Malaysia&lt;br/&gt;32 aeropuertos, 152 rutas internas&lt;br/&gt;142 salen, 141 llegan del exterior&quot;]
+    N199 --&gt; N200
+    click N200 &quot;grafo_Malaysia.html&quot; &quot;Abrir detalle&quot;
+    N201[&quot;Construir grafo Brunei&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;13 salen, 13 llegan del exterior&quot;]
+    N200 --&gt; N201
+    click N201 &quot;grafo_Brunei.html&quot; &quot;Abrir detalle&quot;
+    N202[&quot;Construir grafo East Timor&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 3 llegan del exterior&quot;]
+    N201 --&gt; N202
+    click N202 &quot;grafo_East_Timor.html&quot; &quot;Abrir detalle&quot;
+    N203[&quot;Construir grafo Singapore&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;125 salen, 125 llegan del exterior&quot;]
+    N202 --&gt; N203
+    click N203 &quot;grafo_Singapore.html&quot; &quot;Abrir detalle&quot;
+    N204[&quot;Construir grafo Australia&lt;br/&gt;113 aeropuertos, 441 rutas internas&lt;br/&gt;131 salen, 126 llegan del exterior&quot;]
+    N203 --&gt; N204
+    click N204 &quot;grafo_Australia.html&quot; &quot;Abrir detalle&quot;
+    N205[&quot;Construir grafo Christmas Island&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;2 salen, 2 llegan del exterior&quot;]
+    N204 --&gt; N205
+    click N205 &quot;grafo_Christmas_Island.html&quot; &quot;Abrir detalle&quot;
+    N206[&quot;Construir grafo Norfolk Island&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 2 llegan del exterior&quot;]
+    N205 --&gt; N206
+    click N206 &quot;grafo_Norfolk_Island.html&quot; &quot;Abrir detalle&quot;
+    N207[&quot;Construir grafo China&lt;br/&gt;174 aeropuertos, 2757 rutas internas&lt;br/&gt;600 salen, 600 llegan del exterior&quot;]
+    N206 --&gt; N207
+    click N207 &quot;grafo_China.html&quot; &quot;Abrir detalle&quot;
+    N208[&quot;Construir grafo North Korea&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N207 --&gt; N208
+    click N208 &quot;grafo_North_Korea.html&quot; &quot;Abrir detalle&quot;
+    N209[&quot;Construir grafo Mongolia&lt;br/&gt;10 aeropuertos, 17 rutas internas&lt;br/&gt;9 salen, 9 llegan del exterior&quot;]
+    N208 --&gt; N209
+    click N209 &quot;grafo_Mongolia.html&quot; &quot;Abrir detalle&quot;
+    N210[&quot;Construir grafo United States&lt;br/&gt;550 aeropuertos, 5452 rutas internas&lt;br/&gt;1078 salen, 1072 llegan del exterior&quot;]
+    N209 --&gt; N210
+    click N210 &quot;grafo_United_States.html&quot; &quot;Abrir detalle&quot;
+    N211[&quot;Construir grafo Latvia&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;68 salen, 68 llegan del exterior&quot;]
+    N210 --&gt; N211
+    click N211 &quot;grafo_Latvia.html&quot; &quot;Abrir detalle&quot;
+    N212[&quot;Construir grafo Lithuania&lt;br/&gt;3 aeropuertos, 0 rutas internas&lt;br/&gt;68 salen, 68 llegan del exterior&quot;]
+    N211 --&gt; N212
+    click N212 &quot;grafo_Lithuania.html&quot; &quot;Abrir detalle&quot;
+    N213[&quot;Construir grafo Armenia&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;34 salen, 34 llegan del exterior&quot;]
+    N212 --&gt; N213
+    click N213 &quot;grafo_Armenia.html&quot; &quot;Abrir detalle&quot;
+    N214[&quot;Construir grafo Eritrea&lt;br/&gt;2 aeropuertos, 1 rutas internas&lt;br/&gt;7 salen, 7 llegan del exterior&quot;]
+    N213 --&gt; N214
+    click N214 &quot;grafo_Eritrea.html&quot; &quot;Abrir detalle&quot;
+    N215[&quot;Construir grafo Georgia&lt;br/&gt;3 aeropuertos, 3 rutas internas&lt;br/&gt;34 salen, 35 llegan del exterior&quot;]
+    N214 --&gt; N215
+    click N215 &quot;grafo_Georgia.html&quot; &quot;Abrir detalle&quot;
+    N216[&quot;Construir grafo Yemen&lt;br/&gt;9 aeropuertos, 20 rutas internas&lt;br/&gt;46 salen, 43 llegan del exterior&quot;]
+    N215 --&gt; N216
+    click N216 &quot;grafo_Yemen.html&quot; &quot;Abrir detalle&quot;
+    N217[&quot;Construir grafo Bermuda&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;8 salen, 8 llegan del exterior&quot;]
+    N216 --&gt; N217
+    click N217 &quot;grafo_Bermuda.html&quot; &quot;Abrir detalle&quot;
+    N218[&quot;Construir grafo Solomon Islands&lt;br/&gt;16 aeropuertos, 46 rutas internas&lt;br/&gt;4 salen, 4 llegan del exterior&quot;]
+    N217 --&gt; N218
+    click N218 &quot;grafo_Solomon_Islands.html&quot; &quot;Abrir detalle&quot;
+    N219[&quot;Construir grafo Nauru&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;3 salen, 3 llegan del exterior&quot;]
+    N218 --&gt; N219
+    click N219 &quot;grafo_Nauru.html&quot; &quot;Abrir detalle&quot;
+    N220[&quot;Construir grafo Tuvalu&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 1 llegan del exterior&quot;]
+    N219 --&gt; N220
+    click N220 &quot;grafo_Tuvalu.html&quot; &quot;Abrir detalle&quot;
+    N221[&quot;Construir grafo Namibia&lt;br/&gt;8 aeropuertos, 13 rutas internas&lt;br/&gt;12 salen, 12 llegan del exterior&quot;]
+    N220 --&gt; N221
+    click N221 &quot;grafo_Namibia.html&quot; &quot;Abrir detalle&quot;
+    N222[&quot;Construir grafo Djibouti&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;12 salen, 12 llegan del exterior&quot;]
+    N221 --&gt; N222
+    click N222 &quot;grafo_Djibouti.html&quot; &quot;Abrir detalle&quot;
+    N223[&quot;Construir grafo Western Sahara&lt;br/&gt;2 aeropuertos, 0 rutas internas&lt;br/&gt;6 salen, 6 llegan del exterior&quot;]
+    N222 --&gt; N223
+    click N223 &quot;grafo_Western_Sahara.html&quot; &quot;Abrir detalle&quot;
+    N224[&quot;Construir grafo Niue&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 0 llegan del exterior&quot;]
+    N223 --&gt; N224
+    click N224 &quot;grafo_Niue.html&quot; &quot;Abrir detalle&quot;
+    N225[&quot;Construir grafo Cocos (Keeling) Islands&lt;br/&gt;1 aeropuertos, 0 rutas internas&lt;br/&gt;1 salen, 1 llegan del exterior&quot;]
+    N224 --&gt; N225
+    click N225 &quot;grafo_Cocos_Keeling_Islands.html&quot; &quot;Abrir detalle&quot;
+    N226([&quot;Fin: 225 países construidos&quot;])
+    N225 --&gt; N226
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Laos</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Laos</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Laos: 8 aeropuertos, 18 rutas internas, 18 salen al exterior, 18 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Laos: 8 de 8 aeropuertos&quot;]
+        V_LPQ[&quot;LPQ&lt;br/&gt;Luang Prabang&quot;]
+        V_VTE[&quot;VTE&lt;br/&gt;Vientiane&quot;]
+        V_ZVK[&quot;ZVK&lt;br/&gt;Savannakhet&quot;]
+        V_HOE[&quot;HOE&lt;br/&gt;Huay Xai&quot;]
+        V_PKZ[&quot;PKZ&lt;br/&gt;Pakse&quot;]
+        V_LXG[&quot;LXG&lt;br/&gt;Luang Namtha&quot;]
+        V_ODY[&quot;ODY&lt;br/&gt;Muang Xay&quot;]
+        V_XKH[&quot;XKH&lt;br/&gt;Phon Savan&quot;]
+        V_LPQ &lt;--&gt; V_VTE
+        V_LPQ &lt;--&gt; V_PKZ
+        V_VTE &lt;--&gt; V_HOE
+        V_VTE &lt;--&gt; V_LXG
+        V_VTE &lt;--&gt; V_ODY
+        V_VTE &lt;--&gt; V_PKZ
+        V_VTE &lt;--&gt; V_XKH
+        V_VTE &lt;--&gt; V_ZVK
+        V_ZVK &lt;--&gt; V_PKZ
+    end
+    EXT0[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Vietnam&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Vietnam.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;China&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Cambodia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Cambodia.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Fiji</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Fiji</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Fiji: 10 aeropuertos, 28 rutas internas, 22 salen al exterior, 20 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Fiji: 10 de 10 aeropuertos&quot;]
+        V_NAN[&quot;NAN&lt;br/&gt;Nandi&quot;]
+        V_SUV[&quot;SUV&lt;br/&gt;Nausori&quot;]
+        V_ICI[&quot;ICI&lt;br/&gt;Cicia&quot;]
+        V_KDV[&quot;KDV&lt;br/&gt;Vunisea&quot;]
+        V_LBS[&quot;LBS&lt;br/&gt;Lambasa&quot;]
+        V_LKB[&quot;LKB&lt;br/&gt;Lakeba Island&quot;]
+        V_RTA[&quot;RTA&lt;br/&gt;Rotuma&quot;]
+        V_SVU[&quot;SVU&lt;br/&gt;Savusavu&quot;]
+        V_TVU[&quot;TVU&lt;br/&gt;Matei&quot;]
+        V_VBV[&quot;VBV&lt;br/&gt;Vanua Balavu&quot;]
+        V_NAN &lt;--&gt; V_KDV
+        V_NAN &lt;--&gt; V_LBS
+        V_NAN &lt;--&gt; V_RTA
+        V_NAN &lt;--&gt; V_SUV
+        V_NAN &lt;--&gt; V_SVU
+        V_NAN &lt;--&gt; V_TVU
+        V_SUV &lt;--&gt; V_ICI
+        V_SUV &lt;--&gt; V_KDV
+        V_SUV &lt;--&gt; V_LBS
+        V_SUV &lt;--&gt; V_LKB
+        V_SUV &lt;--&gt; V_SVU
+        V_SUV &lt;--&gt; V_TVU
+        V_SUV &lt;--&gt; V_VBV
+        V_SVU &lt;--&gt; V_TVU
+    end
+    EXT0[&quot;United States&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Samoa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Samoa.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Kiribati&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Kiribati.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Tonga&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Tonga.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Vanuatu&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Vanuatu.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Solomon Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Solomon_Islands.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Papua New Guinea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Papua_New_Guinea.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;New Caledonia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Wallis and Futuna&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_Wallis_and_Futuna.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Tuvalu&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Tuvalu.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

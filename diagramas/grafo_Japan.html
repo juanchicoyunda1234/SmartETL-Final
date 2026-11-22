@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Japan</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Japan</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Japan: 62 aeropuertos, 350 rutas internas, 267 salen al exterior, 268 llegan del exterior. Se dibuja hasta el nivel 1 desde HND</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Japan: 50 de 62 aeropuertos (árbol BFS desde HND hasta nivel 1)&quot;]
+        V_HND[&quot;HND&lt;br/&gt;Tokyo&quot;]
+        V_FUK[&quot;FUK&lt;br/&gt;Fukuoka&quot;]
+        V_KIX[&quot;KIX&lt;br/&gt;Osaka&quot;]
+        V_KKJ[&quot;KKJ&lt;br/&gt;Kitakyushu&quot;]
+        V_CTS[&quot;CTS&lt;br/&gt;Sapporo&quot;]
+        V_KOJ[&quot;KOJ&lt;br/&gt;Kagoshima&quot;]
+        V_OKA[&quot;OKA&lt;br/&gt;Okinawa&quot;]
+        V_UKB[&quot;UKB&lt;br/&gt;Kobe&quot;]
+        V_YGJ[&quot;YGJ&lt;br/&gt;Miho&quot;]
+        V_AKJ[&quot;AKJ&lt;br/&gt;Asahikawa&quot;]
+        V_HKD[&quot;HKD&lt;br/&gt;Hakodate&quot;]
+        V_KUH[&quot;KUH&lt;br/&gt;Kushiro&quot;]
+        V_MMB[&quot;MMB&lt;br/&gt;Memanbetsu&quot;]
+        V_OBO[&quot;OBO&lt;br/&gt;Obihiro&quot;]
+        V_AOJ[&quot;AOJ&lt;br/&gt;Aomori&quot;]
+        V_ASJ[&quot;ASJ&lt;br/&gt;Amami&quot;]
+        V_AXT[&quot;AXT&lt;br/&gt;Akita&quot;]
+        V_GAJ[&quot;GAJ&lt;br/&gt;Yamagata&quot;]
+        V_HIJ[&quot;HIJ&lt;br/&gt;Hiroshima&quot;]
+        V_ITM[&quot;ITM&lt;br/&gt;Osaka&quot;]
+        V_IZO[&quot;IZO&lt;br/&gt;Izumo&quot;]
+        V_KCZ[&quot;KCZ&lt;br/&gt;Kochi&quot;]
+        V_KMI[&quot;KMI&lt;br/&gt;Miyazaki&quot;]
+        V_KMJ[&quot;KMJ&lt;br/&gt;Kumamoto&quot;]
+        V_KMQ[&quot;KMQ&lt;br/&gt;Kanazawa&quot;]
+        V_MSJ[&quot;MSJ&lt;br/&gt;Misawa&quot;]
+        V_MYJ[&quot;MYJ&lt;br/&gt;Matsuyama&quot;]
+        V_NGO[&quot;NGO&lt;br/&gt;Nagoya&quot;]
+        V_NGS[&quot;NGS&lt;br/&gt;Nagasaki&quot;]
+        V_OIT[&quot;OIT&lt;br/&gt;Oita&quot;]
+        V_OKJ[&quot;OKJ&lt;br/&gt;Okayama&quot;]
+        V_SHM[&quot;SHM&lt;br/&gt;Nanki-shirahama&quot;]
+        V_TAK[&quot;TAK&lt;br/&gt;Takamatsu&quot;]
+        V_TKS[&quot;TKS&lt;br/&gt;Tokushima&quot;]
+        V_UBJ[&quot;UBJ&lt;br/&gt;Yamaguchi&quot;]
+        V_HAC[&quot;HAC&lt;br/&gt;Hachijojima&quot;]
+        V_HSG[&quot;HSG&lt;br/&gt;Saga&quot;]
+        V_ISG[&quot;ISG&lt;br/&gt;Ishigaki&quot;]
+        V_IWJ[&quot;IWJ&lt;br/&gt;Iwami&quot;]
+        V_IWK[&quot;IWK&lt;br/&gt;Iwakuni&quot;]
+        V_MBE[&quot;MBE&lt;br/&gt;Monbetsu&quot;]
+        V_NTQ[&quot;NTQ&lt;br/&gt;Wajima&quot;]
+        V_OIM[&quot;OIM&lt;br/&gt;Oshima&quot;]
+        V_ONJ[&quot;ONJ&lt;br/&gt;Odate Noshiro&quot;]
+        V_SHB[&quot;SHB&lt;br/&gt;Nakashibetsu&quot;]
+        V_SYO[&quot;SYO&lt;br/&gt;Shonai&quot;]
+        V_TOY[&quot;TOY&lt;br/&gt;Toyama&quot;]
+        V_TTJ[&quot;TTJ&lt;br/&gt;Tottori&quot;]
+        V_WKJ[&quot;WKJ&lt;br/&gt;Wakkanai&quot;]
+        V_MMY[&quot;MMY&lt;br/&gt;Miyako&quot;]
+        V_HND --&gt; V_FUK
+        V_HND --&gt; V_KIX
+        V_HND --&gt; V_KKJ
+        V_HND --&gt; V_CTS
+        V_HND --&gt; V_KOJ
+        V_HND --&gt; V_OKA
+        V_HND --&gt; V_UKB
+        V_HND --&gt; V_YGJ
+        V_HND --&gt; V_AKJ
+        V_HND --&gt; V_HKD
+        V_HND --&gt; V_KUH
+        V_HND --&gt; V_MMB
+        V_HND --&gt; V_OBO
+        V_HND --&gt; V_AOJ
+        V_HND --&gt; V_ASJ
+        V_HND --&gt; V_AXT
+        V_HND --&gt; V_GAJ
+        V_HND --&gt; V_HIJ
+        V_HND --&gt; V_ITM
+        V_HND --&gt; V_IZO
+        V_HND --&gt; V_KCZ
+        V_HND --&gt; V_KMI
+        V_HND --&gt; V_KMJ
+        V_HND --&gt; V_KMQ
+        V_HND --&gt; V_MSJ
+        V_HND --&gt; V_MYJ
+        V_HND --&gt; V_NGO
+        V_HND --&gt; V_NGS
+        V_HND --&gt; V_OIT
+        V_HND --&gt; V_OKJ
+        V_HND --&gt; V_SHM
+        V_HND --&gt; V_TAK
+        V_HND --&gt; V_TKS
+        V_HND --&gt; V_UBJ
+        V_HND --&gt; V_HAC
+        V_HND --&gt; V_HSG
+        V_HND --&gt; V_ISG
+        V_HND --&gt; V_IWJ
+        V_HND --&gt; V_IWK
+        V_HND --&gt; V_MBE
+        V_HND --&gt; V_NTQ
+        V_HND --&gt; V_OIM
+        V_HND --&gt; V_ONJ
+        V_HND --&gt; V_SHB
+        V_HND --&gt; V_SYO
+        V_HND --&gt; V_TOY
+        V_HND --&gt; V_TTJ
+        V_HND --&gt; V_WKJ
+        V_HND --&gt; V_MMY
+    end
+    EXT0[&quot;Philippines&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Philippines.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Taiwan&quot;]
+    PAIS --&gt;|&quot;24 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Taiwan.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;38 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;China&quot;]
+    PAIS --&gt;|&quot;56 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;United States&quot;]
+    PAIS --&gt;|&quot;29 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;France&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Finland&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Finland.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Guam&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_Guam.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Indonesia&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Indonesia.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Vietnam&quot;]
+    PAIS --&gt;|&quot;10 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_Vietnam.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Macau&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_Macau.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Northern Mariana Islands&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Northern_Mariana_Islands.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;New Caledonia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;India&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT25
+    click EXT25 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT26
+    click EXT26 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Palau&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT28
+    click EXT28 &quot;grafo_Palau.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Uzbekistan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Uzbekistan.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT30
+    click EXT30 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;French Polynesia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_French_Polynesia.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT32
+    click EXT32 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT33
+    click EXT33 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Burma&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT34
+    click EXT34 &quot;grafo_Burma.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Austria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT35
+    click EXT35 &quot;grafo_Austria.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Mongolia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT36
+    click EXT36 &quot;grafo_Mongolia.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Papua New Guinea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT37
+    click EXT37 &quot;grafo_Papua_New_Guinea.html&quot; &quot;Abrir país&quot;
+    EXT38[&quot;Denmark&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT38
+    click EXT38 &quot;grafo_Denmark.html&quot; &quot;Abrir país&quot;
+    EXT39[&quot;Sri Lanka&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT39
+    click EXT39 &quot;grafo_Sri_Lanka.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

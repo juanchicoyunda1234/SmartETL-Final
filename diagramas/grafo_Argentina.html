@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Argentina</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Argentina</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Argentina: 36 aeropuertos, 125 rutas internas, 49 salen al exterior, 50 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Argentina: 36 de 36 aeropuertos&quot;]
+        V_EZE[&quot;EZE&lt;br/&gt;Buenos Aires&quot;]
+        V_AEP[&quot;AEP&lt;br/&gt;Buenos Aires&quot;]
+        V_MDQ[&quot;MDQ&lt;br/&gt;Mar Del Plata&quot;]
+        V_PRA[&quot;PRA&lt;br/&gt;Parana&quot;]
+        V_ROS[&quot;ROS&lt;br/&gt;Rosario&quot;]
+        V_SFN[&quot;SFN&lt;br/&gt;Santa Fe&quot;]
+        V_BHI[&quot;BHI&lt;br/&gt;Bahia Blanca&quot;]
+        V_REL[&quot;REL&lt;br/&gt;Trelew&quot;]
+        V_BRC[&quot;BRC&lt;br/&gt;San Carlos De Bariloche&quot;]
+        V_CRD[&quot;CRD&lt;br/&gt;Comodoro Rivadavia&quot;]
+        V_EQS[&quot;EQS&lt;br/&gt;Esquel&quot;]
+        V_COR[&quot;COR&lt;br/&gt;Cordoba&quot;]
+        V_MDZ[&quot;MDZ&lt;br/&gt;Mendoza&quot;]
+        V_NQN[&quot;NQN&lt;br/&gt;Neuquen&quot;]
+        V_RGL[&quot;RGL&lt;br/&gt;Rio Gallegos&quot;]
+        V_RGA[&quot;RGA&lt;br/&gt;Rio Grande&quot;]
+        V_USH[&quot;USH&lt;br/&gt;Ushuaia&quot;]
+        V_AFA[&quot;AFA&lt;br/&gt;San Rafael&quot;]
+        V_CPC[&quot;CPC&lt;br/&gt;San Martin Des Andes&quot;]
+        V_CTC[&quot;CTC&lt;br/&gt;Catamarca&quot;]
+        V_FMA[&quot;FMA&lt;br/&gt;Formosa&quot;]
+        V_FTE[&quot;FTE&lt;br/&gt;El Calafate&quot;]
+        V_IGR[&quot;IGR&lt;br/&gt;Iguazu Falls&quot;]
+        V_IRJ[&quot;IRJ&lt;br/&gt;La Rioja&quot;]
+        V_JUJ[&quot;JUJ&lt;br/&gt;Jujuy&quot;]
+        V_LUQ[&quot;LUQ&lt;br/&gt;San Luis&quot;]
+        V_PSS[&quot;PSS&lt;br/&gt;Posadas&quot;]
+        V_RES[&quot;RES&lt;br/&gt;Resistencia&quot;]
+        V_RHD[&quot;RHD&lt;br/&gt;Rio Hondo&quot;]
+        V_RSA[&quot;RSA&lt;br/&gt;Santa Rosa&quot;]
+        V_SDE[&quot;SDE&lt;br/&gt;Santiago Del Estero&quot;]
+        V_SLA[&quot;SLA&lt;br/&gt;Salta&quot;]
+        V_TUC[&quot;TUC&lt;br/&gt;Tucuman&quot;]
+        V_UAQ[&quot;UAQ&lt;br/&gt;San Juan&quot;]
+        V_VDM[&quot;VDM&lt;br/&gt;Viedma&quot;]
+        V_PMY[&quot;PMY&lt;br/&gt;Puerto Madryn&quot;]
+        V_EZE &lt;--&gt; V_BRC
+        V_EZE &lt;--&gt; V_COR
+        V_EZE &lt;--&gt; V_FTE
+        V_EZE &lt;--&gt; V_IGR
+        V_EZE &lt;--&gt; V_MDZ
+        V_EZE &lt;--&gt; V_REL
+        V_EZE &lt;--&gt; V_ROS
+        V_EZE &lt;--&gt; V_USH
+        V_AEP &lt;--&gt; V_MDQ
+        V_AEP &lt;--&gt; V_PRA
+        V_AEP &lt;--&gt; V_ROS
+        V_AEP &lt;--&gt; V_SFN
+        V_AEP &lt;--&gt; V_AFA
+        V_AEP &lt;--&gt; V_BHI
+        V_AEP &lt;--&gt; V_BRC
+        V_AEP &lt;--&gt; V_COR
+        V_AEP &lt;--&gt; V_CPC
+        V_AEP &lt;--&gt; V_CRD
+        V_AEP &lt;--&gt; V_CTC
+        V_AEP &lt;--&gt; V_EQS
+        V_AEP &lt;--&gt; V_FMA
+        V_AEP &lt;--&gt; V_FTE
+        V_AEP &lt;--&gt; V_IGR
+        V_AEP &lt;--&gt; V_IRJ
+        V_AEP &lt;--&gt; V_JUJ
+        V_AEP &lt;--&gt; V_LUQ
+        V_AEP &lt;--&gt; V_MDZ
+        V_AEP &lt;--&gt; V_NQN
+        V_AEP &lt;--&gt; V_PSS
+        V_AEP &lt;--&gt; V_REL
+        V_AEP &lt;--&gt; V_RES
+        V_AEP &lt;--&gt; V_RGA
+        V_AEP &lt;--&gt; V_RGL
+        V_AEP &lt;--&gt; V_RHD
+        V_AEP --&gt; V_RSA
+        V_AEP &lt;--&gt; V_SDE
+        V_AEP &lt;--&gt; V_SLA
+        V_AEP &lt;--&gt; V_TUC
+        V_AEP &lt;--&gt; V_UAQ
+        V_AEP &lt;--&gt; V_USH
+        V_AEP --&gt; V_VDM
+        V_AEP &lt;--&gt; V_PMY
+        V_MDQ &lt;--&gt; V_BHI
+        V_ROS &lt;--&gt; V_COR
+        V_BHI &lt;--&gt; V_REL
+        V_REL --&gt; V_BRC
+        V_REL &lt;--&gt; V_CRD
+        V_REL --&gt; V_EQS
+        V_BRC --&gt; V_CRD
+        V_BRC &lt;--&gt; V_EQS
+        V_BRC &lt;--&gt; V_COR
+        V_BRC &lt;--&gt; V_MDZ
+        V_CRD &lt;--&gt; V_NQN
+        V_CRD &lt;--&gt; V_RGL
+        V_EQS --&gt; V_CRD
+        V_COR &lt;--&gt; V_MDZ
+        V_COR &lt;--&gt; V_JUJ
+        V_COR &lt;--&gt; V_SLA
+        V_MDZ &lt;--&gt; V_NQN
+        V_MDZ &lt;--&gt; V_SLA
+        V_RGL &lt;--&gt; V_RGA
+        V_RGL --&gt; V_USH
+        V_USH &lt;--&gt; V_FTE
+        V_AFA --&gt; V_LUQ
+        V_IGR &lt;--&gt; V_SLA
+        V_RSA --&gt; V_AFA
+        V_UAQ --&gt; V_MDZ
+        V_VDM --&gt; V_REL
+    end
+    EXT0[&quot;United States&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Uruguay&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Uruguay.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Paraguay&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Paraguay.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;14 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Bolivia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Bolivia.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT19
+    click EXT19 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Falkland Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Falkland_Islands.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

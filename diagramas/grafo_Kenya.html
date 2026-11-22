@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Kenya</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Kenya</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Kenya: 16 aeropuertos, 38 rutas internas, 69 salen al exterior, 67 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Kenya: 16 de 16 aeropuertos&quot;]
+        V_NBO[&quot;NBO&lt;br/&gt;Nairobi&quot;]
+        V_EDL[&quot;EDL&lt;br/&gt;Eldoret&quot;]
+        V_LOK[&quot;LOK&lt;br/&gt;Lodwar&quot;]
+        V_KIS[&quot;KIS&lt;br/&gt;Kisumu&quot;]
+        V_LAU[&quot;LAU&lt;br/&gt;Lamu&quot;]
+        V_MYD[&quot;MYD&lt;br/&gt;Malindi&quot;]
+        V_MBA[&quot;MBA&lt;br/&gt;Mombasa&quot;]
+        V_ASV[&quot;ASV&lt;br/&gt;Amboseli National Park&quot;]
+        V_WIL[&quot;WIL&lt;br/&gt;Nairobi&quot;]
+        V_WJR[&quot;WJR&lt;br/&gt;Wajir&quot;]
+        V_KTL[&quot;KTL&lt;br/&gt;Kitale&quot;]
+        V_LKG[&quot;LKG&lt;br/&gt;Lokichoggio&quot;]
+        V_MRE[&quot;MRE&lt;br/&gt;Masai Mara&quot;]
+        V_UKA[&quot;UKA&lt;br/&gt;Ukunda&quot;]
+        V_NYK[&quot;NYK&lt;br/&gt;Nanyuki&quot;]
+        V_UAS[&quot;UAS&lt;br/&gt;Samburu South&quot;]
+        V_NBO &lt;--&gt; V_EDL
+        V_NBO &lt;--&gt; V_KIS
+        V_NBO --&gt; V_LOK
+        V_NBO &lt;--&gt; V_MBA
+        V_NBO &lt;--&gt; V_MYD
+        V_NBO &lt;--&gt; V_WJR
+        V_EDL &lt;--&gt; V_LOK
+        V_KIS --&gt; V_EDL
+        V_LAU &lt;--&gt; V_MYD
+        V_LAU &lt;--&gt; V_WIL
+        V_MYD --&gt; V_WIL
+        V_ASV &lt;--&gt; V_WIL
+        V_WIL &lt;--&gt; V_KTL
+        V_WIL &lt;--&gt; V_LKG
+        V_WIL &lt;--&gt; V_MRE
+        V_WIL &lt;--&gt; V_UKA
+        V_WIL &lt;--&gt; V_WJR
+        V_WIL &lt;--&gt; V_NYK
+        V_WIL &lt;--&gt; V_UAS
+        V_NYK &lt;--&gt; V_UAS
+        V_NYK --&gt; V_MRE
+    end
+    EXT0[&quot;Somalia&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Somalia.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;South Sudan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_South_Sudan.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;India&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Belgium&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Belgium.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Mayotte&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Mayotte.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Zimbabwe&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Zimbabwe.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Rwanda&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Rwanda.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Malawi&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Malawi.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Zambia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_Zambia.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;China&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Yemen&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Yemen.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Burundi&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Burundi.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Congo (Brazzaville)&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT19
+    click EXT19 &quot;grafo_Congo_Brazzaville.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Congo (Kinshasa)&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_Congo_Kinshasa.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Djibouti&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Djibouti.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Cote d'Ivoire&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT22
+    click EXT22 &quot;grafo_Cote_d_Ivoire.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Ghana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Ghana.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Mozambique&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Mozambique.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Mali&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Mali.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Tanzania&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_Tanzania.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Cameroon&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_Cameroon.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Uganda&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT28
+    click EXT28 &quot;grafo_Uganda.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Botswana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Botswana.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT30
+    click EXT30 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Sudan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT32
+    click EXT32 &quot;grafo_Sudan.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Angola&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT33
+    click EXT33 &quot;grafo_Angola.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Nigeria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT34
+    click EXT34 &quot;grafo_Nigeria.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Mauritius&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT35
+    click EXT35 &quot;grafo_Mauritius.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Seychelles&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT36
+    click EXT36 &quot;grafo_Seychelles.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Madagascar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT37
+    click EXT37 &quot;grafo_Madagascar.html&quot; &quot;Abrir país&quot;
+    EXT38[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT38
+    click EXT38 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT39[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT39
+    click EXT39 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT40[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT40
+    click EXT40 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT41[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT41
+    click EXT41 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT42[&quot;Eritrea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT42
+    click EXT42 &quot;grafo_Eritrea.html&quot; &quot;Abrir país&quot;
+    EXT43[&quot;Comoros&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT43
+    click EXT43 &quot;grafo_Comoros.html&quot; &quot;Abrir país&quot;
+    EXT44[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT44
+    click EXT44 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

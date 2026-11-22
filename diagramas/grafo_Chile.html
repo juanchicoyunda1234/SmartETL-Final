@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Chile</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Chile</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Chile: 16 aeropuertos, 56 rutas internas, 33 salen al exterior, 32 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Chile: 16 de 16 aeropuertos&quot;]
+        V_ANF[&quot;ANF&lt;br/&gt;Antofagasta&quot;]
+        V_IQQ[&quot;IQQ&lt;br/&gt;Iquique&quot;]
+        V_CCP[&quot;CCP&lt;br/&gt;Concepcion&quot;]
+        V_SCL[&quot;SCL&lt;br/&gt;Santiago&quot;]
+        V_PMC[&quot;PMC&lt;br/&gt;Puerto Montt&quot;]
+        V_PUQ[&quot;PUQ&lt;br/&gt;Punta Arenas&quot;]
+        V_CJC[&quot;CJC&lt;br/&gt;Calama&quot;]
+        V_LSC[&quot;LSC&lt;br/&gt;La Serena&quot;]
+        V_ARI[&quot;ARI&lt;br/&gt;Arica&quot;]
+        V_BBA[&quot;BBA&lt;br/&gt;Balmaceda&quot;]
+        V_ZAL[&quot;ZAL&lt;br/&gt;Valdivia&quot;]
+        V_PZS[&quot;PZS&lt;br/&gt;Temuco&quot;]
+        V_SCHA[&quot;SCHA&lt;br/&gt;Copiapo&quot;]
+        V_IPC[&quot;IPC&lt;br/&gt;Easter Island&quot;]
+        V_MHC[&quot;MHC&lt;br/&gt;Castro&quot;]
+        V_ZOS[&quot;ZOS&lt;br/&gt;Osorno&quot;]
+        V_ANF &lt;--&gt; V_IQQ
+        V_ANF &lt;--&gt; V_SCL
+        V_ANF &lt;--&gt; V_CJC
+        V_ANF &lt;--&gt; V_LSC
+        V_IQQ &lt;--&gt; V_SCL
+        V_IQQ &lt;--&gt; V_ARI
+        V_CCP &lt;--&gt; V_SCL
+        V_CCP &lt;--&gt; V_PMC
+        V_CCP &lt;--&gt; V_ZAL
+        V_CCP &lt;--&gt; V_PZS
+        V_SCL &lt;--&gt; V_PMC
+        V_SCL &lt;--&gt; V_CJC
+        V_SCL &lt;--&gt; V_SCHA
+        V_SCL &lt;--&gt; V_LSC
+        V_SCL &lt;--&gt; V_PZS
+        V_SCL &lt;--&gt; V_ARI
+        V_SCL &lt;--&gt; V_BBA
+        V_SCL &lt;--&gt; V_IPC
+        V_SCL &lt;--&gt; V_PUQ
+        V_SCL --&gt; V_ZOS
+        V_PMC &lt;--&gt; V_PUQ
+        V_PMC &lt;--&gt; V_BBA
+        V_PMC &lt;--&gt; V_MHC
+        V_PUQ &lt;--&gt; V_BBA
+        V_CJC &lt;--&gt; V_SCHA
+        V_CJC &lt;--&gt; V_LSC
+        V_LSC &lt;--&gt; V_SCHA
+        V_ARI --&gt; V_ANF
+        V_ZAL --&gt; V_SCL
+        V_ZOS --&gt; V_ZAL
+    end
+    EXT0[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Bolivia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Bolivia.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Uruguay&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Uruguay.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;United States&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT12
+    click EXT12 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Paraguay&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Paraguay.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;French Polynesia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_French_Polynesia.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

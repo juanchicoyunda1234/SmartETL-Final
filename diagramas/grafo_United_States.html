@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de United States</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de United States</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>United States: 550 aeropuertos, 5452 rutas internas, 1078 salen al exterior, 1072 llegan del exterior. Se dibuja hasta el nivel 1 desde ATL</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;United States: 154 de 550 aeropuertos (árbol BFS desde ATL hasta nivel 1)&quot;]
+        V_ATL[&quot;ATL&lt;br/&gt;Atlanta&quot;]
+        V_LWB[&quot;LWB&lt;br/&gt;Lewisburg&quot;]
+        V_MCN[&quot;MCN&lt;br/&gt;Macon&quot;]
+        V_MEI[&quot;MEI&lt;br/&gt;Meridian&quot;]
+        V_MSL[&quot;MSL&lt;br/&gt;Muscle Shoals&quot;]
+        V_PIB[&quot;PIB&lt;br/&gt;Hattiesburg/Laurel&quot;]
+        V_TUP[&quot;TUP&lt;br/&gt;Tupelo&quot;]
+        V_AZO[&quot;AZO&lt;br/&gt;Kalamazoo&quot;]
+        V_CHA[&quot;CHA&lt;br/&gt;Chattanooga&quot;]
+        V_CID[&quot;CID&lt;br/&gt;Cedar Rapids&quot;]
+        V_CRW[&quot;CRW&lt;br/&gt;Charleston&quot;]
+        V_CVG[&quot;CVG&lt;br/&gt;Cincinnati&quot;]
+        V_EVV[&quot;EVV&lt;br/&gt;Evansville&quot;]
+        V_FWA[&quot;FWA&lt;br/&gt;Fort Wayne&quot;]
+        V_GSO[&quot;GSO&lt;br/&gt;Greensboro&quot;]
+        V_GSP[&quot;GSP&lt;br/&gt;Greenville&quot;]
+        V_LAN[&quot;LAN&lt;br/&gt;Lansing&quot;]
+        V_LEX[&quot;LEX&lt;br/&gt;Lexington KY&quot;]
+        V_MBS[&quot;MBS&lt;br/&gt;Saginaw&quot;]
+        V_MSP[&quot;MSP&lt;br/&gt;Minneapolis&quot;]
+        V_ROA[&quot;ROA&lt;br/&gt;Roanoke VA&quot;]
+        V_SYR[&quot;SYR&lt;br/&gt;Syracuse&quot;]
+        V_TYS[&quot;TYS&lt;br/&gt;Knoxville&quot;]
+        V_XNA[&quot;XNA&lt;br/&gt;Bentonville&quot;]
+        V_CLT[&quot;CLT&lt;br/&gt;Charlotte&quot;]
+        V_DFW[&quot;DFW&lt;br/&gt;Dallas-Fort Worth&quot;]
+        V_MIA[&quot;MIA&lt;br/&gt;Miami&quot;]
+        V_ORD[&quot;ORD&lt;br/&gt;Chicago&quot;]
+        V_PHL[&quot;PHL&lt;br/&gt;Philadelphia&quot;]
+        V_PHX[&quot;PHX&lt;br/&gt;Phoenix&quot;]
+        V_DEN[&quot;DEN&lt;br/&gt;Denver&quot;]
+        V_ABE[&quot;ABE&lt;br/&gt;Allentown&quot;]
+        V_ABQ[&quot;ABQ&lt;br/&gt;Albuquerque&quot;]
+        V_ABY[&quot;ABY&lt;br/&gt;Albany&quot;]
+        V_AEX[&quot;AEX&lt;br/&gt;Alexandria&quot;]
+        V_AGS[&quot;AGS&lt;br/&gt;Bush Field&quot;]
+        V_ALB[&quot;ALB&lt;br/&gt;Albany&quot;]
+        V_ATW[&quot;ATW&lt;br/&gt;Appleton&quot;]
+        V_AUS[&quot;AUS&lt;br/&gt;Austin&quot;]
+        V_AVL[&quot;AVL&lt;br/&gt;Asheville&quot;]
+        V_AVP[&quot;AVP&lt;br/&gt;Scranton&quot;]
+        V_BDL[&quot;BDL&lt;br/&gt;Windsor Locks&quot;]
+        V_BHM[&quot;BHM&lt;br/&gt;Birmingham&quot;]
+        V_BMI[&quot;BMI&lt;br/&gt;Bloomington&quot;]
+        V_BNA[&quot;BNA&lt;br/&gt;Nashville&quot;]
+        V_BOS[&quot;BOS&lt;br/&gt;Boston&quot;]
+        V_BQK[&quot;BQK&lt;br/&gt;Brunswick&quot;]
+        V_BTR[&quot;BTR&lt;br/&gt;Baton Rouge&quot;]
+        V_BTV[&quot;BTV&lt;br/&gt;Burlington&quot;]
+        V_BUF[&quot;BUF&lt;br/&gt;Buffalo&quot;]
+        V_BWI[&quot;BWI&lt;br/&gt;Baltimore&quot;]
+        V_CAE[&quot;CAE&lt;br/&gt;Columbia&quot;]
+        V_CAK[&quot;CAK&lt;br/&gt;Akron&quot;]
+        V_CHO[&quot;CHO&lt;br/&gt;Charlottesville VA&quot;]
+        V_CHS[&quot;CHS&lt;br/&gt;Charleston&quot;]
+        V_CLE[&quot;CLE&lt;br/&gt;Cleveland&quot;]
+        V_CMH[&quot;CMH&lt;br/&gt;Columbus&quot;]
+        V_COS[&quot;COS&lt;br/&gt;Colorado Springs&quot;]
+        V_CSG[&quot;CSG&lt;br/&gt;Columbus&quot;]
+        V_DAB[&quot;DAB&lt;br/&gt;Daytona Beach&quot;]
+        V_DAL[&quot;DAL&lt;br/&gt;Dallas&quot;]
+        V_DAY[&quot;DAY&lt;br/&gt;Dayton&quot;]
+        V_DCA[&quot;DCA&lt;br/&gt;Washington&quot;]
+        V_DHN[&quot;DHN&lt;br/&gt;Dothan&quot;]
+        V_DSM[&quot;DSM&lt;br/&gt;Des Moines&quot;]
+        V_DTW[&quot;DTW&lt;br/&gt;Detroit&quot;]
+        V_ECP[&quot;ECP&lt;br/&gt;Panama City&quot;]
+        V_ELP[&quot;ELP&lt;br/&gt;El Paso&quot;]
+        V_EWN[&quot;EWN&lt;br/&gt;New Bern&quot;]
+        V_EWR[&quot;EWR&lt;br/&gt;Newark&quot;]
+        V_EYW[&quot;EYW&lt;br/&gt;Key West&quot;]
+        V_FAY[&quot;FAY&lt;br/&gt;Fayetteville&quot;]
+        V_FLL[&quot;FLL&lt;br/&gt;Fort Lauderdale&quot;]
+        V_FNT[&quot;FNT&lt;br/&gt;Flint&quot;]
+        V_FSM[&quot;FSM&lt;br/&gt;Fort Smith&quot;]
+        V_GNV[&quot;GNV&lt;br/&gt;Gainesville&quot;]
+        V_GPT[&quot;GPT&lt;br/&gt;Gulfport&quot;]
+        V_GRB[&quot;GRB&lt;br/&gt;Green Bay&quot;]
+        V_GRK[&quot;GRK&lt;br/&gt;Killeen&quot;]
+        V_GRR[&quot;GRR&lt;br/&gt;Grand Rapids&quot;]
+        V_GTR[&quot;GTR&lt;br/&gt;Columbus Mississippi&quot;]
+        V_HPN[&quot;HPN&lt;br/&gt;White Plains&quot;]
+        V_HSV[&quot;HSV&lt;br/&gt;Huntsville&quot;]
+        V_IAD[&quot;IAD&lt;br/&gt;Washington&quot;]
+        V_IAH[&quot;IAH&lt;br/&gt;Houston&quot;]
+        V_ICT[&quot;ICT&lt;br/&gt;Wichita&quot;]
+        V_ILM[&quot;ILM&lt;br/&gt;Wilmington&quot;]
+        V_IND[&quot;IND&lt;br/&gt;Indianapolis&quot;]
+        V_JAN[&quot;JAN&lt;br/&gt;Jackson&quot;]
+        V_JAX[&quot;JAX&lt;br/&gt;Jacksonville&quot;]
+        V_JFK[&quot;JFK&lt;br/&gt;New York&quot;]
+        V_LAS[&quot;LAS&lt;br/&gt;Las Vegas&quot;]
+        V_LAX[&quot;LAX&lt;br/&gt;Los Angeles&quot;]
+        V_LFT[&quot;LFT&lt;br/&gt;Lafayette&quot;]
+        V_LGA[&quot;LGA&lt;br/&gt;New York&quot;]
+        V_LIT[&quot;LIT&lt;br/&gt;Little Rock&quot;]
+        V_MCI[&quot;MCI&lt;br/&gt;Kansas City&quot;]
+        V_MCO[&quot;MCO&lt;br/&gt;Orlando&quot;]
+        V_MDT[&quot;MDT&lt;br/&gt;Harrisburg&quot;]
+        V_MDW[&quot;MDW&lt;br/&gt;Chicago&quot;]
+        V_MEM[&quot;MEM&lt;br/&gt;Memphis&quot;]
+        V_MGM[&quot;MGM&lt;br/&gt;MONTGOMERY&quot;]
+        V_MHT[&quot;MHT&lt;br/&gt;Manchester NH&quot;]
+        V_MKE[&quot;MKE&lt;br/&gt;Milwaukee&quot;]
+        V_MLB[&quot;MLB&lt;br/&gt;Melbourne&quot;]
+        V_MLI[&quot;MLI&lt;br/&gt;Moline&quot;]
+        V_MLU[&quot;MLU&lt;br/&gt;Monroe&quot;]
+        V_MOB[&quot;MOB&lt;br/&gt;Mobile&quot;]
+        V_MSN[&quot;MSN&lt;br/&gt;Madison&quot;]
+        V_MSY[&quot;MSY&lt;br/&gt;New Orleans&quot;]
+        V_MYR[&quot;MYR&lt;br/&gt;Myrtle Beach&quot;]
+        V_OAJ[&quot;OAJ&lt;br/&gt;Jacksonville NC&quot;]
+        V_OKC[&quot;OKC&lt;br/&gt;Oklahoma City&quot;]
+        V_OMA[&quot;OMA&lt;br/&gt;Omaha&quot;]
+        V_ORF[&quot;ORF&lt;br/&gt;Norfolk&quot;]
+        V_PBI[&quot;PBI&lt;br/&gt;West Palm Beach&quot;]
+        V_PDX[&quot;PDX&lt;br/&gt;Portland&quot;]
+        V_PHF[&quot;PHF&lt;br/&gt;Newport News&quot;]
+        V_PIA[&quot;PIA&lt;br/&gt;Peoria&quot;]
+        V_PIT[&quot;PIT&lt;br/&gt;Pittsburgh&quot;]
+        V_PNS[&quot;PNS&lt;br/&gt;Pensacola&quot;]
+        V_PVD[&quot;PVD&lt;br/&gt;Providence&quot;]
+        V_PWM[&quot;PWM&lt;br/&gt;Portland&quot;]
+        V_RDU[&quot;RDU&lt;br/&gt;Raleigh-durham&quot;]
+        V_RIC[&quot;RIC&lt;br/&gt;Richmond&quot;]
+        V_ROC[&quot;ROC&lt;br/&gt;Rochester&quot;]
+        V_RSW[&quot;RSW&lt;br/&gt;Fort Myers&quot;]
+        V_SAN[&quot;SAN&lt;br/&gt;San Diego&quot;]
+        V_SAT[&quot;SAT&lt;br/&gt;San Antonio&quot;]
+        V_SAV[&quot;SAV&lt;br/&gt;Savannah&quot;]
+        V_SBN[&quot;SBN&lt;br/&gt;South Bend&quot;]
+        V_SDF[&quot;SDF&lt;br/&gt;Louisville&quot;]
+        V_SEA[&quot;SEA&lt;br/&gt;Seattle&quot;]
+        V_SFO[&quot;SFO&lt;br/&gt;San Francisco&quot;]
+        V_SGF[&quot;SGF&lt;br/&gt;Springfield&quot;]
+        V_SHV[&quot;SHV&lt;br/&gt;Shreveport&quot;]
+        V_SLC[&quot;SLC&lt;br/&gt;Salt Lake City&quot;]
+        V_SMF[&quot;SMF&lt;br/&gt;Sacramento&quot;]
+        V_SNA[&quot;SNA&lt;br/&gt;Santa Ana&quot;]
+        V_SRQ[&quot;SRQ&lt;br/&gt;Sarasota&quot;]
+        V_STL[&quot;STL&lt;br/&gt;St. Louis&quot;]
+        V_TLH[&quot;TLH&lt;br/&gt;Tallahassee&quot;]
+        V_TPA[&quot;TPA&lt;br/&gt;Tampa&quot;]
+        V_TRI[&quot;TRI&lt;br/&gt;BRISTOL&quot;]
+        V_TUL[&quot;TUL&lt;br/&gt;Tulsa&quot;]
+        V_TUS[&quot;TUS&lt;br/&gt;Tucson&quot;]
+        V_VLD[&quot;VLD&lt;br/&gt;Valdosta&quot;]
+        V_VPS[&quot;VPS&lt;br/&gt;Valparaiso&quot;]
+        V_HOU[&quot;HOU&lt;br/&gt;Houston&quot;]
+        V_FAR[&quot;FAR&lt;br/&gt;Fargo&quot;]
+        V_FSD[&quot;FSD&lt;br/&gt;Sioux Falls&quot;]
+        V_HNL[&quot;HNL&lt;br/&gt;Honolulu&quot;]
+        V_SJC[&quot;SJC&lt;br/&gt;San Jose&quot;]
+        V_TTN[&quot;TTN&lt;br/&gt;Trenton&quot;]
+        V_ATL --&gt; V_LWB
+        V_ATL --&gt; V_MCN
+        V_ATL --&gt; V_MEI
+        V_ATL --&gt; V_MSL
+        V_ATL --&gt; V_PIB
+        V_ATL --&gt; V_TUP
+        V_ATL --&gt; V_AZO
+        V_ATL --&gt; V_CHA
+        V_ATL --&gt; V_CID
+        V_ATL --&gt; V_CRW
+        V_ATL --&gt; V_CVG
+        V_ATL --&gt; V_EVV
+        V_ATL --&gt; V_FWA
+        V_ATL --&gt; V_GSO
+        V_ATL --&gt; V_GSP
+        V_ATL --&gt; V_LAN
+        V_ATL --&gt; V_LEX
+        V_ATL --&gt; V_MBS
+        V_ATL --&gt; V_MSP
+        V_ATL --&gt; V_ROA
+        V_ATL --&gt; V_SYR
+        V_ATL --&gt; V_TYS
+        V_ATL --&gt; V_XNA
+        V_ATL --&gt; V_CLT
+        V_ATL --&gt; V_DFW
+        V_ATL --&gt; V_MIA
+        V_ATL --&gt; V_ORD
+        V_ATL --&gt; V_PHL
+        V_ATL --&gt; V_PHX
+        V_ATL --&gt; V_DEN
+        V_ATL --&gt; V_ABE
+        V_ATL --&gt; V_ABQ
+        V_ATL --&gt; V_ABY
+        V_ATL --&gt; V_AEX
+        V_ATL --&gt; V_AGS
+        V_ATL --&gt; V_ALB
+        V_ATL --&gt; V_ATW
+        V_ATL --&gt; V_AUS
+        V_ATL --&gt; V_AVL
+        V_ATL --&gt; V_AVP
+        V_ATL --&gt; V_BDL
+        V_ATL --&gt; V_BHM
+        V_ATL --&gt; V_BMI
+        V_ATL --&gt; V_BNA
+        V_ATL --&gt; V_BOS
+        V_ATL --&gt; V_BQK
+        V_ATL --&gt; V_BTR
+        V_ATL --&gt; V_BTV
+        V_ATL --&gt; V_BUF
+        V_ATL --&gt; V_BWI
+        V_ATL --&gt; V_CAE
+        V_ATL --&gt; V_CAK
+        V_ATL --&gt; V_CHO
+        V_ATL --&gt; V_CHS
+        V_ATL --&gt; V_CLE
+        V_ATL --&gt; V_CMH
+        V_ATL --&gt; V_COS
+        V_ATL --&gt; V_CSG
+        V_ATL --&gt; V_DAB
+        V_ATL --&gt; V_DAL
+        V_ATL --&gt; V_DAY
+        V_ATL --&gt; V_DCA
+        V_ATL --&gt; V_DHN
+        V_ATL --&gt; V_DSM
+        V_ATL --&gt; V_DTW
+        V_ATL --&gt; V_ECP
+        V_ATL --&gt; V_ELP
+        V_ATL --&gt; V_EWN
+        V_ATL --&gt; V_EWR
+        V_ATL --&gt; V_EYW
+        V_ATL --&gt; V_FAY
+        V_ATL --&gt; V_FLL
+        V_ATL --&gt; V_FNT
+        V_ATL --&gt; V_FSM
+        V_ATL --&gt; V_GNV
+        V_ATL --&gt; V_GPT
+        V_ATL --&gt; V_GRB
+        V_ATL --&gt; V_GRK
+        V_ATL --&gt; V_GRR
+        V_ATL --&gt; V_GTR
+        V_ATL --&gt; V_HPN
+        V_ATL --&gt; V_HSV
+        V_ATL --&gt; V_IAD
+        V_ATL --&gt; V_IAH
+        V_ATL --&gt; V_ICT
+        V_ATL --&gt; V_ILM
+        V_ATL --&gt; V_IND
+        V_ATL --&gt; V_JAN
+        V_ATL --&gt; V_JAX
+        V_ATL --&gt; V_JFK
+        V_ATL --&gt; V_LAS
+        V_ATL --&gt; V_LAX
+        V_ATL --&gt; V_LFT
+        V_ATL --&gt; V_LGA
+        V_ATL --&gt; V_LIT
+        V_ATL --&gt; V_MCI
+        V_ATL --&gt; V_MCO
+        V_ATL --&gt; V_MDT
+        V_ATL --&gt; V_MDW
+        V_ATL --&gt; V_MEM
+        V_ATL --&gt; V_MGM
+        V_ATL --&gt; V_MHT
+        V_ATL --&gt; V_MKE
+        V_ATL --&gt; V_MLB
+        V_ATL --&gt; V_MLI
+        V_ATL --&gt; V_MLU
+        V_ATL --&gt; V_MOB
+        V_ATL --&gt; V_MSN
+        V_ATL --&gt; V_MSY
+        V_ATL --&gt; V_MYR
+        V_ATL --&gt; V_OAJ
+        V_ATL --&gt; V_OKC
+        V_ATL --&gt; V_OMA
+        V_ATL --&gt; V_ORF
+        V_ATL --&gt; V_PBI
+        V_ATL --&gt; V_PDX
+        V_ATL --&gt; V_PHF
+        V_ATL --&gt; V_PIA
+        V_ATL --&gt; V_PIT
+        V_ATL --&gt; V_PNS
+        V_ATL --&gt; V_PVD
+        V_ATL --&gt; V_PWM
+        V_ATL --&gt; V_RDU
+        V_ATL --&gt; V_RIC
+        V_ATL --&gt; V_ROC
+        V_ATL --&gt; V_RSW
+        V_ATL --&gt; V_SAN
+        V_ATL --&gt; V_SAT
+        V_ATL --&gt; V_SAV
+        V_ATL --&gt; V_SBN
+        V_ATL --&gt; V_SDF
+        V_ATL --&gt; V_SEA
+        V_ATL --&gt; V_SFO
+        V_ATL --&gt; V_SGF
+        V_ATL --&gt; V_SHV
+        V_ATL --&gt; V_SLC
+        V_ATL --&gt; V_SMF
+        V_ATL --&gt; V_SNA
+        V_ATL --&gt; V_SRQ
+        V_ATL --&gt; V_STL
+        V_ATL --&gt; V_TLH
+        V_ATL --&gt; V_TPA
+        V_ATL --&gt; V_TRI
+        V_ATL --&gt; V_TUL
+        V_ATL --&gt; V_TUS
+        V_ATL --&gt; V_VLD
+        V_ATL --&gt; V_VPS
+        V_ATL --&gt; V_HOU
+        V_ATL --&gt; V_FAR
+        V_ATL --&gt; V_FSD
+        V_ATL --&gt; V_HNL
+        V_ATL --&gt; V_SJC
+        V_ATL --&gt; V_TTN
+    end
+    EXT0[&quot;Jordan&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Jordan.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;France&quot;]
+    PAIS --&gt;|&quot;22 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;164 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Ireland&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Ireland.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;43 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;41 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Jamaica&quot;]
+    PAIS --&gt;|&quot;22 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Jamaica.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;29 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;China&quot;]
+    PAIS --&gt;|&quot;19 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Puerto Rico&quot;]
+    PAIS --&gt;|&quot;26 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Puerto_Rico.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;162 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;India&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;El Salvador&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_El_Salvador.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;14 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;16 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;37 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Cayman Islands&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Cayman_Islands.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Poland&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_Poland.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Austria&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT25
+    click EXT25 &quot;grafo_Austria.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Sweden&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_Sweden.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Denmark&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_Denmark.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Belgium&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Belgium.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT29
+    click EXT29 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;26 rutas&quot;| EXT30
+    click EXT30 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Bahamas&quot;]
+    PAIS --&gt;|&quot;40 rutas&quot;| EXT31
+    click EXT31 &quot;grafo_Bahamas.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Costa Rica&quot;]
+    PAIS --&gt;|&quot;22 rutas&quot;| EXT32
+    click EXT32 &quot;grafo_Costa_Rica.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Virgin Islands&quot;]
+    PAIS --&gt;|&quot;11 rutas&quot;| EXT33
+    click EXT33 &quot;grafo_Virgin_Islands.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Netherlands Antilles&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT34
+    click EXT34 &quot;grafo_Netherlands_Antilles.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Aruba&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT35
+    click EXT35 &quot;grafo_Aruba.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Bermuda&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT36
+    click EXT36 &quot;grafo_Bermuda.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;18 rutas&quot;| EXT37
+    click EXT37 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT38[&quot;Belize&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT38
+    click EXT38 &quot;grafo_Belize.html&quot; &quot;Abrir país&quot;
+    EXT39[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT39
+    click EXT39 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT40[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT40
+    click EXT40 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT41[&quot;Guatemala&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT41
+    click EXT41 &quot;grafo_Guatemala.html&quot; &quot;Abrir país&quot;
+    EXT42[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT42
+    click EXT42 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT43[&quot;Peru&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT43
+    click EXT43 &quot;grafo_Peru.html&quot; &quot;Abrir país&quot;
+    EXT44[&quot;Nigeria&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT44
+    click EXT44 &quot;grafo_Nigeria.html&quot; &quot;Abrir país&quot;
+    EXT45[&quot;Nicaragua&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT45
+    click EXT45 &quot;grafo_Nicaragua.html&quot; &quot;Abrir país&quot;
+    EXT46[&quot;Haiti&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT46
+    click EXT46 &quot;grafo_Haiti.html&quot; &quot;Abrir país&quot;
+    EXT47[&quot;Turks and Caicos Islands&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT47
+    click EXT47 &quot;grafo_Turks_and_Caicos_Islands.html&quot; &quot;Abrir país&quot;
+    EXT48[&quot;Honduras&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT48
+    click EXT48 &quot;grafo_Honduras.html&quot; &quot;Abrir país&quot;
+    EXT49[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT49
+    click EXT49 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT50[&quot;Ecuador&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT50
+    click EXT50 &quot;grafo_Ecuador.html&quot; &quot;Abrir país&quot;
+    EXT51[&quot;Saint Lucia&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT51
+    click EXT51 &quot;grafo_Saint_Lucia.html&quot; &quot;Abrir país&quot;
+    EXT52[&quot;Trinidad and Tobago&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT52
+    click EXT52 &quot;grafo_Trinidad_and_Tobago.html&quot; &quot;Abrir país&quot;
+    EXT53[&quot;Norway&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT53
+    click EXT53 &quot;grafo_Norway.html&quot; &quot;Abrir país&quot;
+    EXT54[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT54
+    click EXT54 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT55[&quot;Fiji&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT55
+    click EXT55 &quot;grafo_Fiji.html&quot; &quot;Abrir país&quot;
+    EXT56[&quot;French Polynesia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT56
+    click EXT56 &quot;grafo_French_Polynesia.html&quot; &quot;Abrir país&quot;
+    EXT57[&quot;Taiwan&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT57
+    click EXT57 &quot;grafo_Taiwan.html&quot; &quot;Abrir país&quot;
+    EXT58[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT58
+    click EXT58 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT59[&quot;Israel&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT59
+    click EXT59 &quot;grafo_Israel.html&quot; &quot;Abrir país&quot;
+    EXT60[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT60
+    click EXT60 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT61[&quot;Cook Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT61
+    click EXT61 &quot;grafo_Cook_Islands.html&quot; &quot;Abrir país&quot;
+    EXT62[&quot;Philippines&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT62
+    click EXT62 &quot;grafo_Philippines.html&quot; &quot;Abrir país&quot;
+    EXT63[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT63
+    click EXT63 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+    EXT64[&quot;Antigua and Barbuda&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT64
+    click EXT64 &quot;grafo_Antigua_and_Barbuda.html&quot; &quot;Abrir país&quot;
+    EXT65[&quot;Finland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT65
+    click EXT65 &quot;grafo_Finland.html&quot; &quot;Abrir país&quot;
+    EXT66[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT66
+    click EXT66 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT67[&quot;Barbados&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT67
+    click EXT67 &quot;grafo_Barbados.html&quot; &quot;Abrir país&quot;
+    EXT68[&quot;Guyana&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT68
+    click EXT68 &quot;grafo_Guyana.html&quot; &quot;Abrir país&quot;
+    EXT69[&quot;Grenada&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT69
+    click EXT69 &quot;grafo_Grenada.html&quot; &quot;Abrir país&quot;
+    EXT70[&quot;Ghana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT70
+    click EXT70 &quot;grafo_Ghana.html&quot; &quot;Abrir país&quot;
+    EXT71[&quot;Senegal&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT71
+    click EXT71 &quot;grafo_Senegal.html&quot; &quot;Abrir país&quot;
+    EXT72[&quot;Iceland&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT72
+    click EXT72 &quot;grafo_Iceland.html&quot; &quot;Abrir país&quot;
+    EXT73[&quot;Latvia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT73
+    click EXT73 &quot;grafo_Latvia.html&quot; &quot;Abrir país&quot;
+    EXT74[&quot;Kuwait&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT74
+    click EXT74 &quot;grafo_Kuwait.html&quot; &quot;Abrir país&quot;
+    EXT75[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT75
+    click EXT75 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT76[&quot;Pakistan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT76
+    click EXT76 &quot;grafo_Pakistan.html&quot; &quot;Abrir país&quot;
+    EXT77[&quot;Ukraine&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT77
+    click EXT77 &quot;grafo_Ukraine.html&quot; &quot;Abrir país&quot;
+    EXT78[&quot;Paraguay&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT78
+    click EXT78 &quot;grafo_Paraguay.html&quot; &quot;Abrir país&quot;
+    EXT79[&quot;Martinique&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT79
+    click EXT79 &quot;grafo_Martinique.html&quot; &quot;Abrir país&quot;
+    EXT80[&quot;Bolivia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT80
+    click EXT80 &quot;grafo_Bolivia.html&quot; &quot;Abrir país&quot;
+    EXT81[&quot;Uruguay&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT81
+    click EXT81 &quot;grafo_Uruguay.html&quot; &quot;Abrir país&quot;
+    EXT82[&quot;Guadeloupe&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT82
+    click EXT82 &quot;grafo_Guadeloupe.html&quot; &quot;Abrir país&quot;
+    EXT83[&quot;Saint Kitts and Nevis&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT83
+    click EXT83 &quot;grafo_Saint_Kitts_and_Nevis.html&quot; &quot;Abrir país&quot;
+    EXT84[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT84
+    click EXT84 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT85[&quot;Cape Verde&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT85
+    click EXT85 &quot;grafo_Cape_Verde.html&quot; &quot;Abrir país&quot;
+    EXT86[&quot;Greece&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT86
+    click EXT86 &quot;grafo_Greece.html&quot; &quot;Abrir país&quot;
+    EXT87[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT87
+    click EXT87 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT88[&quot;Samoa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT88
+    click EXT88 &quot;grafo_Samoa.html&quot; &quot;Abrir país&quot;
+    EXT89[&quot;Kiribati&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT89
+    click EXT89 &quot;grafo_Kiribati.html&quot; &quot;Abrir país&quot;
+    EXT90[&quot;American Samoa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT90
+    click EXT90 &quot;grafo_American_Samoa.html&quot; &quot;Abrir país&quot;
+    EXT91[&quot;Guam&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT91
+    click EXT91 &quot;grafo_Guam.html&quot; &quot;Abrir país&quot;
+    EXT92[&quot;Marshall Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT92
+    click EXT92 &quot;grafo_Marshall_Islands.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

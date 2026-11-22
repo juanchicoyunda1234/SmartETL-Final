@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Vanuatu</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Vanuatu</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Vanuatu: 27 aeropuertos, 80 rutas internas, 7 salen al exterior, 7 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Vanuatu: 27 de 27 aeropuertos&quot;]
+        V_VLI[&quot;VLI&lt;br/&gt;Port-vila&quot;]
+        V_AUY[&quot;AUY&lt;br/&gt;Anelghowhat&quot;]
+        V_TAH[&quot;TAH&lt;br/&gt;Tanna&quot;]
+        V_AWD[&quot;AWD&lt;br/&gt;Aniwa&quot;]
+        V_FTA[&quot;FTA&lt;br/&gt;Futuna Island&quot;]
+        V_SON[&quot;SON&lt;br/&gt;Santo&quot;]
+        V_CCV[&quot;CCV&lt;br/&gt;Craig Cove&quot;]
+        V_LNB[&quot;LNB&lt;br/&gt;Lamen Bay&quot;]
+        V_NUS[&quot;NUS&lt;br/&gt;Norsup&quot;]
+        V_ULB[&quot;ULB&lt;br/&gt;Ambryn Island&quot;]
+        V_DLY[&quot;DLY&lt;br/&gt;Dillon's Bay&quot;]
+        V_IPA[&quot;IPA&lt;br/&gt;Ipota&quot;]
+        V_EAE[&quot;EAE&lt;br/&gt;Sangafa&quot;]
+        V_LNE[&quot;LNE&lt;br/&gt;Lonorore&quot;]
+        V_LOD[&quot;LOD&lt;br/&gt;Longana&quot;]
+        V_LPM[&quot;LPM&lt;br/&gt;Lamap&quot;]
+        V_MTV[&quot;MTV&lt;br/&gt;Ablow&quot;]
+        V_SLH[&quot;SLH&lt;br/&gt;Sola&quot;]
+        V_TOH[&quot;TOH&lt;br/&gt;Loh/Linua&quot;]
+        V_ZGU[&quot;ZGU&lt;br/&gt;Gaua Island&quot;]
+        V_MWF[&quot;MWF&lt;br/&gt;Maewo Island&quot;]
+        V_SWJ[&quot;SWJ&lt;br/&gt;Malekula Island&quot;]
+        V_PBJ[&quot;PBJ&lt;br/&gt;Paama Island&quot;]
+        V_SSR[&quot;SSR&lt;br/&gt;Pentecost Island&quot;]
+        V_WLH[&quot;WLH&lt;br/&gt;Walaha&quot;]
+        V_TGH[&quot;TGH&lt;br/&gt;Tongoa Island&quot;]
+        V_VLS[&quot;VLS&lt;br/&gt;Valesdir&quot;]
+        V_VLI --&gt; V_CCV
+        V_VLI &lt;--&gt; V_DLY
+        V_VLI &lt;--&gt; V_EAE
+        V_VLI &lt;--&gt; V_IPA
+        V_VLI &lt;--&gt; V_LNB
+        V_VLI &lt;--&gt; V_LNE
+        V_VLI &lt;--&gt; V_LPM
+        V_VLI &lt;--&gt; V_NUS
+        V_VLI &lt;--&gt; V_PBJ
+        V_VLI &lt;--&gt; V_SON
+        V_VLI &lt;--&gt; V_SWJ
+        V_VLI &lt;--&gt; V_TAH
+        V_VLI &lt;--&gt; V_TGH
+        V_VLI &lt;--&gt; V_VLS
+        V_AUY &lt;--&gt; V_TAH
+        V_TAH &lt;--&gt; V_AWD
+        V_TAH &lt;--&gt; V_FTA
+        V_TAH &lt;--&gt; V_IPA
+        V_AWD &lt;--&gt; V_FTA
+        V_SON &lt;--&gt; V_LNE
+        V_SON &lt;--&gt; V_LOD
+        V_SON &lt;--&gt; V_MWF
+        V_SON &lt;--&gt; V_NUS
+        V_SON &lt;--&gt; V_SLH
+        V_SON &lt;--&gt; V_SSR
+        V_SON &lt;--&gt; V_WLH
+        V_SON &lt;--&gt; V_ZGU
+        V_CCV &lt;--&gt; V_LNB
+        V_CCV &lt;--&gt; V_NUS
+        V_CCV &lt;--&gt; V_ULB
+        V_NUS &lt;--&gt; V_LPM
+        V_NUS &lt;--&gt; V_SWJ
+        V_ULB &lt;--&gt; V_PBJ
+        V_ULB --&gt; V_VLI
+        V_DLY &lt;--&gt; V_IPA
+        V_LNE &lt;--&gt; V_LOD
+        V_MTV &lt;--&gt; V_SLH
+        V_MTV &lt;--&gt; V_TOH
+        V_MTV &lt;--&gt; V_ZGU
+        V_SLH &lt;--&gt; V_TOH
+        V_TOH &lt;--&gt; V_ZGU
+    end
+    EXT0[&quot;Solomon Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_Solomon_Islands.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Fiji&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Fiji.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;New Caledonia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

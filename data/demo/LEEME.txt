@@ -1,0 +1,6 @@
+Archivos de demostracion de errores (no son datos reales de OpenFlights).
+airports_sucio.csv: ID repetido (2), latitud fuera de rango (5), nombre vacio (6), ID no numerico (A7),
+IATA invalido (8, pasa a "Sin dato" y es valido), pais nulo (10), longitud no numerica (11),
+ciudad vacia (12, pasa a "Sin dato"), IATA nulo (13).
+routes_sucio.csv: ID nulo recuperable por IATA (UIO), ID nulo no recuperable (ZZZ), referencia rota (9999),
+aerolinea vacia.
