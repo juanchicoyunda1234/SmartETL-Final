@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Cape Verde</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Cape Verde</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Cape Verde: 7 aeropuertos, 18 rutas internas, 26 salen al exterior, 29 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Cape Verde: 7 de 7 aeropuertos&quot;]
+        V_RAI[&quot;RAI&lt;br/&gt;Praia, Santiago Island&quot;]
+        V_SID[&quot;SID&lt;br/&gt;Amilcar Cabral&quot;]
+        V_BVC[&quot;BVC&lt;br/&gt;Boa Vista&quot;]
+        V_VXE[&quot;VXE&lt;br/&gt;Sao Vicente Island&quot;]
+        V_MMO[&quot;MMO&lt;br/&gt;Maio&quot;]
+        V_SFL[&quot;SFL&lt;br/&gt;Sao Filipe, Fogo Island&quot;]
+        V_SNE[&quot;SNE&lt;br/&gt;Sao Nocolau Island&quot;]
+        V_RAI &lt;--&gt; V_BVC
+        V_RAI &lt;--&gt; V_MMO
+        V_RAI &lt;--&gt; V_SFL
+        V_RAI &lt;--&gt; V_SID
+        V_RAI &lt;--&gt; V_VXE
+        V_SID &lt;--&gt; V_BVC
+        V_SID &lt;--&gt; V_SNE
+        V_SID &lt;--&gt; V_VXE
+        V_VXE &lt;--&gt; V_SNE
+    end
+    EXT0[&quot;Gambia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_Gambia.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Guinea-Bissau&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Guinea_Bissau.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Senegal&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Senegal.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Sao Tome and Principe&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Sao_Tome_and_Principe.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;United States&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;France&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Luxembourg&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Luxembourg.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

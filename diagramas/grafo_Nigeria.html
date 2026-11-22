@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Nigeria</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Nigeria</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Nigeria: 18 aeropuertos, 50 rutas internas, 48 salen al exterior, 47 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Nigeria: 18 de 18 aeropuertos&quot;]
+        V_LOS[&quot;LOS&lt;br/&gt;Lagos&quot;]
+        V_ABV[&quot;ABV&lt;br/&gt;Abuja&quot;]
+        V_PHC[&quot;PHC&lt;br/&gt;Port Hartcourt&quot;]
+        V_ENU[&quot;ENU&lt;br/&gt;Enugu&quot;]
+        V_KAN[&quot;KAN&lt;br/&gt;Kano&quot;]
+        V_ABB[&quot;ABB&lt;br/&gt;Asaba&quot;]
+        V_BNI[&quot;BNI&lt;br/&gt;Benin&quot;]
+        V_CBQ[&quot;CBQ&lt;br/&gt;Calabar&quot;]
+        V_GMO[&quot;GMO&lt;br/&gt;Gombe&quot;]
+        V_IBA[&quot;IBA&lt;br/&gt;Ibadan&quot;]
+        V_ILR[&quot;ILR&lt;br/&gt;Ilorin&quot;]
+        V_QOW[&quot;QOW&lt;br/&gt;Imo&quot;]
+        V_QRW[&quot;QRW&lt;br/&gt;Osubi&quot;]
+        V_SKO[&quot;SKO&lt;br/&gt;Sokoto&quot;]
+        V_YOL[&quot;YOL&lt;br/&gt;Yola&quot;]
+        V_JOS[&quot;JOS&lt;br/&gt;Jos&quot;]
+        V_KAD[&quot;KAD&lt;br/&gt;Kaduna&quot;]
+        V_QUO[&quot;QUO&lt;br/&gt;Uyo&quot;]
+        V_LOS &lt;--&gt; V_PHC
+        V_LOS &lt;--&gt; V_ABB
+        V_LOS &lt;--&gt; V_ABV
+        V_LOS &lt;--&gt; V_BNI
+        V_LOS &lt;--&gt; V_CBQ
+        V_LOS &lt;--&gt; V_ENU
+        V_LOS &lt;--&gt; V_JOS
+        V_LOS &lt;--&gt; V_KAD
+        V_LOS &lt;--&gt; V_KAN
+        V_LOS &lt;--&gt; V_QOW
+        V_LOS &lt;--&gt; V_QRW
+        V_LOS &lt;--&gt; V_QUO
+        V_ABV &lt;--&gt; V_PHC
+        V_ABV &lt;--&gt; V_ABB
+        V_ABV &lt;--&gt; V_BNI
+        V_ABV &lt;--&gt; V_CBQ
+        V_ABV &lt;--&gt; V_ENU
+        V_ABV &lt;--&gt; V_GMO
+        V_ABV &lt;--&gt; V_IBA
+        V_ABV &lt;--&gt; V_ILR
+        V_ABV &lt;--&gt; V_KAN
+        V_ABV &lt;--&gt; V_QOW
+        V_ABV &lt;--&gt; V_QRW
+        V_ABV &lt;--&gt; V_SKO
+        V_ABV &lt;--&gt; V_YOL
+    end
+    EXT0[&quot;Ghana&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Ghana.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Senegal&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_Senegal.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Cameroon&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Cameroon.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Liberia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Liberia.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;France&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Mali&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Mali.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Equatorial Guinea&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Equatorial_Guinea.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;United States&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Cote d'Ivoire&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Cote_d_Ivoire.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Gabon&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Gabon.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Togo&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Togo.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Benin&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Benin.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Kenya&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Kenya.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Lebanon&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT20
+    click EXT20 &quot;grafo_Lebanon.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT22
+    click EXT22 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Jordan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Jordan.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT24
+    click EXT24 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Sierra Leone&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT26
+    click EXT26 &quot;grafo_Sierra_Leone.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Rwanda&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT27
+    click EXT27 &quot;grafo_Rwanda.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Chad&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Chad.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Niger&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Niger.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Sudan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT30
+    click EXT30 &quot;grafo_Sudan.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

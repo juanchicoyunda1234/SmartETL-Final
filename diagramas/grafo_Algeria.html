@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Algeria</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Algeria</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Algeria: 29 aeropuertos, 86 rutas internas, 83 salen al exterior, 83 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Algeria: 29 de 29 aeropuertos&quot;]
+        V_ALG[&quot;ALG&lt;br/&gt;Algier&quot;]
+        V_AAE[&quot;AAE&lt;br/&gt;Annaba&quot;]
+        V_ORN[&quot;ORN&lt;br/&gt;Oran&quot;]
+        V_AZR[&quot;AZR&lt;br/&gt;Adrar&quot;]
+        V_BJA[&quot;BJA&lt;br/&gt;Bejaja&quot;]
+        V_BLJ[&quot;BLJ&lt;br/&gt;Batna&quot;]
+        V_BSK[&quot;BSK&lt;br/&gt;Biskra&quot;]
+        V_CZL[&quot;CZL&lt;br/&gt;Constantine&quot;]
+        V_DJG[&quot;DJG&lt;br/&gt;Djanet&quot;]
+        V_EBH[&quot;EBH&lt;br/&gt;El Bayadh&quot;]
+        V_ELU[&quot;ELU&lt;br/&gt;Guemar&quot;]
+        V_GHA[&quot;GHA&lt;br/&gt;Ghardaia&quot;]
+        V_HME[&quot;HME&lt;br/&gt;Hassi Messaoud&quot;]
+        V_HRM[&quot;HRM&lt;br/&gt;Tilrempt&quot;]
+        V_INZ[&quot;INZ&lt;br/&gt;In Salah&quot;]
+        V_MUW[&quot;MUW&lt;br/&gt;Ghriss&quot;]
+        V_MZW[&quot;MZW&lt;br/&gt;Mecheria&quot;]
+        V_OGX[&quot;OGX&lt;br/&gt;Ouargla&quot;]
+        V_QSF[&quot;QSF&lt;br/&gt;Setif&quot;]
+        V_TEE[&quot;TEE&lt;br/&gt;Tebessa&quot;]
+        V_TGR[&quot;TGR&lt;br/&gt;Touggourt&quot;]
+        V_TID[&quot;TID&lt;br/&gt;Tiaret&quot;]
+        V_TLM[&quot;TLM&lt;br/&gt;Tlemcen&quot;]
+        V_BMW[&quot;BMW&lt;br/&gt;Bordj Badji Mokhtar&quot;]
+        V_CBH[&quot;CBH&lt;br/&gt;Béchar&quot;]
+        V_CFK[&quot;CFK&lt;br/&gt;Ech-cheliff&quot;]
+        V_TMR[&quot;TMR&lt;br/&gt;Tamanrasset&quot;]
+        V_ELG[&quot;ELG&lt;br/&gt;El Golea&quot;]
+        V_IAM[&quot;IAM&lt;br/&gt;Zarzaitine&quot;]
+        V_ALG &lt;--&gt; V_AAE
+        V_ALG &lt;--&gt; V_AZR
+        V_ALG &lt;--&gt; V_BJA
+        V_ALG &lt;--&gt; V_BLJ
+        V_ALG &lt;--&gt; V_BSK
+        V_ALG &lt;--&gt; V_CZL
+        V_ALG --&gt; V_DJG
+        V_ALG &lt;--&gt; V_EBH
+        V_ALG &lt;--&gt; V_ELU
+        V_ALG &lt;--&gt; V_GHA
+        V_ALG &lt;--&gt; V_HME
+        V_ALG &lt;--&gt; V_HRM
+        V_ALG &lt;--&gt; V_INZ
+        V_ALG &lt;--&gt; V_MUW
+        V_ALG &lt;--&gt; V_MZW
+        V_ALG &lt;--&gt; V_OGX
+        V_ALG &lt;--&gt; V_ORN
+        V_ALG &lt;--&gt; V_QSF
+        V_ALG &lt;--&gt; V_TEE
+        V_ALG &lt;--&gt; V_TGR
+        V_ALG &lt;--&gt; V_TID
+        V_ALG &lt;--&gt; V_TLM
+        V_AAE &lt;--&gt; V_ORN
+        V_ORN &lt;--&gt; V_AZR
+        V_ORN &lt;--&gt; V_CBH
+        V_ORN &lt;--&gt; V_CZL
+        V_ORN &lt;--&gt; V_GHA
+        V_ORN &lt;--&gt; V_HME
+        V_ORN &lt;--&gt; V_OGX
+        V_AZR &lt;--&gt; V_BMW
+        V_AZR &lt;--&gt; V_CZL
+        V_AZR --&gt; V_INZ
+        V_AZR &lt;--&gt; V_OGX
+        V_CZL &lt;--&gt; V_GHA
+        V_CZL &lt;--&gt; V_HME
+        V_DJG --&gt; V_OGX
+        V_DJG --&gt; V_TMR
+        V_GHA &lt;--&gt; V_TMR
+        V_HME &lt;--&gt; V_HRM
+        V_HME &lt;--&gt; V_IAM
+        V_INZ &lt;--&gt; V_TMR
+        V_MUW --&gt; V_TID
+        V_OGX &lt;--&gt; V_ELG
+        V_OGX &lt;--&gt; V_IAM
+        V_TMR --&gt; V_ALG
+        V_TMR &lt;--&gt; V_ELG
+    end
+    EXT0[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;France&quot;]
+    PAIS --&gt;|&quot;39 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Cote d'Ivoire&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Cote_d_Ivoire.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Jordan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Jordan.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Lebanon&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Lebanon.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Mali&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_Mali.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Belgium&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Belgium.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Senegal&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Senegal.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Niger&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Niger.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Burkina Faso&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Burkina_Faso.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;China&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT19
+    click EXT19 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Libya&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Libya.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Tunisia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Tunisia.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Austria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Austria.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT24
+    click EXT24 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Malta&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Malta.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT26
+    click EXT26 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

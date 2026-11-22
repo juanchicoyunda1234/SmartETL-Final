@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Honduras</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Honduras</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Honduras: 7 aeropuertos, 19 rutas internas, 27 salen al exterior, 26 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Honduras: 7 de 7 aeropuertos&quot;]
+        V_SAP[&quot;SAP&lt;br/&gt;San Pedro Sula&quot;]
+        V_TGU[&quot;TGU&lt;br/&gt;Tegucigalpa&quot;]
+        V_RTB[&quot;RTB&lt;br/&gt;Roatan&quot;]
+        V_PEU[&quot;PEU&lt;br/&gt;Puerto Lempira&quot;]
+        V_LCE[&quot;LCE&lt;br/&gt;La Ceiba&quot;]
+        V_GJA[&quot;GJA&lt;br/&gt;Guanaja&quot;]
+        V_UII[&quot;UII&lt;br/&gt;Utila&quot;]
+        V_SAP &lt;--&gt; V_RTB
+        V_SAP &lt;--&gt; V_TGU
+        V_SAP &lt;--&gt; V_LCE
+        V_TGU &lt;--&gt; V_PEU
+        V_TGU &lt;--&gt; V_RTB
+        V_TGU &lt;--&gt; V_LCE
+        V_RTB &lt;--&gt; V_LCE
+        V_PEU &lt;--&gt; V_LCE
+        V_LCE &lt;--&gt; V_GJA
+        V_LCE --&gt; V_UII
+    end
+    EXT0[&quot;Guatemala&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Guatemala.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Belize&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Belize.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;United States&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;El Salvador&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_El_Salvador.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Costa Rica&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Costa_Rica.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Panama&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Panama.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Cayman Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Cayman_Islands.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

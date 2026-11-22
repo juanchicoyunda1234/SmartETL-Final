@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de French Polynesia</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de French Polynesia</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>French Polynesia: 27 aeropuertos, 91 rutas internas, 7 salen al exterior, 7 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;French Polynesia: 27 de 27 aeropuertos&quot;]
+        V_PPT[&quot;PPT&lt;br/&gt;Papeete&quot;]
+        V_AHE[&quot;AHE&lt;br/&gt;Ahe&quot;]
+        V_XMH[&quot;XMH&lt;br/&gt;Manihi&quot;]
+        V_AUQ[&quot;AUQ&lt;br/&gt;Hiva-oa&quot;]
+        V_NHV[&quot;NHV&lt;br/&gt;Nuku Hiva&quot;]
+        V_UAH[&quot;UAH&lt;br/&gt;Ua Huka&quot;]
+        V_UAP[&quot;UAP&lt;br/&gt;Ua Pou&quot;]
+        V_AXR[&quot;AXR&lt;br/&gt;Arutua&quot;]
+        V_KKR[&quot;KKR&lt;br/&gt;Kaukura Atoll&quot;]
+        V_BOB[&quot;BOB&lt;br/&gt;Bora Bora&quot;]
+        V_HUH[&quot;HUH&lt;br/&gt;Huahine Island&quot;]
+        V_MAU[&quot;MAU&lt;br/&gt;Maupiti&quot;]
+        V_MOZ[&quot;MOZ&lt;br/&gt;Moorea&quot;]
+        V_RFP[&quot;RFP&lt;br/&gt;Raiatea Island&quot;]
+        V_RGI[&quot;RGI&lt;br/&gt;Rangiroa&quot;]
+        V_TIH[&quot;TIH&lt;br/&gt;Tikehau&quot;]
+        V_FAV[&quot;FAV&lt;br/&gt;Fakarava&quot;]
+        V_GMR[&quot;GMR&lt;br/&gt;Totegegie&quot;]
+        V_HOI[&quot;HOI&lt;br/&gt;Hao Island&quot;]
+        V_MKP[&quot;MKP&lt;br/&gt;Makemo&quot;]
+        V_MVT[&quot;MVT&lt;br/&gt;Mataiva&quot;]
+        V_RMT[&quot;RMT&lt;br/&gt;Rimatara&quot;]
+        V_RUR[&quot;RUR&lt;br/&gt;Rurutu&quot;]
+        V_RVV[&quot;RVV&lt;br/&gt;Raivavae&quot;]
+        V_TKX[&quot;TKX&lt;br/&gt;Takaroa&quot;]
+        V_TUB[&quot;TUB&lt;br/&gt;Tubuai&quot;]
+        V_TKP[&quot;TKP&lt;br/&gt;Takapoto&quot;]
+        V_PPT &lt;--&gt; V_AHE
+        V_PPT &lt;--&gt; V_AUQ
+        V_PPT --&gt; V_AXR
+        V_PPT &lt;--&gt; V_BOB
+        V_PPT &lt;--&gt; V_FAV
+        V_PPT --&gt; V_HOI
+        V_PPT &lt;--&gt; V_HUH
+        V_PPT &lt;--&gt; V_MAU
+        V_PPT &lt;--&gt; V_MOZ
+        V_PPT &lt;--&gt; V_MVT
+        V_PPT &lt;--&gt; V_NHV
+        V_PPT &lt;--&gt; V_RFP
+        V_PPT &lt;--&gt; V_RGI
+        V_PPT &lt;--&gt; V_RMT
+        V_PPT &lt;--&gt; V_RUR
+        V_PPT &lt;--&gt; V_RVV
+        V_PPT &lt;--&gt; V_TIH
+        V_PPT &lt;--&gt; V_TKX
+        V_PPT &lt;--&gt; V_TUB
+        V_PPT &lt;--&gt; V_XMH
+        V_AHE &lt;--&gt; V_XMH
+        V_XMH &lt;--&gt; V_RGI
+        V_AUQ &lt;--&gt; V_NHV
+        V_AUQ &lt;--&gt; V_UAH
+        V_AUQ &lt;--&gt; V_UAP
+        V_NHV &lt;--&gt; V_UAH
+        V_NHV &lt;--&gt; V_UAP
+        V_UAH &lt;--&gt; V_UAP
+        V_AXR --&gt; V_KKR
+        V_KKR --&gt; V_PPT
+        V_BOB &lt;--&gt; V_HUH
+        V_BOB &lt;--&gt; V_MAU
+        V_BOB &lt;--&gt; V_MOZ
+        V_BOB &lt;--&gt; V_RFP
+        V_BOB --&gt; V_RGI
+        V_BOB --&gt; V_TIH
+        V_HUH &lt;--&gt; V_MOZ
+        V_HUH &lt;--&gt; V_RFP
+        V_MAU &lt;--&gt; V_RFP
+        V_MOZ --&gt; V_RFP
+        V_RGI &lt;--&gt; V_FAV
+        V_RGI &lt;--&gt; V_MVT
+        V_RGI &lt;--&gt; V_TIH
+        V_GMR --&gt; V_PPT
+        V_HOI --&gt; V_GMR
+        V_HOI --&gt; V_MKP
+        V_MKP --&gt; V_PPT
+        V_RMT &lt;--&gt; V_RUR
+        V_RVV &lt;--&gt; V_TUB
+        V_TKX --&gt; V_AHE
+        V_TKX &lt;--&gt; V_TKP
+        V_TUB --&gt; V_RUR
+    end
+    EXT0[&quot;New Zealand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_New_Zealand.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;United States&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Cook Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT2
+    click EXT2 &quot;grafo_Cook_Islands.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;New Caledonia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

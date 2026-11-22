@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Germany</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Germany</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Germany: 32 aeropuertos, 143 rutas internas, 1266 salen al exterior, 1262 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Germany: 32 de 32 aeropuertos&quot;]
+        V_DRS[&quot;DRS&lt;br/&gt;Dresden&quot;]
+        V_DUS[&quot;DUS&lt;br/&gt;Duesseldorf&quot;]
+        V_FDH[&quot;FDH&lt;br/&gt;Friedrichshafen&quot;]
+        V_MUC[&quot;MUC&lt;br/&gt;Munich&quot;]
+        V_HAM[&quot;HAM&lt;br/&gt;Hamburg&quot;]
+        V_TXL[&quot;TXL&lt;br/&gt;Berlin&quot;]
+        V_FMM[&quot;FMM&lt;br/&gt;Memmingen&quot;]
+        V_CGN[&quot;CGN&lt;br/&gt;Cologne&quot;]
+        V_STR[&quot;STR&lt;br/&gt;Stuttgart&quot;]
+        V_HAJ[&quot;HAJ&lt;br/&gt;Hannover&quot;]
+        V_BRE[&quot;BRE&lt;br/&gt;Bremen&quot;]
+        V_HDF[&quot;HDF&lt;br/&gt;Heringsdorf&quot;]
+        V_LEJ[&quot;LEJ&lt;br/&gt;Leipzig&quot;]
+        V_RLG[&quot;RLG&lt;br/&gt;Laage&quot;]
+        V_DTM[&quot;DTM&lt;br/&gt;Dortmund&quot;]
+        V_NUE[&quot;NUE&lt;br/&gt;Nuernberg&quot;]
+        V_FKB[&quot;FKB&lt;br/&gt;Karlsruhe/Baden-Baden&quot;]
+        V_FRA[&quot;FRA&lt;br/&gt;Frankfurt&quot;]
+        V_SXF[&quot;SXF&lt;br/&gt;Berlin&quot;]
+        V_GWT[&quot;GWT&lt;br/&gt;Westerland&quot;]
+        V_FMO[&quot;FMO&lt;br/&gt;Munster&quot;]
+        V_PAD[&quot;PAD&lt;br/&gt;Paderborn&quot;]
+        V_SCN[&quot;SCN&lt;br/&gt;Saarbruecken&quot;]
+        V_HHN[&quot;HHN&lt;br/&gt;Hahn&quot;]
+        V_NRN[&quot;NRN&lt;br/&gt;Weeze&quot;]
+        V_LBC[&quot;LBC&lt;br/&gt;Luebeck&quot;]
+        V_AGB[&quot;AGB&lt;br/&gt;Augsburg&quot;]
+        V_ERF[&quot;ERF&lt;br/&gt;Erfurt&quot;]
+        V_KSF[&quot;KSF&lt;br/&gt;Kassel&quot;]
+        V_XFW[&quot;XFW&lt;br/&gt;Hamburg&quot;]
+        V_MHG[&quot;MHG&lt;br/&gt;Mannheim&quot;]
+        V_ZQW[&quot;ZQW&lt;br/&gt;Zweibruecken&quot;]
+        V_DRS &lt;--&gt; V_CGN
+        V_DRS &lt;--&gt; V_DUS
+        V_DRS &lt;--&gt; V_STR
+        V_DRS &lt;--&gt; V_FRA
+        V_DRS &lt;--&gt; V_MUC
+        V_DUS &lt;--&gt; V_FDH
+        V_DUS &lt;--&gt; V_HDF
+        V_DUS &lt;--&gt; V_LEJ
+        V_DUS &lt;--&gt; V_NUE
+        V_DUS &lt;--&gt; V_GWT
+        V_DUS &lt;--&gt; V_HAM
+        V_DUS &lt;--&gt; V_MUC
+        V_DUS &lt;--&gt; V_STR
+        V_DUS &lt;--&gt; V_TXL
+        V_DUS &lt;--&gt; V_FRA
+        V_FDH &lt;--&gt; V_HAM
+        V_FDH &lt;--&gt; V_TXL
+        V_FDH &lt;--&gt; V_CGN
+        V_FDH &lt;--&gt; V_FRA
+        V_MUC &lt;--&gt; V_DTM
+        V_MUC &lt;--&gt; V_CGN
+        V_MUC &lt;--&gt; V_GWT
+        V_MUC &lt;--&gt; V_HAM
+        V_MUC &lt;--&gt; V_TXL
+        V_MUC &lt;--&gt; V_FRA
+        V_MUC &lt;--&gt; V_BRE
+        V_MUC &lt;--&gt; V_FMO
+        V_MUC &lt;--&gt; V_HAJ
+        V_MUC &lt;--&gt; V_LEJ
+        V_MUC &lt;--&gt; V_NUE
+        V_MUC &lt;--&gt; V_PAD
+        V_MUC &lt;--&gt; V_RLG
+        V_MUC &lt;--&gt; V_STR
+        V_HAM &lt;--&gt; V_CGN
+        V_HAM &lt;--&gt; V_FKB
+        V_HAM &lt;--&gt; V_FMM
+        V_HAM &lt;--&gt; V_NUE
+        V_HAM &lt;--&gt; V_STR
+        V_HAM &lt;--&gt; V_GWT
+        V_HAM &lt;--&gt; V_SCN
+        V_HAM &lt;--&gt; V_FRA
+        V_TXL &lt;--&gt; V_CGN
+        V_TXL &lt;--&gt; V_FMM
+        V_TXL &lt;--&gt; V_NUE
+        V_TXL &lt;--&gt; V_STR
+        V_TXL &lt;--&gt; V_FKB
+        V_TXL &lt;--&gt; V_FRA
+        V_TXL &lt;--&gt; V_GWT
+        V_TXL &lt;--&gt; V_SCN
+        V_TXL &lt;--&gt; V_MHG
+        V_CGN &lt;--&gt; V_HDF
+        V_CGN &lt;--&gt; V_LEJ
+        V_CGN &lt;--&gt; V_RLG
+        V_STR &lt;--&gt; V_BRE
+        V_STR &lt;--&gt; V_HAJ
+        V_STR &lt;--&gt; V_HDF
+        V_STR &lt;--&gt; V_LEJ
+        V_STR &lt;--&gt; V_RLG
+        V_STR &lt;--&gt; V_GWT
+        V_STR &lt;--&gt; V_FRA
+        V_STR &lt;--&gt; V_FMO
+        V_HAJ &lt;--&gt; V_FRA
+        V_BRE &lt;--&gt; V_FRA
+        V_BRE &lt;--&gt; V_LEJ
+        V_BRE &lt;--&gt; V_FMO
+        V_HDF &lt;--&gt; V_DTM
+        V_HDF &lt;--&gt; V_FRA
+        V_LEJ &lt;--&gt; V_FRA
+        V_NUE &lt;--&gt; V_FRA
+        V_NUE --&gt; V_ZQW
+        V_FRA &lt;--&gt; V_FMO
+        V_FRA &lt;--&gt; V_GWT
+    end
+    EXT0[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;24 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Greece&quot;]
+    PAIS --&gt;|&quot;100 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Greece.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;68 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Tunisia&quot;]
+    PAIS --&gt;|&quot;21 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Tunisia.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;202 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;73 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;33 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;France&quot;]
+    PAIS --&gt;|&quot;56 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;142 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Sweden&quot;]
+    PAIS --&gt;|&quot;13 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_Sweden.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Croatia&quot;]
+    PAIS --&gt;|&quot;39 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_Croatia.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Ireland&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Ireland.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Poland&quot;]
+    PAIS --&gt;|&quot;29 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Poland.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Czech Republic&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Czech_Republic.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Serbia&quot;]
+    PAIS --&gt;|&quot;14 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Serbia.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT16
+    click EXT16 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;United States&quot;]
+    PAIS --&gt;|&quot;43 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Denmark&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT18
+    click EXT18 &quot;grafo_Denmark.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Mexico&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Mexico.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Netherlands Antilles&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Netherlands_Antilles.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;41 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Guernsey&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Guernsey.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Finland&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_Finland.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Jersey&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Jersey.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Dominican Republic&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT25
+    click EXT25 &quot;grafo_Dominican_Republic.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Latvia&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_Latvia.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Austria&quot;]
+    PAIS --&gt;|&quot;28 rutas&quot;| EXT27
+    click EXT27 &quot;grafo_Austria.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Israel&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Israel.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Cuba&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT29
+    click EXT29 &quot;grafo_Cuba.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;14 rutas&quot;| EXT30
+    click EXT30 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;China&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT31
+    click EXT31 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;18 rutas&quot;| EXT32
+    click EXT32 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Cyprus&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT33
+    click EXT33 &quot;grafo_Cyprus.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Luxembourg&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT34
+    click EXT34 &quot;grafo_Luxembourg.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Malta&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT35
+    click EXT35 &quot;grafo_Malta.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Hungary&quot;]
+    PAIS --&gt;|&quot;10 rutas&quot;| EXT36
+    click EXT36 &quot;grafo_Hungary.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT37
+    click EXT37 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT38[&quot;Norway&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT38
+    click EXT38 &quot;grafo_Norway.html&quot; &quot;Abrir país&quot;
+    EXT39[&quot;Romania&quot;]
+    PAIS --&gt;|&quot;10 rutas&quot;| EXT39
+    click EXT39 &quot;grafo_Romania.html&quot; &quot;Abrir país&quot;
+    EXT40[&quot;Iraq&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT40
+    click EXT40 &quot;grafo_Iraq.html&quot; &quot;Abrir país&quot;
+    EXT41[&quot;Iran&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT41
+    click EXT41 &quot;grafo_Iran.html&quot; &quot;Abrir país&quot;
+    EXT42[&quot;Montenegro&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT42
+    click EXT42 &quot;grafo_Montenegro.html&quot; &quot;Abrir país&quot;
+    EXT43[&quot;Jordan&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT43
+    click EXT43 &quot;grafo_Jordan.html&quot; &quot;Abrir país&quot;
+    EXT44[&quot;Bulgaria&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT44
+    click EXT44 &quot;grafo_Bulgaria.html&quot; &quot;Abrir país&quot;
+    EXT45[&quot;Canada&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT45
+    click EXT45 &quot;grafo_Canada.html&quot; &quot;Abrir país&quot;
+    EXT46[&quot;India&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT46
+    click EXT46 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT47[&quot;Iceland&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT47
+    click EXT47 &quot;grafo_Iceland.html&quot; &quot;Abrir país&quot;
+    EXT48[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT48
+    click EXT48 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT49[&quot;Slovenia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT49
+    click EXT49 &quot;grafo_Slovenia.html&quot; &quot;Abrir país&quot;
+    EXT50[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT50
+    click EXT50 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT51[&quot;Belgium&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT51
+    click EXT51 &quot;grafo_Belgium.html&quot; &quot;Abrir país&quot;
+    EXT52[&quot;Ukraine&quot;]
+    PAIS --&gt;|&quot;10 rutas&quot;| EXT52
+    click EXT52 &quot;grafo_Ukraine.html&quot; &quot;Abrir país&quot;
+    EXT53[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT53
+    click EXT53 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT54[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT54
+    click EXT54 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT55[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT55
+    click EXT55 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT56[&quot;Moldova&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT56
+    click EXT56 &quot;grafo_Moldova.html&quot; &quot;Abrir país&quot;
+    EXT57[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT57
+    click EXT57 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+    EXT58[&quot;Bosnia and Herzegovina&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT58
+    click EXT58 &quot;grafo_Bosnia_and_Herzegovina.html&quot; &quot;Abrir país&quot;
+    EXT59[&quot;Georgia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT59
+    click EXT59 &quot;grafo_Georgia.html&quot; &quot;Abrir país&quot;
+    EXT60[&quot;Albania&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT60
+    click EXT60 &quot;grafo_Albania.html&quot; &quot;Abrir país&quot;
+    EXT61[&quot;Lithuania&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT61
+    click EXT61 &quot;grafo_Lithuania.html&quot; &quot;Abrir país&quot;
+    EXT62[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT62
+    click EXT62 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT63[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT63
+    click EXT63 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT64[&quot;Oman&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT64
+    click EXT64 &quot;grafo_Oman.html&quot; &quot;Abrir país&quot;
+    EXT65[&quot;Cape Verde&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT65
+    click EXT65 &quot;grafo_Cape_Verde.html&quot; &quot;Abrir país&quot;
+    EXT66[&quot;Macedonia&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT66
+    click EXT66 &quot;grafo_Macedonia.html&quot; &quot;Abrir país&quot;
+    EXT67[&quot;Algeria&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT67
+    click EXT67 &quot;grafo_Algeria.html&quot; &quot;Abrir país&quot;
+    EXT68[&quot;Belarus&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT68
+    click EXT68 &quot;grafo_Belarus.html&quot; &quot;Abrir país&quot;
+    EXT69[&quot;Estonia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT69
+    click EXT69 &quot;grafo_Estonia.html&quot; &quot;Abrir país&quot;
+    EXT70[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT70
+    click EXT70 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT71[&quot;Colombia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT71
+    click EXT71 &quot;grafo_Colombia.html&quot; &quot;Abrir país&quot;
+    EXT72[&quot;Vietnam&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT72
+    click EXT72 &quot;grafo_Vietnam.html&quot; &quot;Abrir país&quot;
+    EXT73[&quot;Taiwan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT73
+    click EXT73 &quot;grafo_Taiwan.html&quot; &quot;Abrir país&quot;
+    EXT74[&quot;Kenya&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT74
+    click EXT74 &quot;grafo_Kenya.html&quot; &quot;Abrir país&quot;
+    EXT75[&quot;Jamaica&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT75
+    click EXT75 &quot;grafo_Jamaica.html&quot; &quot;Abrir país&quot;
+    EXT76[&quot;Maldives&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT76
+    click EXT76 &quot;grafo_Maldives.html&quot; &quot;Abrir país&quot;
+    EXT77[&quot;Mauritius&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT77
+    click EXT77 &quot;grafo_Mauritius.html&quot; &quot;Abrir país&quot;
+    EXT78[&quot;Seychelles&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT78
+    click EXT78 &quot;grafo_Seychelles.html&quot; &quot;Abrir país&quot;
+    EXT79[&quot;Puerto Rico&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT79
+    click EXT79 &quot;grafo_Puerto_Rico.html&quot; &quot;Abrir país&quot;
+    EXT80[&quot;Trinidad and Tobago&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT80
+    click EXT80 &quot;grafo_Trinidad_and_Tobago.html&quot; &quot;Abrir país&quot;
+    EXT81[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT81
+    click EXT81 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT82[&quot;Bahrain&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT82
+    click EXT82 &quot;grafo_Bahrain.html&quot; &quot;Abrir país&quot;
+    EXT83[&quot;Uzbekistan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT83
+    click EXT83 &quot;grafo_Uzbekistan.html&quot; &quot;Abrir país&quot;
+    EXT84[&quot;Azerbaijan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT84
+    click EXT84 &quot;grafo_Azerbaijan.html&quot; &quot;Abrir país&quot;
+    EXT85[&quot;Kazakhstan&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT85
+    click EXT85 &quot;grafo_Kazakhstan.html&quot; &quot;Abrir país&quot;
+    EXT86[&quot;Kuwait&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT86
+    click EXT86 &quot;grafo_Kuwait.html&quot; &quot;Abrir país&quot;
+    EXT87[&quot;Nigeria&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT87
+    click EXT87 &quot;grafo_Nigeria.html&quot; &quot;Abrir país&quot;
+    EXT88[&quot;Ghana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT88
+    click EXT88 &quot;grafo_Ghana.html&quot; &quot;Abrir país&quot;
+    EXT89[&quot;Lebanon&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT89
+    click EXT89 &quot;grafo_Lebanon.html&quot; &quot;Abrir país&quot;
+    EXT90[&quot;Venezuela&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT90
+    click EXT90 &quot;grafo_Venezuela.html&quot; &quot;Abrir país&quot;
+    EXT91[&quot;Argentina&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT91
+    click EXT91 &quot;grafo_Argentina.html&quot; &quot;Abrir país&quot;
+    EXT92[&quot;Angola&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT92
+    click EXT92 &quot;grafo_Angola.html&quot; &quot;Abrir país&quot;
+    EXT93[&quot;Namibia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT93
+    click EXT93 &quot;grafo_Namibia.html&quot; &quot;Abrir país&quot;
+    EXT94[&quot;Tajikistan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT94
+    click EXT94 &quot;grafo_Tajikistan.html&quot; &quot;Abrir país&quot;
+    EXT95[&quot;Turkmenistan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT95
+    click EXT95 &quot;grafo_Turkmenistan.html&quot; &quot;Abrir país&quot;
+    EXT96[&quot;Sri Lanka&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT96
+    click EXT96 &quot;grafo_Sri_Lanka.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

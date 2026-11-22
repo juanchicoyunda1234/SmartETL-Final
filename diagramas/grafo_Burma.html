@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Burma</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Burma</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Burma: 15 aeropuertos, 39 rutas internas, 24 salen al exterior, 24 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Burma: 15 de 15 aeropuertos&quot;]
+        V_RGN[&quot;RGN&lt;br/&gt;Yangon&quot;]
+        V_AKY[&quot;AKY&lt;br/&gt;Sittwe&quot;]
+        V_SNW[&quot;SNW&lt;br/&gt;Thandwe&quot;]
+        V_HEH[&quot;HEH&lt;br/&gt;Heho&quot;]
+        V_MDL[&quot;MDL&lt;br/&gt;Mandalay&quot;]
+        V_KAW[&quot;KAW&lt;br/&gt;Kawthoung&quot;]
+        V_MGZ[&quot;MGZ&lt;br/&gt;Myeik&quot;]
+        V_NYU[&quot;NYU&lt;br/&gt;Bagan&quot;]
+        V_THL[&quot;THL&lt;br/&gt;Tachilek&quot;]
+        V_TVY[&quot;TVY&lt;br/&gt;Dawei&quot;]
+        V_NYT[&quot;NYT&lt;br/&gt;Naypyidaw&quot;]
+        V_KET[&quot;KET&lt;br/&gt;Kengtung&quot;]
+        V_KYP[&quot;KYP&lt;br/&gt;Kyaukpyu&quot;]
+        V_MYT[&quot;MYT&lt;br/&gt;Myitkyina&quot;]
+        V_PBU[&quot;PBU&lt;br/&gt;Putao&quot;]
+        V_RGN &lt;--&gt; V_AKY
+        V_RGN &lt;--&gt; V_HEH
+        V_RGN &lt;--&gt; V_NYU
+        V_RGN &lt;--&gt; V_SNW
+        V_RGN &lt;--&gt; V_TVY
+        V_RGN &lt;--&gt; V_KYP
+        V_RGN &lt;--&gt; V_MDL
+        V_RGN &lt;--&gt; V_MYT
+        V_RGN &lt;--&gt; V_THL
+        V_AKY &lt;--&gt; V_SNW
+        V_HEH &lt;--&gt; V_MDL
+        V_HEH &lt;--&gt; V_THL
+        V_MDL &lt;--&gt; V_NYU
+        V_MDL &lt;--&gt; V_THL
+        V_MDL &lt;--&gt; V_MYT
+        V_KAW &lt;--&gt; V_MGZ
+        V_MGZ &lt;--&gt; V_TVY
+        V_NYU --&gt; V_HEH
+        V_THL --&gt; V_KET
+        V_KET --&gt; V_RGN
+        V_MYT &lt;--&gt; V_PBU
+    end
+    EXT0[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;China&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Cambodia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Cambodia.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;India&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Bangladesh&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Bangladesh.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Taiwan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Taiwan.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Vietnam&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Vietnam.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

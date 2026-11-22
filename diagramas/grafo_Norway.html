@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Norway</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Norway</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Norway: 49 aeropuertos, 241 rutas internas, 241 salen al exterior, 239 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Norway: 49 de 49 aeropuertos&quot;]
+        V_TRF[&quot;TRF&lt;br/&gt;Sandefjord&quot;]
+        V_OSL[&quot;OSL&lt;br/&gt;Oslo&quot;]
+        V_BGO[&quot;BGO&lt;br/&gt;Bergen&quot;]
+        V_TOS[&quot;TOS&lt;br/&gt;Tromso&quot;]
+        V_SVG[&quot;SVG&lt;br/&gt;Stavanger&quot;]
+        V_TRD[&quot;TRD&lt;br/&gt;Trondheim&quot;]
+        V_AES[&quot;AES&lt;br/&gt;Alesund&quot;]
+        V_KRS[&quot;KRS&lt;br/&gt;Kristiansand&quot;]
+        V_KSU[&quot;KSU&lt;br/&gt;Kristiansund&quot;]
+        V_EVE[&quot;EVE&lt;br/&gt;Harstad/Narvik&quot;]
+        V_MOL[&quot;MOL&lt;br/&gt;Molde&quot;]
+        V_SRP[&quot;SRP&lt;br/&gt;Stord&quot;]
+        V_RYG[&quot;RYG&lt;br/&gt;Rygge&quot;]
+        V_ALF[&quot;ALF&lt;br/&gt;Alta&quot;]
+        V_BDU[&quot;BDU&lt;br/&gt;Bardufoss&quot;]
+        V_BOO[&quot;BOO&lt;br/&gt;Bodo&quot;]
+        V_HAU[&quot;HAU&lt;br/&gt;Haugesund&quot;]
+        V_KKN[&quot;KKN&lt;br/&gt;Kirkenes&quot;]
+        V_LYR[&quot;LYR&lt;br/&gt;Svalbard&quot;]
+        V_OLA[&quot;OLA&lt;br/&gt;Orland&quot;]
+        V_VDB[&quot;VDB&lt;br/&gt;Fagernes&quot;]
+        V_HFT[&quot;HFT&lt;br/&gt;Hammerfest&quot;]
+        V_LKL[&quot;LKL&lt;br/&gt;Lakselv&quot;]
+        V_SOJ[&quot;SOJ&lt;br/&gt;Sorkjosen&quot;]
+        V_VDS[&quot;VDS&lt;br/&gt;Vadsø&quot;]
+        V_ANX[&quot;ANX&lt;br/&gt;Andoya&quot;]
+        V_BNN[&quot;BNN&lt;br/&gt;Bronnoysund&quot;]
+        V_FRO[&quot;FRO&lt;br/&gt;Floro&quot;]
+        V_HOV[&quot;HOV&lt;br/&gt;Orsta-Volda&quot;]
+        V_SKE[&quot;SKE&lt;br/&gt;Skien&quot;]
+        V_SOG[&quot;SOG&lt;br/&gt;Sogndal&quot;]
+        V_BJF[&quot;BJF&lt;br/&gt;Batsfjord&quot;]
+        V_BVG[&quot;BVG&lt;br/&gt;Berlevag&quot;]
+        V_MEH[&quot;MEH&lt;br/&gt;Mehamn&quot;]
+        V_VAW[&quot;VAW&lt;br/&gt;Vardø&quot;]
+        V_MQN[&quot;MQN&lt;br/&gt;Mo i Rana&quot;]
+        V_SSJ[&quot;SSJ&lt;br/&gt;Sandnessjoen&quot;]
+        V_LKN[&quot;LKN&lt;br/&gt;Leknes&quot;]
+        V_MJF[&quot;MJF&lt;br/&gt;Mosjoen&quot;]
+        V_NVK[&quot;NVK&lt;br/&gt;Narvik&quot;]
+        V_RET[&quot;RET&lt;br/&gt;Røst&quot;]
+        V_SKN[&quot;SKN&lt;br/&gt;Stokmarknes&quot;]
+        V_SVJ[&quot;SVJ&lt;br/&gt;Svolvær&quot;]
+        V_HAA[&quot;HAA&lt;br/&gt;Hasvik&quot;]
+        V_HVG[&quot;HVG&lt;br/&gt;Honningsvag&quot;]
+        V_OSY[&quot;OSY&lt;br/&gt;Namsos&quot;]
+        V_RVK[&quot;RVK&lt;br/&gt;Rørvik&quot;]
+        V_RRS[&quot;RRS&lt;br/&gt;Roros&quot;]
+        V_SDN[&quot;SDN&lt;br/&gt;Sandane&quot;]
+        V_TRF &lt;--&gt; V_BGO
+        V_TRF &lt;--&gt; V_TRD
+        V_TRF &lt;--&gt; V_SVG
+        V_OSL &lt;--&gt; V_SRP
+        V_OSL &lt;--&gt; V_AES
+        V_OSL &lt;--&gt; V_ALF
+        V_OSL &lt;--&gt; V_BDU
+        V_OSL &lt;--&gt; V_BGO
+        V_OSL &lt;--&gt; V_BOO
+        V_OSL &lt;--&gt; V_EVE
+        V_OSL &lt;--&gt; V_HAU
+        V_OSL &lt;--&gt; V_KKN
+        V_OSL &lt;--&gt; V_KRS
+        V_OSL &lt;--&gt; V_LYR
+        V_OSL &lt;--&gt; V_MOL
+        V_OSL &lt;--&gt; V_SVG
+        V_OSL &lt;--&gt; V_TOS
+        V_OSL &lt;--&gt; V_TRD
+        V_OSL &lt;--&gt; V_OLA
+        V_OSL &lt;--&gt; V_VDB
+        V_OSL &lt;--&gt; V_KSU
+        V_OSL &lt;--&gt; V_BNN
+        V_OSL &lt;--&gt; V_FRO
+        V_OSL &lt;--&gt; V_HOV
+        V_OSL &lt;--&gt; V_RRS
+        V_OSL &lt;--&gt; V_SDN
+        V_OSL &lt;--&gt; V_SOG
+        V_OSL &lt;--&gt; V_SSJ
+        V_BGO &lt;--&gt; V_SVG
+        V_BGO &lt;--&gt; V_TRD
+        V_BGO &lt;--&gt; V_AES
+        V_BGO &lt;--&gt; V_BNN
+        V_BGO &lt;--&gt; V_BOO
+        V_BGO &lt;--&gt; V_FRO
+        V_BGO &lt;--&gt; V_HAU
+        V_BGO &lt;--&gt; V_HOV
+        V_BGO &lt;--&gt; V_KRS
+        V_BGO &lt;--&gt; V_KSU
+        V_BGO &lt;--&gt; V_MOL
+        V_BGO &lt;--&gt; V_SKE
+        V_BGO &lt;--&gt; V_SOG
+        V_BGO &lt;--&gt; V_TOS
+        V_TOS &lt;--&gt; V_ALF
+        V_TOS &lt;--&gt; V_TRD
+        V_TOS &lt;--&gt; V_BOO
+        V_TOS &lt;--&gt; V_LYR
+        V_TOS &lt;--&gt; V_SVG
+        V_TOS &lt;--&gt; V_ANX
+        V_TOS &lt;--&gt; V_EVE
+        V_TOS &lt;--&gt; V_HAA
+        V_TOS &lt;--&gt; V_HFT
+        V_TOS &lt;--&gt; V_KKN
+        V_TOS &lt;--&gt; V_LKL
+        V_TOS &lt;--&gt; V_SKN
+        V_TOS &lt;--&gt; V_SOJ
+        V_TOS &lt;--&gt; V_VDS
+        V_SVG &lt;--&gt; V_EVE
+        V_SVG &lt;--&gt; V_KSU
+        V_SVG &lt;--&gt; V_SRP
+        V_SVG &lt;--&gt; V_TRD
+        V_SVG --&gt; V_FRO
+        V_SVG &lt;--&gt; V_KRS
+        V_TRD &lt;--&gt; V_EVE
+        V_TRD &lt;--&gt; V_AES
+        V_TRD &lt;--&gt; V_BOO
+        V_TRD &lt;--&gt; V_BNN
+        V_TRD &lt;--&gt; V_KRS
+        V_TRD &lt;--&gt; V_KSU
+        V_TRD &lt;--&gt; V_MJF
+        V_TRD &lt;--&gt; V_MQN
+        V_TRD &lt;--&gt; V_OSY
+        V_TRD &lt;--&gt; V_RVK
+        V_TRD &lt;--&gt; V_SSJ
+        V_KSU &lt;--&gt; V_MOL
+        V_EVE &lt;--&gt; V_ANX
+        V_EVE &lt;--&gt; V_BOO
+        V_MOL &lt;--&gt; V_SRP
+        V_ALF &lt;--&gt; V_HFT
+        V_ALF &lt;--&gt; V_KKN
+        V_ALF --&gt; V_LKL
+        V_ALF --&gt; V_SOJ
+        V_ALF &lt;--&gt; V_VDS
+        V_BOO &lt;--&gt; V_ANX
+        V_BOO --&gt; V_BNN
+        V_BOO &lt;--&gt; V_LKN
+        V_BOO &lt;--&gt; V_MJF
+        V_BOO &lt;--&gt; V_MQN
+        V_BOO &lt;--&gt; V_NVK
+        V_BOO &lt;--&gt; V_RET
+        V_BOO &lt;--&gt; V_SKN
+        V_BOO &lt;--&gt; V_SSJ
+        V_BOO &lt;--&gt; V_SVJ
+        V_KKN --&gt; V_LKL
+        V_KKN &lt;--&gt; V_VAW
+        V_KKN &lt;--&gt; V_VDS
+        V_HFT &lt;--&gt; V_BVG
+        V_HFT &lt;--&gt; V_HAA
+        V_HFT &lt;--&gt; V_HVG
+        V_HFT &lt;--&gt; V_MEH
+        V_HFT &lt;--&gt; V_SOJ
+        V_VDS &lt;--&gt; V_BJF
+        V_VDS --&gt; V_HFT
+        V_VDS &lt;--&gt; V_MEH
+        V_VDS &lt;--&gt; V_VAW
+        V_BNN --&gt; V_MQN
+        V_BNN &lt;--&gt; V_SSJ
+        V_FRO &lt;--&gt; V_HOV
+        V_FRO --&gt; V_KSU
+        V_HOV &lt;--&gt; V_SOG
+        V_SOG &lt;--&gt; V_SDN
+        V_BJF &lt;--&gt; V_BVG
+        V_BJF --&gt; V_HFT
+        V_BJF --&gt; V_MEH
+        V_BJF &lt;--&gt; V_VAW
+        V_BVG &lt;--&gt; V_MEH
+        V_BVG --&gt; V_VDS
+        V_MEH --&gt; V_ALF
+        V_MEH &lt;--&gt; V_HVG
+        V_MQN &lt;--&gt; V_MJF
+        V_MQN &lt;--&gt; V_RVK
+        V_LKN &lt;--&gt; V_RET
+        V_LKN &lt;--&gt; V_SVJ
+        V_MJF &lt;--&gt; V_OSY
+        V_MJF --&gt; V_SSJ
+        V_SKN --&gt; V_ANX
+        V_SKN &lt;--&gt; V_SVJ
+        V_HVG --&gt; V_BVG
+        V_OSY &lt;--&gt; V_RVK
+    end
+    EXT0[&quot;Sweden&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Sweden.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Spain&quot;]
+    PAIS --&gt;|&quot;35 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Spain.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Croatia&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Croatia.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;27 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;France&quot;]
+    PAIS --&gt;|&quot;11 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Italy&quot;]
+    PAIS --&gt;|&quot;12 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Italy.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Denmark&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Denmark.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Serbia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_Serbia.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Poland&quot;]
+    PAIS --&gt;|&quot;30 rutas&quot;| EXT10
+    click EXT10 &quot;grafo_Poland.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Romania&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Romania.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Latvia&quot;]
+    PAIS --&gt;|&quot;7 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Latvia.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Lithuania&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Lithuania.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Greece&quot;]
+    PAIS --&gt;|&quot;8 rutas&quot;| EXT15
+    click EXT15 &quot;grafo_Greece.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Finland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Finland.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT17
+    click EXT17 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Bulgaria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Bulgaria.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Slovakia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT19
+    click EXT19 &quot;grafo_Slovakia.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Hungary&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Hungary.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Ireland&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT21
+    click EXT21 &quot;grafo_Ireland.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Portugal&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Portugal.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;United States&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT23
+    click EXT23 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT24
+    click EXT24 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Ukraine&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Ukraine.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Iceland&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT26
+    click EXT26 &quot;grafo_Iceland.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Cyprus&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT27
+    click EXT27 &quot;grafo_Cyprus.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Russia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Russia.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Malta&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT29
+    click EXT29 &quot;grafo_Malta.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Czech Republic&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT30
+    click EXT30 &quot;grafo_Czech_Republic.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Morocco&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT31
+    click EXT31 &quot;grafo_Morocco.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Estonia&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT32
+    click EXT32 &quot;grafo_Estonia.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Austria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT33
+    click EXT33 &quot;grafo_Austria.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Pakistan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT34
+    click EXT34 &quot;grafo_Pakistan.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT35
+    click EXT35 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Belgium&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT36
+    click EXT36 &quot;grafo_Belgium.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Faroe Islands&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT37
+    click EXT37 &quot;grafo_Faroe_Islands.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

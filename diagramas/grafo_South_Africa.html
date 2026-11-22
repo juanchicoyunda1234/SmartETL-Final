@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de South Africa</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de South Africa</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>South Africa: 19 aeropuertos, 69 rutas internas, 81 salen al exterior, 81 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;South Africa: 19 de 19 aeropuertos&quot;]
+        V_CPT[&quot;CPT&lt;br/&gt;Cape Town&quot;]
+        V_PBZ[&quot;PBZ&lt;br/&gt;Plettenberg Bay&quot;]
+        V_JNB[&quot;JNB&lt;br/&gt;Johannesburg&quot;]
+        V_MGH[&quot;MGH&lt;br/&gt;Margate&quot;]
+        V_DUR[&quot;DUR&lt;br/&gt;Durban&quot;]
+        V_PLZ[&quot;PLZ&lt;br/&gt;Port Elizabeth&quot;]
+        V_BFN[&quot;BFN&lt;br/&gt;Bloemfontein&quot;]
+        V_HLA[&quot;HLA&lt;br/&gt;Johannesburg&quot;]
+        V_GRJ[&quot;GRJ&lt;br/&gt;George&quot;]
+        V_ELS[&quot;ELS&lt;br/&gt;East London&quot;]
+        V_HDS[&quot;HDS&lt;br/&gt;Hoedspruit&quot;]
+        V_KIM[&quot;KIM&lt;br/&gt;Kimberley&quot;]
+        V_MQP[&quot;MQP&lt;br/&gt;Mpumalanga&quot;]
+        V_UTN[&quot;UTN&lt;br/&gt;Upington&quot;]
+        V_PHW[&quot;PHW&lt;br/&gt;Phalaborwa&quot;]
+        V_PTG[&quot;PTG&lt;br/&gt;Potgietersrus&quot;]
+        V_PZB[&quot;PZB&lt;br/&gt;Pietermaritzburg&quot;]
+        V_RCB[&quot;RCB&lt;br/&gt;Richard's Bay&quot;]
+        V_UTT[&quot;UTT&lt;br/&gt;Umtata&quot;]
+        V_CPT &lt;--&gt; V_PBZ
+        V_CPT &lt;--&gt; V_DUR
+        V_CPT &lt;--&gt; V_JNB
+        V_CPT &lt;--&gt; V_PLZ
+        V_CPT &lt;--&gt; V_BFN
+        V_CPT &lt;--&gt; V_HLA
+        V_CPT &lt;--&gt; V_ELS
+        V_CPT &lt;--&gt; V_GRJ
+        V_CPT &lt;--&gt; V_HDS
+        V_CPT &lt;--&gt; V_KIM
+        V_CPT &lt;--&gt; V_MQP
+        V_CPT &lt;--&gt; V_UTN
+        V_PBZ --&gt; V_JNB
+        V_JNB &lt;--&gt; V_MGH
+        V_JNB &lt;--&gt; V_DUR
+        V_JNB &lt;--&gt; V_PLZ
+        V_JNB &lt;--&gt; V_GRJ
+        V_JNB &lt;--&gt; V_ELS
+        V_JNB &lt;--&gt; V_BFN
+        V_JNB &lt;--&gt; V_HDS
+        V_JNB &lt;--&gt; V_KIM
+        V_JNB &lt;--&gt; V_MQP
+        V_JNB &lt;--&gt; V_PHW
+        V_JNB &lt;--&gt; V_PTG
+        V_JNB &lt;--&gt; V_PZB
+        V_JNB &lt;--&gt; V_RCB
+        V_JNB &lt;--&gt; V_UTN
+        V_JNB &lt;--&gt; V_UTT
+        V_DUR &lt;--&gt; V_PLZ
+        V_DUR &lt;--&gt; V_HLA
+        V_DUR &lt;--&gt; V_BFN
+        V_DUR &lt;--&gt; V_ELS
+        V_DUR &lt;--&gt; V_GRJ
+        V_DUR &lt;--&gt; V_MQP
+        V_PLZ &lt;--&gt; V_ELS
+    end
+    EXT0[&quot;United Kingdom&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_United_Kingdom.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Botswana&quot;]
+    PAIS --&gt;|&quot;6 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Botswana.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Angola&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Angola.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Mauritius&quot;]
+    PAIS --&gt;|&quot;3 rutas&quot;| EXT5
+    click EXT5 &quot;grafo_Mauritius.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;Qatar&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT6
+    click EXT6 &quot;grafo_Qatar.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Mozambique&quot;]
+    PAIS --&gt;|&quot;9 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Mozambique.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Namibia&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT8
+    click EXT8 &quot;grafo_Namibia.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;India&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_India.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;France&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_France.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;United States&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT11
+    click EXT11 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;Zimbabwe&quot;]
+    PAIS --&gt;|&quot;4 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_Zimbabwe.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;Zambia&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT13
+    click EXT13 &quot;grafo_Zambia.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Congo (Kinshasa)&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT14
+    click EXT14 &quot;grafo_Congo_Kinshasa.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT17[&quot;Malawi&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT17
+    click EXT17 &quot;grafo_Malawi.html&quot; &quot;Abrir país&quot;
+    EXT18[&quot;Seychelles&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT18
+    click EXT18 &quot;grafo_Seychelles.html&quot; &quot;Abrir país&quot;
+    EXT19[&quot;Tanzania&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT19
+    click EXT19 &quot;grafo_Tanzania.html&quot; &quot;Abrir país&quot;
+    EXT20[&quot;Brazil&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT20
+    click EXT20 &quot;grafo_Brazil.html&quot; &quot;Abrir país&quot;
+    EXT21[&quot;Kenya&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT21
+    click EXT21 &quot;grafo_Kenya.html&quot; &quot;Abrir país&quot;
+    EXT22[&quot;Germany&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT22
+    click EXT22 &quot;grafo_Germany.html&quot; &quot;Abrir país&quot;
+    EXT23[&quot;Switzerland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT23
+    click EXT23 &quot;grafo_Switzerland.html&quot; &quot;Abrir país&quot;
+    EXT24[&quot;Israel&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT24
+    click EXT24 &quot;grafo_Israel.html&quot; &quot;Abrir país&quot;
+    EXT25[&quot;Madagascar&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT25
+    click EXT25 &quot;grafo_Madagascar.html&quot; &quot;Abrir país&quot;
+    EXT26[&quot;Egypt&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT26
+    click EXT26 &quot;grafo_Egypt.html&quot; &quot;Abrir país&quot;
+    EXT27[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT27
+    click EXT27 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT28[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT28
+    click EXT28 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT29[&quot;Ghana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT29
+    click EXT29 &quot;grafo_Ghana.html&quot; &quot;Abrir país&quot;
+    EXT30[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT30
+    click EXT30 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+    EXT31[&quot;Congo (Brazzaville)&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT31
+    click EXT31 &quot;grafo_Congo_Brazzaville.html&quot; &quot;Abrir país&quot;
+    EXT32[&quot;Senegal&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT32
+    click EXT32 &quot;grafo_Senegal.html&quot; &quot;Abrir país&quot;
+    EXT33[&quot;Uganda&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT33
+    click EXT33 &quot;grafo_Uganda.html&quot; &quot;Abrir país&quot;
+    EXT34[&quot;Rwanda&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT34
+    click EXT34 &quot;grafo_Rwanda.html&quot; &quot;Abrir país&quot;
+    EXT35[&quot;Gabon&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT35
+    click EXT35 &quot;grafo_Gabon.html&quot; &quot;Abrir país&quot;
+    EXT36[&quot;Nigeria&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT36
+    click EXT36 &quot;grafo_Nigeria.html&quot; &quot;Abrir país&quot;
+    EXT37[&quot;Lesotho&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT37
+    click EXT37 &quot;grafo_Lesotho.html&quot; &quot;Abrir país&quot;
+    EXT38[&quot;Swaziland&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT38
+    click EXT38 &quot;grafo_Swaziland.html&quot; &quot;Abrir país&quot;
+    EXT39[&quot;Saudi Arabia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT39
+    click EXT39 &quot;grafo_Saudi_Arabia.html&quot; &quot;Abrir país&quot;
+    EXT40[&quot;Turkey&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT40
+    click EXT40 &quot;grafo_Turkey.html&quot; &quot;Abrir país&quot;
+    EXT41[&quot;Reunion&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT41
+    click EXT41 &quot;grafo_Reunion.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de New Zealand</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de New Zealand</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>New Zealand: 25 aeropuertos, 104 rutas internas, 34 salen al exterior, 43 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;New Zealand: 25 de 25 aeropuertos&quot;]
+        V_AKL[&quot;AKL&lt;br/&gt;Auckland&quot;]
+        V_CHC[&quot;CHC&lt;br/&gt;Christchurch&quot;]
+        V_WLG[&quot;WLG&lt;br/&gt;Wellington&quot;]
+        V_ZQN[&quot;ZQN&lt;br/&gt;Queenstown International&quot;]
+        V_DUD[&quot;DUD&lt;br/&gt;Dunedin&quot;]
+        V_BHE[&quot;BHE&lt;br/&gt;Woodbourne&quot;]
+        V_GIS[&quot;GIS&lt;br/&gt;Gisborne&quot;]
+        V_HLZ[&quot;HLZ&lt;br/&gt;Hamilton&quot;]
+        V_KAT[&quot;KAT&lt;br/&gt;Kaitaia&quot;]
+        V_KKE[&quot;KKE&lt;br/&gt;Kerikeri&quot;]
+        V_NPE[&quot;NPE&lt;br/&gt;NAPIER&quot;]
+        V_NPL[&quot;NPL&lt;br/&gt;New Plymouth&quot;]
+        V_NSN[&quot;NSN&lt;br/&gt;Nelson&quot;]
+        V_PMR[&quot;PMR&lt;br/&gt;Palmerston North&quot;]
+        V_PPQ[&quot;PPQ&lt;br/&gt;Paraparaumu&quot;]
+        V_ROT[&quot;ROT&lt;br/&gt;Rotorua&quot;]
+        V_TRG[&quot;TRG&lt;br/&gt;Tauranga&quot;]
+        V_TUO[&quot;TUO&lt;br/&gt;Taupo&quot;]
+        V_WAG[&quot;WAG&lt;br/&gt;Wanganui&quot;]
+        V_WHK[&quot;WHK&lt;br/&gt;Whakatane&quot;]
+        V_WRE[&quot;WRE&lt;br/&gt;Whangarei&quot;]
+        V_HKK[&quot;HKK&lt;br/&gt;Hokitika&quot;]
+        V_IVC[&quot;IVC&lt;br/&gt;Invercargill&quot;]
+        V_TIU[&quot;TIU&lt;br/&gt;Timaru&quot;]
+        V_WSZ[&quot;WSZ&lt;br/&gt;Westport&quot;]
+        V_AKL &lt;--&gt; V_CHC
+        V_AKL &lt;--&gt; V_DUD
+        V_AKL &lt;--&gt; V_WLG
+        V_AKL &lt;--&gt; V_ZQN
+        V_AKL &lt;--&gt; V_BHE
+        V_AKL &lt;--&gt; V_GIS
+        V_AKL &lt;--&gt; V_HLZ
+        V_AKL &lt;--&gt; V_KAT
+        V_AKL &lt;--&gt; V_KKE
+        V_AKL &lt;--&gt; V_NPE
+        V_AKL &lt;--&gt; V_NPL
+        V_AKL &lt;--&gt; V_NSN
+        V_AKL &lt;--&gt; V_PMR
+        V_AKL &lt;--&gt; V_PPQ
+        V_AKL &lt;--&gt; V_ROT
+        V_AKL &lt;--&gt; V_TRG
+        V_AKL &lt;--&gt; V_TUO
+        V_AKL &lt;--&gt; V_WAG
+        V_AKL &lt;--&gt; V_WHK
+        V_AKL &lt;--&gt; V_WRE
+        V_CHC &lt;--&gt; V_WLG
+        V_CHC &lt;--&gt; V_BHE
+        V_CHC &lt;--&gt; V_DUD
+        V_CHC &lt;--&gt; V_HKK
+        V_CHC &lt;--&gt; V_HLZ
+        V_CHC &lt;--&gt; V_IVC
+        V_CHC &lt;--&gt; V_NPE
+        V_CHC &lt;--&gt; V_NPL
+        V_CHC &lt;--&gt; V_NSN
+        V_CHC &lt;--&gt; V_PMR
+        V_CHC &lt;--&gt; V_PPQ
+        V_CHC &lt;--&gt; V_ROT
+        V_CHC &lt;--&gt; V_TRG
+        V_CHC &lt;--&gt; V_ZQN
+        V_WLG &lt;--&gt; V_BHE
+        V_WLG &lt;--&gt; V_DUD
+        V_WLG &lt;--&gt; V_GIS
+        V_WLG &lt;--&gt; V_HLZ
+        V_WLG &lt;--&gt; V_IVC
+        V_WLG &lt;--&gt; V_NPE
+        V_WLG &lt;--&gt; V_NPL
+        V_WLG &lt;--&gt; V_NSN
+        V_WLG &lt;--&gt; V_PMR
+        V_WLG &lt;--&gt; V_ROT
+        V_WLG &lt;--&gt; V_TIU
+        V_WLG &lt;--&gt; V_TRG
+        V_WLG &lt;--&gt; V_TUO
+        V_WLG &lt;--&gt; V_WRE
+        V_WLG &lt;--&gt; V_WSZ
+        V_WLG &lt;--&gt; V_ZQN
+        V_HLZ &lt;--&gt; V_PMR
+        V_NSN &lt;--&gt; V_PMR
+    end
+    EXT0[&quot;Australia&quot;]
+    PAIS --&gt;|&quot;15 rutas&quot;| EXT0
+    click EXT0 &quot;grafo_Australia.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;French Polynesia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT1
+    click EXT1 &quot;grafo_French_Polynesia.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;China&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_China.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Hong Kong&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT3
+    click EXT3 &quot;grafo_Hong_Kong.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Singapore&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT4
+    click EXT4 &quot;grafo_Singapore.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Fiji&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Fiji.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;South Korea&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_South_Korea.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Chile&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT7
+    click EXT7 &quot;grafo_Chile.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Malaysia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Malaysia.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;Vanuatu&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT9
+    click EXT9 &quot;grafo_Vanuatu.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Japan&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Japan.html&quot; &quot;Abrir país&quot;
+    EXT11[&quot;Samoa&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT11
+    click EXT11 &quot;grafo_Samoa.html&quot; &quot;Abrir país&quot;
+    EXT12[&quot;United States&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT12
+    click EXT12 &quot;grafo_United_States.html&quot; &quot;Abrir país&quot;
+    EXT13[&quot;New Caledonia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT13
+    click EXT13 &quot;grafo_New_Caledonia.html&quot; &quot;Abrir país&quot;
+    EXT14[&quot;Cook Islands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT14
+    click EXT14 &quot;grafo_Cook_Islands.html&quot; &quot;Abrir país&quot;
+    EXT15[&quot;Tonga&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT15
+    click EXT15 &quot;grafo_Tonga.html&quot; &quot;Abrir país&quot;
+    EXT16[&quot;Thailand&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT16
+    click EXT16 &quot;grafo_Thailand.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>

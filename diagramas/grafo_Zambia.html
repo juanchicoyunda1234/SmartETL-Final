@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Grafo de Zambia</title>
+<style>
+body{font-family:Segoe UI,Arial,sans-serif;margin:0;background:#f4f6f8;color:#1d2733}
+header{padding:8px 16px;background:#1f3b5a;color:#fff;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+button{padding:4px 12px;border:0;border-radius:4px;background:#e8eef5;cursor:pointer}
+#lienzo{height:72vh;background:#fff;border-bottom:1px solid #ccd}
+#lienzo svg{width:100%;height:100%}
+textarea{box-sizing:border-box;width:calc(100% - 32px);height:20vh;margin:8px 16px;font-family:Consolas,monospace;font-size:12px}
+</style>
+<script src="../recursos/mermaid.min.js"></script>
+<script src="../recursos/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+<header><strong>Grafo de Zambia</strong><button id="ajustar">Ajustar</button><button id="copiar">Copiar código Mermaid</button><span>Zambia: 8 aeropuertos, 16 rutas internas, 19 salen al exterior, 15 llegan del exterior</span></header>
+<div id="lienzo"></div>
+<textarea id="codigo" readonly>flowchart LR
+    subgraph PAIS[&quot;Zambia: 8 de 8 aeropuertos&quot;]
+        V_LUN[&quot;LUN&lt;br/&gt;Lusaka&quot;]
+        V_LVI[&quot;LVI&lt;br/&gt;Livingstone&quot;]
+        V_NLA[&quot;NLA&lt;br/&gt;Ndola&quot;]
+        V_CIP[&quot;CIP&lt;br/&gt;Chipata&quot;]
+        V_KAA[&quot;KAA&lt;br/&gt;Kasama&quot;]
+        V_MFU[&quot;MFU&lt;br/&gt;Mfuwe&quot;]
+        V_KSLI[&quot;KSLI&lt;br/&gt;Solwesi&quot;]
+        V_MNS[&quot;MNS&lt;br/&gt;Mansa&quot;]
+        V_LUN &lt;--&gt; V_CIP
+        V_LUN --&gt; V_KAA
+        V_LUN &lt;--&gt; V_LVI
+        V_LUN &lt;--&gt; V_MFU
+        V_LUN &lt;--&gt; V_NLA
+        V_LUN &lt;--&gt; V_KSLI
+        V_NLA --&gt; V_MNS
+        V_NLA &lt;--&gt; V_KSLI
+        V_KAA --&gt; V_NLA
+        V_MNS --&gt; V_LUN
+    end
+    EXT0[&quot;Netherlands&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT0
+    click EXT0 &quot;grafo_Netherlands.html&quot; &quot;Abrir país&quot;
+    EXT1[&quot;Zimbabwe&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT1
+    click EXT1 &quot;grafo_Zimbabwe.html&quot; &quot;Abrir país&quot;
+    EXT2[&quot;Malawi&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT2
+    click EXT2 &quot;grafo_Malawi.html&quot; &quot;Abrir país&quot;
+    EXT3[&quot;Kenya&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT3
+    click EXT3 &quot;grafo_Kenya.html&quot; &quot;Abrir país&quot;
+    EXT4[&quot;Botswana&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT4
+    click EXT4 &quot;grafo_Botswana.html&quot; &quot;Abrir país&quot;
+    EXT5[&quot;Angola&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT5
+    click EXT5 &quot;grafo_Angola.html&quot; &quot;Abrir país&quot;
+    EXT6[&quot;United Arab Emirates&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT6
+    click EXT6 &quot;grafo_United_Arab_Emirates.html&quot; &quot;Abrir país&quot;
+    EXT7[&quot;Ethiopia&quot;]
+    PAIS --&gt;|&quot;2 rutas&quot;| EXT7
+    click EXT7 &quot;grafo_Ethiopia.html&quot; &quot;Abrir país&quot;
+    EXT8[&quot;Namibia&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT8
+    click EXT8 &quot;grafo_Namibia.html&quot; &quot;Abrir país&quot;
+    EXT9[&quot;South Africa&quot;]
+    PAIS --&gt;|&quot;5 rutas&quot;| EXT9
+    click EXT9 &quot;grafo_South_Africa.html&quot; &quot;Abrir país&quot;
+    EXT10[&quot;Congo (Kinshasa)&quot;]
+    PAIS --&gt;|&quot;1 ruta&quot;| EXT10
+    click EXT10 &quot;grafo_Congo_Kinshasa.html&quot; &quot;Abrir país&quot;
+</textarea>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'loose',maxTextSize:5000000,maxEdges:50000,flowchart:{useMaxWidth:false,htmlLabels:true}});
+var zoom=null;
+mermaid.render('diagrama',document.getElementById('codigo').value).then(function(r){
+  var lienzo=document.getElementById('lienzo');lienzo.innerHTML=r.svg;
+  if(r.bindFunctions){r.bindFunctions(lienzo);}
+  var svg=lienzo.querySelector('svg');svg.removeAttribute('style');
+  svg.setAttribute('width','100%');svg.setAttribute('height','100%');
+  zoom=svgPanZoom(svg,{zoomEnabled:true,controlIconsEnabled:true,fit:true,center:true,minZoom:0.05,maxZoom:50});
+}).catch(function(e){document.getElementById('lienzo').innerHTML='<pre style="color:#a00;padding:16px">Error al dibujar: '+e+'</pre>';});
+document.getElementById('ajustar').onclick=function(){if(zoom){zoom.resize();zoom.fit();zoom.center();}};
+document.getElementById('copiar').onclick=function(){var t=document.getElementById('codigo');t.select();document.execCommand('copy');};
+</script>
+</body>
+</html>
