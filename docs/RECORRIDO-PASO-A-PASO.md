@@ -70,7 +70,7 @@ Decisiones que se apartan un poco de la especificación (cada una tiene su motiv
 - **`data/demo/routes_sucio.csv`.** Se agregó junto al de aeropuertos, porque sin rutas no se pueden mostrar los dos tipos de error de rutas.
 - **Países grandes en el drill-down.** EE. UU. se dibuja como árbol BFS desde el aeropuerto elegido, porque con todas sus aristas Mermaid tardaba más de 45 segundos.
 
-**Importante para la defensa:** el docente puede pedir explicar o modificar cualquier parte. La guía [GUIA-DEFENSA.md](GUIA-DEFENSA.md) tiene, para cada estructura, lo que hay que decir, una traza a mano con datos reales y la pregunta más probable con su respuesta.
+**Importante para la defensa:** el docente puede pedir explicar o modificar cualquier parte.
 
 ---
 

@@ -419,16 +419,11 @@ En Windows, para ver bien las tildes en la consola, ejecutar antes `chcp 65001`.
 | Documento | Para qué |
 |---|---|
 | [`docs/GUIA-INTERFAZ-WEB.md`](docs/GUIA-INTERFAZ-WEB.md) | Cómo funciona la web: fetch, endpoints, SSE, seguridad, librerías y preguntas de la defensa |
-| [`ESTADO_EXPOSICION.md`](ESTADO_EXPOSICION.md) | Estado completo del proyecto: clases, estructuras, flujo ETL, IA, endpoints y reparto |
 | [`GUIA_CODIGO.md`](GUIA_CODIGO.md) | Guion del "vistazo al código" con fragmentos y números de línea |
-| [`docs/GUIA-DEFENSA.md`](docs/GUIA-DEFENSA.md) | Preparación de la defensa individual |
-| [`docs/GUION-DEMO.md`](docs/GUION-DEMO.md) | Guion de la demostración en vivo |
 | [`docs/RECORRIDO-PASO-A-PASO.md`](docs/RECORRIDO-PASO-A-PASO.md) | Recorrido paso a paso y funcionamiento de la capa de IA |
 | [`docs/GUIA-EXPOSICION.html`](docs/GUIA-EXPOSICION.html) | Guía visual para exponer |
 | [`docs/MIGRACION-FASE0.md`](docs/MIGRACION-FASE0.md) | Decisiones de la migración de Swing a web |
 | [`PRODUCT.md`](PRODUCT.md) y [`DESIGN.md`](DESIGN.md) | Para quién es la interfaz y su sistema de diseño |
-| [`docs/ISSUES.md`](docs/ISSUES.md) | Issues por integrante |
-| [`docs/PLAN_COMMITS.md`](docs/PLAN_COMMITS.md) | Plan de ramas y commits |
 
 **Capturas de la interfaz web** (en `docs/img/`; la lista de capturas pendientes está en [`docs/img/LEEME.md`](docs/img/LEEME.md)):
 
@@ -455,37 +450,5 @@ En Windows, para ver bien las tildes en la consola, ejecutar antes `chcp 65001`.
 | `develop` | Integración: todas las ramas de trabajo se unen aquí por Pull Request |
 | `feature/datos-jeremy`, `feature/etl-noemi`, `feature/bst-andres`, `feature/web-joseph`, `feature/ia-jullisa`, `feature/grafo-juan` | Una rama por integrante |
 | `chore/seguridad`, `docs/readme` | Seguridad y documentación (líder) |
-
-**Convención de commits:** [Conventional Commits](https://www.conventionalcommits.org/es/v1.0.0/) en español.
-
-| Tipo | Cuándo | Ejemplo |
-|---|---|---|
-| `feat` | Funcionalidad nueva | `feat(etl): agrega cola de extracción` |
-| `fix` | Corrección de un error | `fix(bst): corrige eliminar con dos hijos` |
-| `docs` | Documentación | `docs(readme): agrega flujo del ETL` |
-| `test` | Pruebas | `test(grafo): agrega pruebas de BFS` |
-| `chore` | Configuración y mantenimiento | `chore(seguridad): agrega .gitignore y .env.example` |
-| `refactor` | Cambio interno sin cambiar el comportamiento | `refactor(web): separa el lector de JSON` |
-
-**Cómo hacer un Pull Request**
-
-1. Actualizar `develop` y crear la rama desde ahí:
-   ```bash
-   git checkout develop
-   ```
-   ```bash
-   git pull origin develop
-   ```
-   ```bash
-   git checkout -b feature/mi-parte
-   ```
-2. Hacer commits pequeños con la convención anterior y subir la rama:
-   ```bash
-   git push -u origin feature/mi-parte
-   ```
-3. En GitHub: **Compare & pull request**, base `develop`, título igual al commit principal y, en la descripción, `Closes #N` con el número del issue.
-4. Otro integrante revisa. El líder hace el merge cuando compila y las pruebas terminan en `fallaron: 0`.
-
-El plan completo por integrante (archivos, commits y comandos) está en [`docs/PLAN_COMMITS.md`](docs/PLAN_COMMITS.md).
 
 **Antecedente:** el Hito 1 se trabajó en el repositorio anterior https://github.com/juanchicoyunda1234/SmartETL_DS (Pull Requests #1 a #6: modelo, pruebas, ETL, interfaz Swing, estructuras y dataset). Este repositorio parte de cero con la versión final.
