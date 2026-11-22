@@ -1,0 +1,322 @@
+.grafo-arriba {
+  display: grid;
+  grid-template-columns: minmax(min(320px, 100%), 380px) minmax(0, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.grafo-arriba > * {
+  min-width: 0;
+}
+
+.paises-panel .panel-titulo .chip {
+  margin-left: auto;
+}
+
+.buscador {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-control);
+  background: var(--superficie-2);
+  color: var(--texto-tenue);
+}
+
+.buscador:focus-within {
+  border-color: var(--acento);
+}
+
+.buscador input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  padding: 9px 0;
+  outline: none;
+  color: var(--texto);
+}
+
+.lista-paises {
+  height: 260px;
+  overflow-y: auto;
+  margin: 10px 0 12px;
+  padding: 4px;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-control);
+}
+
+.pais-fila {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pais-fila:hover {
+  background: var(--superficie-2);
+}
+
+.pais-fila input {
+  accent-color: var(--acento);
+}
+
+.pais-fila span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pais-fila small {
+  color: var(--exito);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pais-fila small.sin-rutas {
+  color: var(--texto-tenue);
+  font-weight: 500;
+}
+
+.boton-fantasma {
+  background: transparent;
+  border-color: transparent;
+  color: var(--texto-suave);
+  text-decoration: none;
+}
+
+.boton-fantasma:hover:not(:disabled) {
+  color: var(--texto);
+  background: var(--superficie-2);
+}
+
+.casilla {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: end;
+  min-height: 38px;
+  font-size: 14px;
+  color: var(--texto-suave);
+  cursor: pointer;
+}
+
+.casilla input {
+  accent-color: var(--acento);
+  width: 16px;
+  height: 16px;
+}
+
+.ayuda {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  color: var(--texto-tenue);
+  cursor: help;
+}
+
+.ayuda:hover,
+.ayuda:focus-visible {
+  color: var(--acento);
+  outline: none;
+}
+
+.ayuda::after {
+  content: attr(data-ayuda);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  width: 230px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--texto);
+  color: var(--fondo);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+  white-space: normal;
+  box-shadow: var(--sombra);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 4px);
+  transition: opacity var(--rapida) ease, transform var(--rapida) ease;
+  z-index: 20;
+}
+
+.ayuda:hover::after,
+.ayuda:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.lienzo-red {
+  position: relative;
+  height: 480px;
+  margin-top: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--borde);
+  background: var(--superficie-2);
+  overflow: hidden;
+  animation: entrar var(--media) var(--curva);
+}
+
+.lienzo-bajo {
+  height: 340px;
+}
+
+.red-cabecera,
+.marco-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.red-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--texto-suave);
+}
+
+.red-leyenda:empty {
+  display: none;
+}
+
+.red-leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.red-leyenda i {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color, var(--acento));
+}
+
+.red-leyenda .ley-centro {
+  --color: var(--aviso);
+}
+
+.red-leyenda .ley-interna {
+  --color: var(--acento);
+}
+
+.red-leyenda .ley-externa {
+  --color: var(--morado);
+  border-radius: 3px;
+}
+
+.cadena-vuelos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.escala {
+  display: grid;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1.5px solid color-mix(in srgb, var(--acento) 45%, var(--borde));
+  background: var(--acento-suave);
+  min-width: 0;
+}
+
+.escala b {
+  font-family: var(--mono);
+  font-size: 16px;
+}
+
+.escala small {
+  color: var(--texto-suave);
+  font-size: 12px;
+}
+
+.escala.extremo {
+  border-color: var(--exito);
+  background: var(--exito-suave);
+}
+
+.avion {
+  color: var(--acento);
+  font-size: 18px;
+}
+
+.anillo-svg {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  margin: 10px auto 0;
+}
+
+.anillo-svg circle.nodo {
+  fill: var(--superficie-2);
+  stroke: var(--morado);
+  stroke-width: 2.2;
+}
+
+.anillo-svg path {
+  fill: none;
+  stroke: var(--morado);
+  stroke-width: 2;
+}
+
+.anillo-svg marker path {
+  fill: var(--morado);
+  stroke: none;
+}
+
+.anillo-svg text {
+  fill: var(--texto);
+  font: 700 13px var(--mono);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.marco-diagrama {
+  display: block;
+  width: 100%;
+  height: 640px;
+  margin-top: 10px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: #fff;
+  animation: entrar var(--media) var(--curva);
+}
+
+.kpis-externos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+@media (max-width: 860px) {
+  .grafo-arriba {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lienzo-red {
+    height: 380px;
+  }
+  .marco-diagrama {
+    height: 520px;
+  }
+}

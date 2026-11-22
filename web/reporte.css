@@ -1,0 +1,383 @@
+.reporte-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reporte-ayuda {
+  margin: 8px 0 18px;
+}
+
+.hoja {
+  --institucional: #a8192e;
+  width: min(210mm, 100%);
+  margin: 0 auto;
+  padding: 18mm 16mm;
+  background: var(--superficie);
+  color: var(--texto);
+  border-radius: 6px;
+  box-shadow: var(--sombra-alta);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.hoja h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--institucional);
+  font-size: 20px;
+}
+
+.hoja h3 {
+  margin: 16px 0 8px;
+  font-size: 15px;
+}
+
+.portada {
+  display: grid;
+  align-content: center;
+  min-height: 240mm;
+  text-align: center;
+  break-after: page;
+}
+
+.portada-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 26mm;
+  padding-bottom: 6mm;
+  border-bottom: 2px solid var(--institucional);
+}
+
+.portada-logos .logo-uta {
+  width: 30mm;
+  height: auto;
+}
+
+.portada-logos .logo-fisei {
+  width: 72mm;
+  max-width: 60%;
+  height: auto;
+}
+
+.membrete {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.membrete-uta {
+  width: 13mm;
+  height: auto;
+}
+
+.membrete-fisei {
+  width: 34mm;
+  height: auto;
+}
+
+.membrete-texto {
+  display: grid;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--texto-suave);
+}
+
+.membrete-texto b {
+  color: var(--institucional);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.portada h1 {
+  margin: 10px 0 4px;
+  font-size: 46px;
+  letter-spacing: -0.02em;
+  color: var(--institucional);
+}
+
+.portada-institucion {
+  font-size: 13px;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.portada-sub {
+  max-width: 130mm;
+  margin: 0 auto 26px;
+  font-size: 16px;
+  color: var(--texto-suave);
+}
+
+.portada-datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  max-width: 140mm;
+  margin: 0 auto 24px;
+  text-align: left;
+}
+
+.portada-datos dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-tenue);
+}
+
+.portada-datos dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.texto-pequeno {
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.portada-integrantes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 24px;
+  max-width: 140mm;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+
+.portada-integrantes li::before {
+  content: "• ";
+  color: var(--institucional);
+}
+
+.reporte-seccion {
+  margin-top: 26px;
+}
+
+.reporte-seccion.nueva-pagina {
+  break-before: page;
+}
+
+.reporte-bloque {
+  break-inside: avoid;
+  margin-bottom: 14px;
+}
+
+.reporte-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.reporte-kpi {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--borde);
+  background: var(--superficie-2);
+}
+
+.reporte-kpi small {
+  display: block;
+  font-size: 11px;
+  color: var(--texto-tenue);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.reporte-kpi b {
+  font-size: 19px;
+}
+
+.reporte-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+
+.reporte-tabla th,
+.reporte-tabla td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--borde);
+  text-align: left;
+}
+
+.reporte-tabla th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--texto-suave);
+  background: var(--superficie-2);
+}
+
+.reporte-tabla td.numero {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.reporte-graficos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.reporte-grafico {
+  break-inside: avoid;
+  padding: 8px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
+.reporte-bloque > .reporte-grafico {
+  max-width: 120mm;
+  margin: 10px auto 0;
+}
+
+.reporte-grafico img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reporte-grafico figcaption {
+  font-size: 11.5px;
+  color: var(--texto-suave);
+  margin-top: 4px;
+}
+
+.no-ejecutado {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px dashed var(--borde-fuerte);
+  color: var(--texto-tenue);
+  font-style: italic;
+}
+
+.reporte-cadena {
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.reporte-ia {
+  break-inside: avoid;
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+}
+
+.reporte-ia .resultado-ia-chips {
+  margin: 4px 0 8px;
+}
+
+.reporte-diagrama {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: var(--superficie-2);
+}
+
+.reporte-diagrama svg {
+  max-width: 100%;
+  max-height: 230mm;
+  height: auto;
+}
+
+.reporte-ia .texto-ia {
+  animation: none;
+  margin-top: 8px;
+  font-size: 12.5px;
+}
+
+.reporte-ia h4 {
+  margin: 10px 0 4px;
+  font-size: 13px;
+}
+
+@media (max-width: 720px) {
+  .hoja {
+    padding: 16px;
+  }
+  .portada-logos {
+    margin-bottom: 20px;
+  }
+  .membrete-fisei {
+    display: none;
+  }
+  .portada {
+    min-height: auto;
+    padding: 30px 0;
+  }
+  .portada-datos,
+  .portada-integrantes,
+  .reporte-graficos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .reporte-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm 12mm;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  .encabezado,
+  .pestanas,
+  .toasts,
+  .velo,
+  .vista:not(#vista-reporte),
+  #vista-reporte .vista-cabecera,
+  .reporte-barra,
+  .reporte-ayuda {
+    display: none !important;
+  }
+  .contenido {
+    max-width: none;
+    padding: 0;
+  }
+  #vista-reporte {
+    display: block !important;
+  }
+  .hoja {
+    width: auto;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  .portada {
+    min-height: 250mm;
+  }
+  .reporte-kpis {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .reporte-graficos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
