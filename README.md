@@ -10,7 +10,8 @@ Proyecto final integrador de **Estructura de Datos**. Toma los datos públicos d
 
 **Objetivo:** aplicar cada estructura de datos donde tiene sentido usarla, medir su costo (comparaciones, tiempos) y poder explicar el porqué de cada decisión.
 
-Repositorio: <URL_DEL_REPOSITORIO>
+Repositorio: https://github.com/juanchicoyunda1234/SmartETL-Final  
+Diapositivas: https://www.canva.com/design/DAHbC7PRlh4/mN95lvB90CkdKloMjkXChA/view
 
 ---
 
@@ -307,7 +308,7 @@ Detalle de las reglas por fuente en `src/etl/Transform.java`: `validarAeropuerto
 **1. Clonar**
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
+git clone https://github.com/juanchicoyunda1234/SmartETL-Final.git
 ```
 
 Entrar a la carpeta clonada (la que contiene `src/`, `web/` y `data/`).
@@ -436,7 +437,7 @@ En Windows, para ver bien las tildes en la consola, ejecutar antes `chcp 65001`.
 | IA | 📷 Pendiente: `docs/img/05-ia.png` |
 | Reporte | 📷 Pendiente: `docs/img/06-reporte.png` |
 
-**Diapositivas de la exposición:** <URL_DIAPOSITIVAS>
+**Diapositivas de la exposición:** [Presentación en Canva](https://www.canva.com/design/DAHbC7PRlh4/mN95lvB90CkdKloMjkXChA/view) (https://www.canva.com/design/DAHbC7PRlh4/mN95lvB90CkdKloMjkXChA/view)
 
 ---
 
