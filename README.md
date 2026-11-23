@@ -427,15 +427,14 @@ En Windows, para ver bien las tildes en la consola, ejecutar antes `chcp 65001`.
 | [`PRODUCT.md`](PRODUCT.md) y [`DESIGN.md`](DESIGN.md) | Para quién es la interfaz y su sistema de diseño |
 
 **Capturas de la interfaz web** (en `docs/img/`; la lista de capturas pendientes está en [`docs/img/LEEME.md`](docs/img/LEEME.md)):
-
 | Pestaña | Captura |
 |---|---|
-| Datos | 📷 Pendiente: `docs/img/01-datos.png` |
-| ETL | 📷 Pendiente: `docs/img/02-etl.png` |
-| Estructuras | 📷 Pendiente: `docs/img/03-estructuras.png` |
-| Grafo | 📷 Pendiente: `docs/img/04-grafo.png` |
-| IA | 📷 Pendiente: `docs/img/05-ia.png` |
-| Reporte | 📷 Pendiente: `docs/img/06-reporte.png` |
+| Datos | ![Datos](docs/img/01-datos.png) |
+| ETL | ![ETL](docs/img/02-etl.png) |
+| Estructuras | ![Estructuras](docs/img/03-estructuras.png) |
+| Grafo | ![Grafo](docs/img/04-grafo.png) |
+| IA | ![IA](docs/img/05-ia.png) |
+| Reporte | ![Reporte](docs/img/06-reporte.png) |
 
 **Diapositivas de la exposición:** [Presentación en Canva](https://www.canva.com/design/DAHbC7PRlh4/mN95lvB90CkdKloMjkXChA/view) (https://www.canva.com/design/DAHbC7PRlh4/mN95lvB90CkdKloMjkXChA/view)
 
